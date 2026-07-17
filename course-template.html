@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  COURSE DETAIL TEMPLATE
+  Copy this file once per course. Keep the section order — it
+  mirrors the order a buyer evaluates in:
+    title -> logistics -> book -> abstract -> audience ->
+    objectives -> book -> outline -> prereqs -> kit ->
+    instructor -> book -> policy -> other courses
+  The BOOK rail repeats 3x on purpose. Don't remove them.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows Kernel Exploitation — Switchback</title>
+<meta name="description" content="TODO: 1-2 sentence abstract. This is what shows in search results and link previews. Make it concrete.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="../index.html">SWITCH<span>BACK</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html">Courses</a>
+      <a href="../register.html">Register</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <a class="btn" href="../register.html">Book a seat</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <!-- 1—3. Title, instructor, logistics ------------------------------- -->
+    <div class="detail__head">
+      <p class="field">Course &middot; TODO: season</p>
+      <h1>Windows Kernel Exploitation</h1>
+      <p class="detail__by">TODO: Instructor Name — Job Title, Company</p>
+      <div class="detail__logistics">
+        <span class="tag tag--onsite">On site</span>
+        <span>TODO: Nov 2–5</span>
+        <span>&middot;</span>
+        <span>4 days</span>
+        <span>&middot;</span>
+        <span>12 seats</span>
+      </div>
+      <a class="btn" href="../register.html">Book a seat</a>
+    </div>
+
+    <div class="prose">
+
+      <p class="todo"><strong>Placeholder content.</strong> Every line below is a
+      sample. Keep the structure, replace the words.</p>
+
+      <!-- 4. Abstract ---------------------------------------------------- -->
+      <h2>Abstract</h2>
+      <p>
+        Windows security rests on the isolation of the kernel and the enforcement of
+        boundaries between rings. For researchers and advanced defenders, knowing
+        where those boundaries break down is the whole job.
+      </p>
+      <p>
+        This four-day course is an intensive, lab-driven tour of kernel internals,
+        memory management, and privilege elevation. It is grounded in real case
+        studies — you will dissect arbitrary pointer writes and pool corruptions that
+        shipped in production, and work out why each was exploitable rather than
+        merely crashing.
+      </p>
+      <p>
+        The goal is engineering-level understanding of both the offensive mechanics
+        and the defensive countermeasures they force. You leave able to reason about a
+        new bug class you have never seen before.
+      </p>
+
+      <!-- 5. Intended audience ------------------------------------------ -->
+      <h2>Who it's for</h2>
+      <ul>
+        <li><strong>Vulnerability researchers</strong> moving from user-mode analysis into kernel internals.</li>
+        <li><strong>Detection engineers and blue teamers</strong> who need exploit primitives to build behavioural monitoring that doesn't false-positive.</li>
+        <li><strong>Reverse engineers</strong> working on driver communication, undocumented interfaces, and pool grooming.</li>
+      </ul>
+
+      <!-- 6. Objectives — all verbs, all testable ----------------------- -->
+      <h2>What you'll be able to do</h2>
+      <ul>
+        <li>Audit driver entry points and IOCTL handlers for logic and memory flaws.</li>
+        <li>Navigate kernel memory structures in WinDbg and Ghidra.</li>
+        <li>Turn an arbitrary write primitive into a reliable privilege elevation.</li>
+        <li>Judge whether a given bug class is worth the exploitation effort.</li>
+        <li>Explain what SMEP, HVCI and kCFG actually cost an attacker.</li>
+      </ul>
+      <p>
+        The labs culminate in two complete privilege elevation chains built from two
+        different real-world vulnerabilities.
+      </p>
+
+      <!-- 7. Book rail --------------------------------------------------- -->
+      <div class="book">
+        <p>12 seats. TODO: Registration closes 14 days before start.</p>
+        <a class="btn" href="../register.html">Book a seat</a>
+      </div>
+
+      <!-- 8. Outline ----------------------------------------------------- -->
+      <h2>Outline</h2>
+
+      <h4>Module 1 — Tooling and kernel architecture</h4>
+      <ul>
+        <li>Kernel debugging environments: WinDbg, VMs, symbol paths that work
+          <ul>
+            <li>Reversing the Windows kernel without drowning</li>
+            <li>Where AI-assisted structure discovery helps, and where it lies</li>
+          </ul>
+        </li>
+        <li>Subsystems and drivers: object and memory management, dispatch routines, IRPs</li>
+      </ul>
+
+      <h4>Module 2 — Driver attack surface</h4>
+      <ul>
+        <li>Auditing IOCTL handlers; tracing data from user mode to kernel mode</li>
+        <li>Vulnerability classes: memory corruption, races, use-after-free</li>
+      </ul>
+
+      <h4>Module 3 — Structures and info leaks</h4>
+      <ul>
+        <li>Files, named pipes, IO rings, and what happens when you corrupt them</li>
+        <li>Known ASLR defeats and the mitigations aimed at them</li>
+        <li>Case study: an arbitrary write primitive, start to finish</li>
+      </ul>
+
+      <h4>Module 4 — Reliability and impact</h4>
+      <ul>
+        <li>Deterministic versus probabilistic exploitation; estimating effort honestly</li>
+        <li>Achieving kernel read/write: object modification versus code execution</li>
+      </ul>
+
+      <h4>Module 5 — Mitigations</h4>
+      <ul>
+        <li>SMEP, SMAP, HVCI, kCFG — and their effect on exploitability</li>
+      </ul>
+
+      <h4>Module 6 — Heap internals and advanced corruption</h4>
+      <ul>
+        <li>Segment heap, lookaside lists, and shaping memory layout deliberately</li>
+        <li>Case study: semi-controlled overwrite to full privilege elevation</li>
+      </ul>
+
+      <!-- 9. Prerequisites ----------------------------------------------- -->
+      <h2>Prerequisites</h2>
+      <p>This is not an introduction. You should arrive with:</p>
+      <ul>
+        <li>Working experience in C or C++</li>
+        <li>Comfort with a disassembler (Ghidra, IDA) and a debugger</li>
+        <li>Basic knowledge of Windows internals</li>
+        <li>Familiarity with common vulnerability classes</li>
+      </ul>
+
+      <!-- 10. Kit — this section is sales, not admin --------------------- -->
+      <h2>What to bring</h2>
+      <p>A Windows 11 laptop you have administrator rights on, with:</p>
+      <ul>
+        <li><code>80 GB</code> free disk</li>
+        <li><code>16 GB</code> RAM minimum, 32 GB if you have it</li>
+        <li>Hyper-V enabled, or VMware</li>
+        <li>Ghidra, or an equivalent you already know</li>
+        <li>WinDbg — the classic build, installed via Debugging Tools for Windows</li>
+        <li>Optional: an active subscription to a commercial LLM</li>
+      </ul>
+
+      <!-- 11. Instructor — external credibility only --------------------- -->
+      <h2>Your instructor</h2>
+      <div class="instructor">
+        <div class="instructor__photo">TODO<br>PHOTO<br>1:1</div>
+        <div>
+          <p><strong>TODO: Instructor Name</strong> is a TODO: role at TODO: company,
+          working on low-level reverse engineering and detection capability.</p>
+          <p>TODO: Lead with external proof — conferences they've presented original
+          work at, CVEs they've disclosed, tools they maintain. Not years of
+          experience, not certifications. Buyers in this market check.</p>
+        </div>
+      </div>
+
+      <!-- 12. Book rail --------------------------------------------------- -->
+      <div class="book">
+        <p>TODO: price, or "invoicing available for corporate buyers".</p>
+        <a class="btn" href="../register.html">Book a seat</a>
+      </div>
+
+      <!-- 13. Policy — say it plainly, it prevents chargebacks ----------- -->
+      <h2>Cancellations</h2>
+      <p>
+        TODO: state your policy in one paragraph. Seat transfers to a colleague are
+        usually the humane version — accept them any time before the course starts.
+        If <em>you</em> cancel a class, say what the attendee gets.
+      </p>
+
+    </div>
+
+    <!-- 14. Other courses — a dead end should send them sideways -------- -->
+    <div class="section">
+      <div class="section__head">
+        <h2>Other on-site courses</h2>
+        <p class="field">Same season</p>
+      </div>
+      <div class="catalog">
+        <a class="course" href="course-template.html">
+          <div>
+            <h3 class="course__title">Modern x64 Reverse Engineering</h3>
+            <p class="course__by">TODO: Instructor Name &middot; Company</p>
+          </div>
+          <p class="course__abstract">
+            Foundations for reading 64-bit binaries without guessing. Ghidra, x64dbg
+            and WinDbg, plus how to challenge an AI tool's output instead of trusting it.
+          </p>
+          <div class="course__meta">
+            <span class="tag tag--onsite">On site</span>
+            <span><b>4</b>&nbsp;days</span>
+          </div>
+        </a>
+        <a class="course" href="course-template.html">
+          <div>
+            <h3 class="course__title">Enterprise Incident Response</h3>
+            <p class="course__by">TODO: Instructor Name &middot; Company</p>
+          </div>
+          <p class="course__abstract">
+            Investigative tradecraft for Windows intrusions. Scope backwards from a
+            triaged host to the whole estate.
+          </p>
+          <div class="course__meta">
+            <span class="tag">Virtual</span>
+            <span><b>3</b>&nbsp;days</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <h4>Switchback Security Training</h4>
+      <p>TODO: one line on what you do and who for.</p>
+      <p>TODO: contact@example.com</p>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <a href="../index.html">Courses</a>
+      <a href="../register.html">Register</a>
+      <a href="../about.html">About</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="#">LinkedIn</a>
+      <a href="#">Mastodon</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
