@@ -7,9 +7,9 @@
 
 :root {
   /* Palette — 5 values, no gradients, one accent */
-  --ash:      #e4e5e0;  /* page ground (cool, not cream) */
-  --ash-2:    #d5d7d1;  /* rules, inactive blocks */
-  --paper:    #f2f2ef;  /* raised surfaces */
+  --ash:      #ffffff;  /* page ground — white, matches logo */
+  --ash-2:    #e2e3df;  /* rules, inactive blocks */
+  --paper:    #f6f6f4;  /* raised surfaces (faint, so cards read on white) */
   --ink:      #101215;  /* primary text */
   --ink-2:    #5c6166;  /* secondary text */
   --ink-3:    #8a9095;  /* tertiary / field labels */
@@ -110,6 +110,7 @@ a:hover { color: var(--blue-ink); }
   margin-right: auto;
 }
 .logo span { color: var(--blue); }
+.logo__img { height: 36px; width: auto; display: block; }
 
 .nav { display: flex; gap: 20px; flex-wrap: wrap; }
 .nav a {
