@@ -1,0 +1,6 @@
+Two files the site references are NOT in this zip because they weren't available
+to rebuild — they already live in your GitHub repo, so leave them there:
+  - favicon-32x32.png   (browser tab icon; index/all pages reference it)
+  - favicon.png         (referenced in some head tags)
+Do NOT delete them from the repo when uploading this zip. If you re-upload only
+changed files, these stay put.
