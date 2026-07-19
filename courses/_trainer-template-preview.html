@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  TRAINER TEMPLATE — Switchback Security Training
+  ============================================================================
+  Copy this file to a new name (e.g. courses/your-course-slug.html) and fill it
+  in. Do not edit this master.
+
+  HOW TO FILL IT IN
+    • Everything you replace is wrapped like this:  ...
+    • Find every sample and swap in your text. When none remain, you're done.
+    • Leave the tags, classes, and structure alone — just change the words.
+    • Delete each grey "Guidance" box once that section is written.
+
+  WHO OWNS WHAT
+    • Sections 1–9 are YOURS (the trainer): title, brief, overview, bio,
+      audience, prerequisites, hardware.
+    • Sections 2 (dates/price), 11 (cancellation) and 12 (related courses) are
+      filled by Switchback, not you. They're marked [SWITCHBACK FILLS].
+
+  A page is only as credible as its specifics. Name real CVEs. List exact tools
+  and versions. Build your bio on talks you gave and bugs you disclosed, not
+  years of experience. Vague copy reads as a course that doesn't exist yet.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Windows Kernel Exploitation and keep " — Switchback" -->
+<title>Trainer template — preview</title>
+<!-- one sentence, ~150 chars. Shows in searc -->
+<meta name="description" content="one concrete sentence describing the cou">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   Switchback Security Training
+   Design direction: "datasheet". Cool ash ground, ink-blue accent,
+   IBM Plex superfamily (commissioned for technical documentation).
+   Single accent colour. All spacing on a 4px base.
+   ========================================================================== */
+
+:root {
+  /* Palette — 5 values, no gradients, one accent */
+  --ash:      #e4e5e0;  /* page ground (cool, not cream) */
+  --ash-2:    #d5d7d1;  /* rules, inactive blocks */
+  --paper:    #f2f2ef;  /* raised surfaces */
+  --ink:      #101215;  /* primary text */
+  --ink-2:    #5c6166;  /* secondary text */
+  --ink-3:    #8a9095;  /* tertiary / field labels */
+  --blue:     #1f4fd8;  /* the only accent — links, marks, CTA */
+  --blue-ink: #163aa0;  /* accent, pressed */
+
+  /* Type */
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  --body:    "IBM Plex Serif", Georgia, serif;
+  --mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Scale */
+  --step--1: 0.8125rem;
+  --step-0:  1rem;
+  --step-1:  1.25rem;
+  --step-2:  1.75rem;
+  --step-3:  clamp(2rem, 5vw, 3.25rem);
+  --step-4:  clamp(2.5rem, 8vw, 5rem);
+
+  --rule: 1px solid var(--ash-2);
+  --measure: 68ch;
+  --gutter: 24px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ash);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--blue-ink); }
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--blue); color: #fff;
+  padding: 8px 12px; z-index: 10;
+}
+.skip:focus { left: 8px; top: 8px; }
+
+/* Field label — the recurring utility voice of the whole site ------------- */
+.field {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.masthead {
+  border-bottom: var(--rule);
+  background: var(--ash);
+  position: sticky; top: 0; z-index: 5;
+}
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 60px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: auto;
+}
+.logo span { color: var(--blue); }
+
+.nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav a {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+.nav a:hover, .nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--blue);
+}
+
+/* Button ------------------------------------------------------------------ */
+
+.btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--blue);
+  color: #fff;
+  padding: 10px 18px;
+  border: 1px solid var(--blue);
+}
+.btn:hover { background: var(--blue-ink); border-color: var(--blue-ink); color: #fff; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--blue);
+}
+.btn--ghost:hover { background: var(--blue); color: #fff; }
+
+.btn + .btn { margin-left: 8px; }
+
+/* Hero — thesis: the spec, not a photograph -------------------------------- */
+
+.hero { padding: clamp(48px, 9vw, 104px) 0 56px; }
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 900px) {
+  .hero__grid { grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: start; }
+}
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-4);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 12px 0 20px;
+  text-wrap: balance;
+}
+.hero__lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 46ch;
+  margin: 0 0 28px;
+}
+
+/* The spec block — signature element */
+.spec {
+  background: var(--paper);
+  border: 1px solid var(--ash-2);
+  border-top: 3px solid var(--blue);
+  padding: 20px;
+  font-family: var(--mono);
+  font-size: var(--step--1);
+}
+.spec__title {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--ash-2);
+}
+.spec dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; }
+.spec dt { color: var(--ink-3); white-space: nowrap; }
+.spec dd { margin: 0; color: var(--ink); text-align: right; }
+
+/* Section ----------------------------------------------------------------- */
+
+.section { padding: 56px 0; border-top: var(--rule); }
+.section__head {
+  display: flex; align-items: baseline; gap: 16px;
+  margin-bottom: 32px; flex-wrap: wrap;
+}
+.section__head h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.section__head .field { margin-left: auto; }
+
+/* Catalog as a continuous spec table — not a card grid ---------------------- */
+
+.catalog { border-top: 1px solid var(--ink); }
+
+.course {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 24px;
+  padding: 24px 0;
+  border-bottom: var(--rule);
+  text-decoration: none;
+  color: inherit;
+}
+@media (min-width: 760px) {
+  .course {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+    align-items: baseline;
+  }
+}
+.course:hover { background: var(--paper); }
+.course:hover .course__title { color: var(--blue); }
+
+.course__title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+.course__by {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-2);
+}
+.course__abstract {
+  font-size: var(--step--1);
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin: 0;
+}
+.course__meta {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-3);
+  display: flex;
+  gap: 10px;
+  white-space: nowrap;
+}
+.course__meta b { color: var(--ink); font-weight: 500; }
+
+/* Delivery-mode tag — the one taxonomy that matters */
+.tag {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--ash-2);
+  padding: 2px 6px;
+  color: var(--ink-2);
+  background: var(--paper);
+  white-space: nowrap;
+}
+.tag--onsite { border-color: var(--blue); color: var(--blue); }
+
+/* Prose ------------------------------------------------------------------- */
+
+.prose { max-width: var(--measure); }
+.prose h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 48px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+}
+.prose h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: var(--step-1);
+  margin: 32px 0 10px;
+}
+.prose h4 {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 28px 0 8px;
+}
+.prose p { margin: 0 0 16px; }
+.prose ul { padding-left: 20px; margin: 0 0 16px; }
+.prose li { margin-bottom: 8px; }
+.prose ul ul { margin-top: 8px; }
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  background: var(--paper);
+  border: 1px solid var(--ash-2);
+  padding: 1px 4px;
+}
+
+/* Course detail header ----------------------------------------------------- */
+
+.detail__head { padding: 48px 0 32px; border-bottom: 2px solid var(--ink); }
+.detail__head h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-3);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 10px 0 12px;
+  text-wrap: balance;
+}
+.detail__by {
+  font-family: var(--mono);
+  font-size: var(--step-0);
+  color: var(--ink-2);
+  margin: 0 0 20px;
+}
+.detail__logistics {
+  display: flex; gap: 8px 16px; flex-wrap: wrap;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-2);
+  margin-bottom: 24px;
+}
+
+/* Repeated conversion rail — anchors the CTA at every scroll depth */
+.book {
+  margin: 40px 0;
+  padding: 20px;
+  border: 1px solid var(--ash-2);
+  border-left: 3px solid var(--blue);
+  background: var(--paper);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.book p { margin: 0; font-size: var(--step--1); color: var(--ink-2); }
+.book .btn { margin-left: auto; }
+
+/* Instructor -------------------------------------------------------------- */
+
+.instructor {
+  display: grid; gap: 20px;
+  grid-template-columns: 1fr;
+  align-items: start;
+  border: 1px solid var(--ash-2);
+  background: var(--paper);
+  padding: 20px;
+}
+@media (min-width: 640px) { .instructor { grid-template-columns: 120px 1fr; } }
+.instructor__photo {
+  width: 120px; height: 120px;
+  background: var(--ash-2);
+  border: 1px solid var(--ink-3);
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 0.625rem; color: var(--ink-3);
+  text-align: center;
+}
+.instructor p { margin: 0 0 12px; font-size: var(--step--1); }
+
+/* Register cards ----------------------------------------------------------- */
+
+.tracks { display: grid; gap: 20px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .tracks { grid-template-columns: 1fr 1fr; } }
+.track {
+  border: 1px solid var(--ash-2);
+  border-top: 3px solid var(--blue);
+  background: var(--paper);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.track h3 {
+  font-family: var(--display); font-weight: 700; font-size: var(--step-2);
+  text-transform: uppercase; margin: 0;
+}
+.track p { margin: 0; font-size: var(--step--1); color: var(--ink-2); }
+.track .btn { margin-top: auto; align-self: flex-start; }
+
+/* Footer ------------------------------------------------------------------ */
+
+.foot {
+  border-top: 2px solid var(--ink);
+  margin-top: 72px;
+  padding: 40px 0 56px;
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-2);
+}
+.foot__grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .foot__grid { grid-template-columns: 2fr 1fr 1fr; } }
+.foot a { color: var(--ink-2); text-decoration: none; display: block; padding: 3px 0; }
+.foot a:hover { color: var(--blue); }
+.foot h4 { margin: 0 0 10px; }
+
+/* Placeholder marker — delete once real content is in ---------------------- */
+.todo {
+  background: #fff6d6;
+  border: 1px dashed #b8952a;
+  color: #6b5410;
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  padding: 10px 14px;
+  margin: 0 0 24px;
+}
+.todo strong { font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+</style>
+
+<!-- Template-only styles: the portrait hero and the fill markers.
+     These live here, not in site.css, so they never touch the live pages. -->
+<style>
+  .portrait {
+    display: grid; grid-template-columns: 1fr; gap: 28px;
+    align-items: end; padding-top: 40px;
+  }
+  @media (min-width: 820px) {
+    .portrait { grid-template-columns: 1fr 300px; gap: 40px; }
+  }
+  .portrait__img {
+    aspect-ratio: 4 / 5; width: 100%;
+    background: var(--ash-2); border: 1px solid var(--ink-3);
+    display: grid; place-items: center; text-align: center;
+    font-family: var(--mono); font-size: 0.6875rem; color: var(--ink-3);
+    letter-spacing: 0.08em; padding: 16px;
+  }
+  .fill {
+    background: #eef3ff; color: var(--blue-ink);
+    border-bottom: 1px dashed var(--blue);
+    font-family: var(--mono); font-size: 0.85em; padding: 0 3px;
+  }
+  .hint {
+    font-family: var(--mono); font-size: 0.75rem; line-height: 1.5;
+    color: #6b5410; background: #fff6d6; border: 1px dashed #b8952a;
+    padding: 10px 14px; margin: 0 0 18px;
+  }
+  .hint b { font-weight: 600; }
+  .owner {
+    font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3);
+    border: 1px solid var(--ash-2); padding: 2px 6px; margin-left: 8px;
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="#">SWITCH<span>BACK</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#">Courses</a>
+      <a href="#">Register</a>
+      <a href="#">About</a>
+    </nav>
+    <a class="btn" href="#">Reserve your seat</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <!-- =====================================================================
+         1. PORTRAIT + TITLE // INSTRUCTOR, COMPANY
+         ===================================================================== -->
+    <p class="hint">
+      <b>Portrait:</b> send a 4:5 portrait, at least 1200&times;1500px. A plain
+      headshot is fine; Switchback composites it onto the course background.
+      Name the file after your course slug.
+    </p>
+
+    <section class="portrait">
+      <div class="detail__head" style="border:0;padding-bottom:0;">
+        <p class="field">Course</p>
+        <!-- Title // Name, Company -->
+        <h1>Windows Kernel Exploitation</h1>
+        <p class="detail__by">
+          <span class="fill">A. Researcher</span>,
+          <span class="fill">Example Labs</span>
+        </p>
+
+        <!-- ===============================================================
+             2. LOGISTICS LINE                       [SWITCHBACK FILLS]
+             Format: Delivery | Dates | Duration
+             =============================================================== -->
+        <div class="detail__logistics">
+          <span class="tag tag--onsite">In-Person</span>
+          <span>&middot;</span>
+          <span class="fill">November 14–15</span>
+          <span>&middot;</span>
+          <span class="fill">2 days · 16 hours</span>
+        </div>
+
+        <!-- 3. RESERVE YOUR SEAT -->
+        <a class="btn" href="#">Reserve your seat</a>
+      </div>
+
+      <div class="portrait__img">PORTRAIT<br>4:5</div>
+    </section>
+
+    <div class="prose" style="margin-top:40px;">
+
+      <!-- =====================================================================
+           4. BRIEF — one paragraph, name real CVEs
+           ===================================================================== -->
+      <h2>Brief</h2>
+      <p class="hint">
+        <b>One paragraph.</b> What the course is and why it exists. Name at least
+        one real CVE or documented technique you actually teach — it's the fastest
+        signal that the material is real. e.g. "…rebuilding the exploit chain behind
+        CVE-2024-XXXXX from the patch."
+      </p>
+      <p>
+        A hands-on tour of kernel privilege escalation, rebuilt from the patch behind CVE-2024-21338. You leave able to reason about a driver bug class you have never seen before.
+      </p>
+
+      <!-- =====================================================================
+           5. COURSE OVERVIEW — modules → topics → subtopics
+           ===================================================================== -->
+      <h2>Course overview</h2>
+      <p class="hint">
+        <b>Modules → topics → subtopics.</b> Duplicate a block per module. Nest a
+        second <code>&lt;ul&gt;</code> for subtopics. This section is what a buyer
+        scrolls to first — make it detailed enough to prove depth.
+      </p>
+
+      <h4>Module 1 — module title</h4>
+      <ul>
+        <li>topic
+          <ul>
+            <li>subtopic</li>
+            <li>subtopic</li>
+          </ul>
+        </li>
+        <li>topic</li>
+      </ul>
+
+      <h4>Module 2 — module title</h4>
+      <ul>
+        <li>topic</li>
+        <li>topic</li>
+      </ul>
+
+      <h4>Module 3 — module title</h4>
+      <ul>
+        <li>topic</li>
+      </ul>
+      <p class="hint">Add or remove modules to match your real structure.</p>
+
+      <!-- =====================================================================
+           6. YOUR INSTRUCTOR — bio from talks + disclosures
+           ===================================================================== -->
+      <h2>Your instructor</h2>
+      <p class="hint">
+        <b>Build it on external proof.</b> Conferences you've presented original work
+        at, CVEs you've disclosed, tools you maintain, research you've published.
+        Skip "N years of experience" and certification lists — this audience checks.
+      </p>
+      <div class="instructor">
+        <div class="instructor__photo">PHOTO<br>1:1</div>
+        <div>
+          <p>
+            <strong>A. Researcher</strong> current role and what
+            you wo
+          </p>
+          <p>
+            the proof. Talks (name the conferences),
+          </p>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           7. BEST FOR — bolded role + why they'd come
+           ===================================================================== -->
+      <h2>Best for</h2>
+      <p class="hint">
+        <b>Bold the role, then the reason.</b> Buyers scan for their own job title.
+        Name specific roles, not "security professionals."
+      </p>
+      <ul>
+        <li><strong>Role</strong> who need X / who want to do Y.</li>
+        <li><strong>Role</strong> reason.</li>
+        <li><strong>Role</strong> reason.</li>
+      </ul>
+      <p>one line on who this is NOT for — sets t</p>
+
+      <!-- 8. RESERVE YOUR SEAT -->
+      <div class="book">
+        <p>12 seats · registration closes 14 days before start.</p>
+        <a class="btn" href="#">Reserve your seat</a>
+      </div>
+
+      <!-- =====================================================================
+           9. PREREQUISITES + HARDWARE / SOFTWARE
+           ===================================================================== -->
+      <h2>Prerequisites</h2>
+      <p class="hint"><b>Be honest about the floor.</b> What must a student already
+      know to keep up? This filters the wrong people out before they book.</p>
+      <ul>
+        <li>prerequisite</li>
+        <li>prerequisite</li>
+        <li>prerequisite</li>
+      </ul>
+
+      <h3>Hardware and software</h3>
+      <p class="hint">
+        <b>Exact numbers and exact tools.</b> RAM, free disk, virtualisation, named
+        software with versions. This section does sales work — it proves the labs
+        are real — so don't round it off to "a decent laptop."
+      </p>
+      <ul>
+        <li>RAM: <code>e.g. 16 GB minimum</code></li>
+        <li>Disk: <code>e.g. 80 GB free</code></li>
+        <li>Virtualisation: e.g. Hyper-V enabled, or VMware Workstat</li>
+        <li>Software: e.g. Ghidra 11.x, WinDbg (classic), Wire</li>
+        <li>Access/accounts: e.g. a GitHub account — bring the userna</li>
+        <li>Admin rights? OS version? Anything provi</li>
+      </ul>
+
+      <!-- 10. RESERVE YOUR SEAT -->
+      <div class="book">
+        <p>Invoicing available for corporate buyers.</p>
+        <a class="btn" href="#">Reserve your seat</a>
+      </div>
+
+      <!-- =====================================================================
+           11. CANCELLATION POLICY                    [SWITCHBACK FILLS]
+           ===================================================================== -->
+      <h2>Cancellation policy</h2>
+      <p>Seat transfers accepted any time before the course starts.</p>
+
+    </div>
+
+    <!-- =======================================================================
+         12. MORE IN-PERSON TRAINING COURSES         [SWITCHBACK FILLS]
+         Related cards, filtered to the same season/tag. Generated by
+         gen_courses.py — trainers leave this block untouched.
+         ======================================================================= -->
+    <div class="section">
+      <div class="section__head">
+        <h2>More in-person training courses <span class="owner">Switchback fills</span></h2>
+        <p class="field">Same season</p>
+      </div>
+      <div class="catalog">
+        <a class="course" href="#">
+          <div>
+            <h3 class="course__title">Related course</h3>
+            <p class="course__by">Instructor</p>
+          </div>
+          <p class="course__abstract">One-line card summary.</p>
+          <div class="course__meta">
+            <span class="tag tag--onsite">In-Person</span>
+            <span><b>2</b>&nbsp;days</span>
+          </div>
+        </a>
+        <a class="course" href="#">
+          <div>
+            <h3 class="course__title">Related course</h3>
+            <p class="course__by">Instructor</p>
+          </div>
+          <p class="course__abstract">One-line card summary.</p>
+          <div class="course__meta">
+            <span class="tag tag--onsite">In-Person</span>
+            <span><b>2</b>&nbsp;days</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <h4>Switchback Security Training</h4>
+      <p>SWITCHBACK FILLS</p>
+      <p>contact@switchbacksecuritytraining.com</p>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <a href="#">Courses</a>
+      <a href="#">Register</a>
+      <a href="#">About</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="#">LinkedIn</a>
+      <a href="#">Mastodon</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
