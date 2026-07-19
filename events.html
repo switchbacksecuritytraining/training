@@ -15,12 +15,12 @@
     border: 1px solid var(--ash-2); border-top: 3px solid var(--blue);
     background: var(--paper); margin-bottom: 24px;
   }
-  @media (min-width: 760px){ .event { grid-template-columns: 300px 1fr; } }
+  @media (min-width: 760px){ .event { grid-template-columns: 1fr 300px; } }
   .event__img {
     width: 100%; height: 100%; min-height: 200px;
-    object-fit: cover; border-bottom: 1px solid var(--ash-2);
+    object-fit: cover; border-top: 1px solid var(--ash-2);
   }
-  @media (min-width: 760px){ .event__img { border-bottom: 0; border-right: 1px solid var(--ash-2); } }
+  @media (min-width: 760px){ .event__img { border-top: 0; border-left: 1px solid var(--ash-2); } }
   .event__body { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
   .event__status {
     align-self: flex-start;
@@ -65,18 +65,14 @@
     </div>
 
     <div class="prose" style="margin-bottom:32px;">
-      <p>
-        Small, intensive, in-person training in the Pacific Northwest. Below is
-        what's coming up.
+      <p style="font-size:var(--step-1);color:var(--ink);">
+        Small, in-person training in the Pacific Northwest.
       </p>
     </div>
 
     <div class="section__head"><h2>Upcoming</h2></div>
 
     <article class="event">
-      <img class="event__img"
-           src="images/ac_bellevue_exterior_evening_.jpg"
-           alt="AC Hotel Bellevue at dusk">
       <div class="event__body">
         <span class="event__status">Registration open</span>
         <h3 class="event__title">Inaugural Event</h3>
@@ -90,15 +86,19 @@
         </p>
         <a class="btn" href="register.html">Reserve your seat</a>
       </div>
+      <img class="event__img"
+           src="images/bellevue_city_view.jpg"
+           alt="Bellevue, WA city view">
     </article>
 
     <div class="section">
       <div class="section__head"><h2>Future events</h2></div>
       <div class="prose">
         <p>
-          Switchback runs small in-person events across the Pacific Northwest, and
-          brings trainers to private and corporate venues. To hear about the next
-          one, or to host an event at your organisation, get in touch at
+          Switchback Security Training, LLC creates small, in-person events across
+          the Pacific Northwest, and brings trainers to private and corporate venues.
+          To hear about the next one, or to host an event at your organization, get in
+          touch at
           <a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a>.
         </p>
       </div>
