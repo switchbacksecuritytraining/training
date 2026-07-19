@@ -110,6 +110,7 @@ a:hover { color: var(--blue-ink); }
   margin-right: auto;
 }
 .logo span { color: var(--blue); }
+.logo__img { height: 36px; width: auto; display: block; }
 
 .nav { display: flex; gap: 20px; flex-wrap: wrap; }
 .nav a {
