@@ -95,8 +95,8 @@ a:hover { color: var(--blue-ink); }
 .masthead__inner {
   display: flex;
   align-items: center;
-  gap: 18px;
-  min-height: 38px;
+  gap: 22px;
+  min-height: 48px;
   flex-wrap: wrap;
 }
 .logo {
@@ -110,10 +110,10 @@ a:hover { color: var(--blue-ink); }
   margin-right: auto;
 }
 .logo span { color: var(--blue); }
-.logo__img { height: 21px; width: auto; display: block; }
+.logo__img { height: 26px; width: auto; display: block; }
 
 /* Compact CTA inside the slimmer masthead (global .btn unchanged elsewhere) */
-.masthead .btn { padding: 6px 14px; font-size: 0.75rem; }
+.masthead .btn { padding: 8px 16px; font-size: 0.8125rem; }
 
 .nav { display: flex; gap: 20px; flex-wrap: wrap; }
 .nav a {
