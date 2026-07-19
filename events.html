@@ -15,16 +15,12 @@
     border: 1px solid var(--ash-2); border-top: 3px solid var(--blue);
     background: var(--paper); margin-bottom: 24px;
   }
-  @media (min-width: 760px){ .event { grid-template-columns: 1fr 340px; } }
-  .event__imgs {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-    border-top: 1px solid var(--ash-2);
-  }
-  @media (min-width: 760px){ .event__imgs { border-top: 0; border-left: 1px solid var(--ash-2); } }
+  @media (min-width: 760px){ .event { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); } }
   .event__img {
-    width: 100%; height: 100%; min-height: 160px;
-    object-fit: cover;
+    width: 100%; height: 100%; min-height: 200px;
+    object-fit: cover; border-top: 1px solid var(--ash-2);
   }
+  @media (min-width: 760px){ .event__img { border-top: 0; border-left: 1px solid var(--ash-2); } }
   .event__body { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
   .event__status {
     align-self: flex-start;
@@ -90,11 +86,9 @@
         </p>
         <a class="btn" href="register.html">Reserve your seat</a>
       </div>
-      <div class="event__imgs">
-        <img class="event__img"
-             src="images/bellevue_city_view.jpg"
-             alt="Bellevue, WA city view">
-      </div>
+      <img class="event__img"
+           src="images/bellevue_city_view.jpg"
+           alt="Bellevue, WA city view">
     </article>
 
     <div class="section">
