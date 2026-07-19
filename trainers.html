@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trainers — Switchback</title>
+<meta name="description" content="The practitioners teaching at Switchback Security Training — a growing directory of working security professionals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .tdir {
+    display: grid; gap: 20px; margin-top: 8px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 620px){ .tdir { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 940px){ .tdir { grid-template-columns: 1fr 1fr 1fr; } }
+  .tcard {
+    border: 1px solid var(--ash-2); border-top: 3px solid var(--blue);
+    background: var(--paper); padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .tcard__photo {
+    width: 88px; height: 88px; background: var(--ash-2);
+    border: 1px solid var(--ink-3); display: grid; place-items: center;
+    font-family: var(--mono); font-size: 0.625rem; color: var(--ink-3);
+  }
+  .tcard h3 {
+    font-family: var(--display); font-weight: 700; font-size: var(--step-1);
+    line-height: 1.1; margin: 0;
+  }
+  .tcard__spec {
+    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue); margin: 0;
+  }
+  .tcard__bio { font-size: var(--step--1); color: var(--ink-2); line-height: 1.55; margin: 0; }
+  .tcard__link {
+    font-family: var(--mono); font-size: var(--step--1); margin-top: auto;
+    text-decoration: none;
+  }
+  .tcard__link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="index.html">SWITCH<span>BACK</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Event</a>
+      <a href="trainers.html" aria-current="page">Trainers</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="btn" href="register.html">Reserve your seat</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <div class="detail__head" style="border-bottom:0;">
+      <p class="field">Trainers</p>
+      <h1>Who's teaching</h1>
+    </div>
+
+    <div class="prose" style="margin-bottom:32px;">
+      <p>
+        Every Switchback training is taught in person by a working practitioner —
+        someone who does the work they teach. Below are the trainers for the
+        inaugural event. This roster will grow into a standing directory of
+        trainers available for future events.
+      </p>
+    </div>
+
+    <div class="tdir">
+
+      <article class="tcard">
+        <div class="tcard__photo">PHOTO</div>
+        <h3>Madhu Akula</h3>
+        <p class="tcard__spec">Kubernetes &amp; cloud-native</p>
+        <p class="tcard__bio">
+          Creator of Kubernetes Goat and Spotter, a cloud-native security architect
+          and published author. OSCP, CKA and CKS. Has spoken at Black Hat, USENIX
+          LISA and Nullcon.
+        </p>
+        <a class="tcard__link" href="courses/kubernetes-cloud-native-ai.html">View training &rarr;</a>
+      </article>
+
+      <article class="tcard">
+        <div class="tcard__photo">PHOTO</div>
+        <h3>Michael Glass</h3>
+        <p class="tcard__spec">AI in security operations</p>
+        <p class="tcard__bio">
+          Principal security engineer and founder of Glass Security Consulting, working
+          under the handle bluescreenofwin. Experience across government, private and
+          non-profit organisations.
+        </p>
+        <a class="tcard__link" href="courses/cybersecurity-problems-with-ai.html">View training &rarr;</a>
+      </article>
+
+      <article class="tcard">
+        <div class="tcard__photo">PHOTO</div>
+        <h3>Rod Soto</h3>
+        <p class="tcard__spec">SOC &amp; detection</p>
+        <p class="tcard__bio">
+          Security researcher, co-founder of HackMiami, winner of the Black Hat Las
+          Vegas CTF in 2012 and the Red Alert ICS CTF in 2022. Has presented at RSA
+          Conference, Black Hat and DerbyCon.
+        </p>
+        <a class="tcard__link" href="courses/ai-soc-101-bootcamp.html">View training &rarr;</a>
+      </article>
+
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>Interested in teaching?</h2></div>
+      <div class="prose">
+        <p>
+          Switchback is building a directory of trainers for future events. If you
+          teach hands-on offensive or defensive security and want to run a small,
+          intensive in-person course, get in touch at
+          <a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a>.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <h4>Switchback Security Training</h4>
+      <p>contact@switchbacksecuritytraining.com</p>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <a href="index.html">Event</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+      <a href="register.html">Reserve your seat</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="https://www.linkedin.com/company/switchbacksecuritytraining" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.facebook.com/people/Switchback-Security-Training/61592183061759/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
