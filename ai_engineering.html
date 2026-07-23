@@ -58,17 +58,20 @@ img{max-width:100%;display:block}
 p{margin:0 0 1.05em}
 p:last-child{margin-bottom:0}
 
-/* ── Buttons (in-page, dark theme) ─────────────────── */
+/* ── Buttons — site.css styling, so every CTA matches the rest
+   of the site rather than the page's own dark palette. ─────── */
 .btn{
-  display:inline-block;font-family:var(--display);font-size:11px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;padding:11px 20px;
-  border:1px solid var(--alert);color:var(--alert);
-  text-decoration:none;border-radius:2px;
-  transition:background .18s ease,color .18s ease;
+  display:inline-block;
+  font-family:var(--site-mono);font-size:.8125rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  background:#1f4fd8;color:#fff;
+  padding:10px 18px;border:1px solid #1f4fd8;
+  transition:background .18s ease,border-color .18s ease;
 }
-.btn:hover,.btn:focus-visible{background:var(--alert);color:var(--ink-deep)}
-.btn-solid{background:var(--alert);color:var(--ink-deep);border-color:var(--alert)}
-.btn-solid:hover,.btn-solid:focus-visible{background:transparent;color:var(--alert)}
+.btn:hover,.btn:focus-visible{background:#163aa0;border-color:#163aa0;color:#fff}
+.btn-solid{background:#1f4fd8;color:#fff;border-color:#1f4fd8}
+.btn-solid:hover,.btn-solid:focus-visible{background:#163aa0;border-color:#163aa0;color:#fff}
+/* focus ring stays violet: #1f4fd8 on espresso is only 2.6:1 */
 :focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 
 /* ── Site masthead — values taken from assets/site.css ──
@@ -163,6 +166,7 @@ main,footer{position:relative;z-index:1}
 }
 .facts div{padding:22px 0 26px;border-left:1px solid var(--hairline);padding-left:22px}
 .facts div:first-child{border-left:0;padding-left:0}
+.facts .v em{font-style:normal;color:var(--bone-dim)}
 .facts .v{
   font-family:var(--display);font-size:14px;font-weight:600;
   letter-spacing:-.01em;margin-top:7px;line-height:1.45;
@@ -326,7 +330,7 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
   <section class="hero">
     <div class="wrap">
       <div class="hero-inner">
-        <p class="label">One-day intensive &middot; All labs</p>
+        <p class="label">One-day intensive &middot; All labs &middot; Runs twice</p>
         <h1>AI Engineering for <span class="lo">Security Teams</span></h1>
         <p class="sub">Build. Secure. Apply.</p>
         <p class="lede">Every function on a security team faces the same problem: too much data, too few analysts, and adversaries moving faster than manual workflows allow. AI can change that &mdash; but only if your team knows how to build, deploy and secure it.</p>
@@ -339,7 +343,7 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
       <div class="facts">
         <div>
           <p class="label">Dates</p>
-          <p class="v">November 21&ndash;22</p>
+          <p class="v">Saturday 21 <em>or</em><br>Sunday 22 November</p>
         </div>
         <div>
           <p class="label">Venue</p>
@@ -517,11 +521,12 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
     <div class="wrap">
       <p class="label">Register</p>
       <div class="body-col">
-        <h2>November 21&ndash;22 &middot; AC Hotel Bellevue</h2>
-        <p class="lede">In Bellevue, Washington with Michael Glass.</p>
+        <h2>Choose your day &middot; AC Hotel Bellevue</h2>
+        <p class="lede">A one-day course, run twice. Take it Saturday or Sunday &mdash; the two sittings are identical, so pick whichever suits your travel.</p>
         <p class="fineprint">Cancellations can be made without a fee before August 31. After August 31, $200 is subtracted from the refund to cover non-refundable fees.</p>
         <div class="cta-row">
-          <a class="btn btn-solid" href="register.html">Reserve your seat</a>
+          <a class="btn btn-solid" href="register.html">Saturday 21 November</a>
+          <a class="btn btn-solid" href="register.html">Sunday 22 November</a>
           <a class="btn" href="mailto:contact@switchbacksecuritytraining.com">Ask a question</a>
         </div>
       </div>
