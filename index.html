@@ -8,8 +8,15 @@
 <meta name="description" content="Switchback Security Training — a two-day, in-person security event at the AC Hotel Bellevue, WA, November 21–22 2026. Three trainings.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<style>
+  .track__by {
+    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue); margin: 0;
+  }
+  .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -44,6 +51,28 @@
            alt="AC Hotel Bellevue at dusk, the venue for the inaugural event">
     </div>
   </section>
+
+  <div class="wrap">
+    <div class="section" id="trainings">
+      <div class="section__head"><h2>Trainings</h2></div>
+      <div class="tracks">
+        <div class="track">
+          <p class="field">Two days &middot; Hands-on</p>
+          <h3>Hacking Cryptography</h3>
+          <p class="track__by">Ruben Gonzalez</p>
+          <p class="track__desc">How applied cryptography fails in practice, and how to find it before someone else does.</p>
+          <a class="btn" href="hacking_cryptography.html">View course</a>
+        </div>
+        <div class="track">
+          <p class="field">Two days &middot; Hands-on</p>
+          <h3>SOC 101 Bootcamp</h3>
+          <p class="track__by">Rod Soto</p>
+          <p class="track__desc">Security operations skills built on hands-on labs, with AI-assisted detection and triage.</p>
+          <a class="btn" href="soc_101.html">View course</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </main>
 

@@ -8,7 +8,7 @@
 <meta name="description" content="The practitioners teaching at Switchback Security Training — a growing directory of working security professionals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
   .tdir {
@@ -41,6 +41,7 @@
     text-decoration: none;
   }
   .tcard__link:hover { text-decoration: underline; }
+  img.tcard__photo { object-fit: cover; display: block; }
 </style>
 </head>
 <body>
@@ -88,8 +89,19 @@
       </article>
 
       <article class="tcard">
-        <div class="tcard__photo">PHOTO</div>
-        <h3>RS</h3>
+        <img class="tcard__photo" src="images/rod_soto.jpg" alt="Rod Soto">
+        <h3>Rod Soto</h3>
+        <p class="tcard__spec">Detection engineering</p>
+        <p class="tcard__bio">Detection engineer specialising in AI/LLM threat detection, agentic system security and SOC modernisation. Over 15 years bridging offensive security research and enterprise-scale defensive operations, currently with the Splunk Threat Research Team at Splunk Cisco.</p>
+        <a class="tcard__link" href="soc_101.html">SOC 101 Bootcamp &rarr;</a>
+      </article>
+
+      <article class="tcard">
+        <img class="tcard__photo" src="images/ruben_gonzalez.jpg" alt="Ruben Gonzalez">
+        <h3>Ruben Gonzalez</h3>
+        <p class="tcard__spec">Applied cryptography</p>
+        <p class="tcard__bio">Security researcher and lead trainer at Neodyme AG. Ten years finding weaknesses in cloud, satellite and medical technology. Holds a doctorate from Radboud University and is a visiting researcher in post-quantum cryptography at the Max Planck Institute for Security and Privacy.</p>
+        <a class="tcard__link" href="hacking_cryptography.html">Hacking Cryptography &rarr;</a>
       </article>
 
     </div>

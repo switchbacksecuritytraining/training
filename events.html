@@ -8,7 +8,7 @@
 <meta name="description" content="Switchback Security Training events — smaller, in-person cybersecurity training in the Pacific Northwest.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
   .event {
@@ -40,6 +40,14 @@
   .event__meta b { color: var(--ink); font-weight: 500; }
   .event__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
   .event__body .btn { align-self: flex-start; margin-top: 4px; }
+  .event__courses {
+    display: flex; flex-direction: column; gap: 6px; margin: 0;
+    font-family: var(--mono); font-size: var(--step--1);
+  }
+  .event__courses > span {
+    font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
 </style>
 </head>
 <body>
@@ -77,6 +85,11 @@
         </p>
         <p class="event__desc">
            Two-day in-person event.
+        </p>
+        <p class="event__courses">
+          <span>Trainings</span>
+          <a href="hacking_cryptography.html">Hacking Cryptography &middot; Ruben Gonzalez</a>
+          <a href="soc_101.html">SOC 101 Bootcamp &middot; Rod Soto</a>
         </p>
         <a class="btn" href="register.html">Reserve your seat</a>
       </div>

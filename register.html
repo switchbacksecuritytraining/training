@@ -16,8 +16,15 @@
 <meta name="description" content="Reserve your seat at Switchback Security Training, November 21–22 2026, AC Hotel Bellevue WA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<style>
+  .track__by {
+    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue); margin: 0;
+  }
+  .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -58,8 +65,18 @@
 
         <div class="track">
           <p class="field">Training 03</p>
-          <h3>RS</h3>
-          <a class="btn" href="courses/ai-soc-101-bootcamp.html">Reserve your seat</a>
+          <h3>SOC 101 Bootcamp</h3>
+          <p class="track__by">Rod Soto</p>
+          <p class="track__desc">Hands-on labs emulating real security operations centre work, blending traditional SOC practice with AI-driven detection, alert triage and threat hunting.</p>
+          <a class="btn" href="soc_101.html">View course</a>
+        </div>
+
+        <div class="track">
+          <p class="field">Training 04</p>
+          <h3>Hacking Cryptography</h3>
+          <p class="track__by">Ruben Gonzalez</p>
+          <p class="track__desc">Find common crypto vulnerabilities in software and write crypto exploits for IoT devices, using case studies from real pentesting and red teaming engagements.</p>
+          <a class="btn" href="hacking_cryptography.html">View course</a>
         </div>
       </div>
     </div>
