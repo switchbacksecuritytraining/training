@@ -88,23 +88,27 @@ p:last-child{margin-bottom:0}
   border-bottom:1px solid var(--hairline);
   padding:104px 0 0;
 }
-/* The signature: the analyst's own view. A wallboard of telemetry
-   sitting behind the whole page, nearly all of it uninteresting —
-   with the occasional line worth stopping on. That triage is the
-   course. Content scrolls over it; the queue stays put. */
-#logfield{
+/* The signature: a repeating field of locks and shields sitting
+   behind the whole page. A handful of them, on a wider repeat, pick
+   up violet and amber and breathe slowly, so the grid never reads
+   as completely inert. Content scrolls over it; the pattern stays put. */
+#secpattern{
   position:fixed;inset:0;z-index:0;
-  font-family:var(--display);font-size:11px;line-height:2.05;
-  letter-spacing:.04em;color:#3A251F;
-  white-space:pre;overflow:hidden;
-  padding:10px 0 0 14px;
-  user-select:none;pointer-events:none;
-  -webkit-mask-image:radial-gradient(95% 75% at 76% 20%,#000 0%,rgba(0,0,0,.55) 42%,transparent 78%);
-  mask-image:radial-gradient(95% 75% at 76% 20%,#000 0%,rgba(0,0,0,.55) 42%,transparent 78%);
+  pointer-events:none;user-select:none;
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjU1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LDE2KSBzY2FsZSgxLjU4MzMzKSIgc3Ryb2tlPSIjM0EyNTFGIiBzdHJva2Utb3BhY2l0eT0iMSI+PHBhdGggZD0iTTggMTAuNVY3YTQgNCAwIDAgMSA4IDB2My41Ii8+PHJlY3QgeD0iMy42IiB5PSIxMC41IiB3aWR0aD0iMTYuOCIgaGVpZ2h0PSIxMC45IiByeD0iMi40Ii8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxNSIgcj0iMS4zNSIvPjxwYXRoIGQ9Ik0xMiAxNi4zNVYxOC40Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg2LDE2KSBzY2FsZSgxLjU4MzMzKSIgc3Ryb2tlPSIjM0EyNTFGIiBzdHJva2Utb3BhY2l0eT0iMSI+PHBhdGggZD0iTTEyIDIuNCAyMC41IDUuOXY2LjJjMCA0LjctMy42IDguNC04LjUgOS42LTQuOS0xLjItOC41LTQuOS04LjUtOS42VjUuOVoiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsODYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzQTI1MUYiIHN0cm9rZS1vcGFjaXR5PSIxIj48cGF0aCBkPSJNMTIgMi40IDIwLjUgNS45djYuMmMwIDQuNy0zLjYgOC40LTguNSA5LjYtNC45LTEuMi04LjUtNC45LTguNS05LjZWNS45WiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4Niw4Nikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzNBMjUxRiIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik04IDEwLjVWN2E0IDQgMCAwIDEgOCAwdjMuNSIvPjxyZWN0IHg9IjMuNiIgeT0iMTAuNSIgd2lkdGg9IjE2LjgiIGhlaWdodD0iMTAuOSIgcng9IjIuNCIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTUiIHI9IjEuMzUiLz48cGF0aCBkPSJNMTIgMTYuMzVWMTguNCIvPjwvZz48L2c+PC9zdmc+");
+  background-size:140px 140px;
+  background-position:center top;
+  -webkit-mask-image:radial-gradient(100% 80% at 74% 18%,#000 0%,rgba(0,0,0,.6) 44%,transparent 82%);
+  mask-image:radial-gradient(100% 80% at 74% 18%,#000 0%,rgba(0,0,0,.6) 44%,transparent 82%);
 }
-#logfield .sig{color:var(--signal);opacity:.26;animation:blip 11s ease-in-out infinite}
-#logfield .alr{color:var(--alert);opacity:.24;animation:blip 15s ease-in-out infinite}
-@keyframes blip{0%,100%{opacity:.06}50%{opacity:.38}}
+#secpattern::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MjAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNDIwIDQyMCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjU1IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LDE2KSBzY2FsZSgxLjU4MzMzKSIgc3Ryb2tlPSIjQjQ5QkU4IiBzdHJva2Utb3BhY2l0eT0iMC41NSI+PHBhdGggZD0iTTggMTAuNVY3YTQgNCAwIDAgMSA4IDB2My41Ii8+PHJlY3QgeD0iMy42IiB5PSIxMC41IiB3aWR0aD0iMTYuOCIgaGVpZ2h0PSIxMC45IiByeD0iMi40Ii8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxNSIgcj0iMS4zNSIvPjxwYXRoIGQ9Ik0xMiAxNi4zNVYxOC40Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNiwxNTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiNFOUE2NEYiIHN0cm9rZS1vcGFjaXR5PSIwLjUiPjxwYXRoIGQ9Ik0xMiAyLjQgMjAuNSA1Ljl2Ni4yYzAgNC43LTMuNiA4LjQtOC41IDkuNi00LjktMS4yLTguNS00LjktOC41LTkuNlY1LjlaIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI5NiwyMjYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiNCNDlCRTgiIHN0cm9rZS1vcGFjaXR5PSIwLjQyIj48cGF0aCBkPSJNMTIgMi40IDIwLjUgNS45djYuMmMwIDQuNy0zLjYgOC40LTguNSA5LjYtNC45LTEuMi04LjUtNC45LTguNS05LjZWNS45WiIvPjwvZz48L2c+PC9zdmc+");
+  background-size:420px 420px;
+  background-position:center top;
+  animation:breathe 16s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{opacity:.30}50%{opacity:.85}}50%{opacity:.38}}
 
 /* Content rides above the field. Each band carries its own scrim, so the
    telemetry reads strongest in the hero and recedes behind body copy. */
@@ -302,7 +306,7 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
 </head>
 <body>
 
-<div id="logfield" aria-hidden="true"></div>
+<div id="secpattern" aria-hidden="true"></div>
 
 <div class="sbbar">
   <div class="wrap">
@@ -517,87 +521,6 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
 </footer>
 
 <script>
-// Ambient telemetry wallboard behind the page. Decorative texture only:
-// synthetic rows, measured to fill the viewport at any width.
-(function(){
-  var host = document.getElementById('logfield');
-  if (!host) return;
-
-  var SRC  = ['edr','auth','dns','proxy','fw','sysmon','ids','zeek','osquery','cloudtrail'],
-      EVT  = ['process_create','conn_established','dns_query','file_write','logon_success',
-              'module_load','http_request','reg_set','session_open','policy_eval',
-              'flow_summary','image_load','api_call','cert_issued','svc_install',
-              'alert_triage','rule_match','asset_seen'],
-      NODE = ['wks-04','wks-17','srv-a1','srv-b2','vpn-00','bld-12','db-03','edge-31','mail-2','ci-07'],
-      pick = function(a){ return a[(Math.random()*a.length)|0]; },
-      pad  = function(v,w){ v = String(v); while (v.length < w) v += ' '; return v; },
-      zero = function(n,w){ n = String(n); while (n.length < w) n = '0' + n; return n; };
-
-  function entry(t){
-    return zero((t/3600|0)%24,2) + ':' + zero((t/60|0)%60,2) + ':' + zero(t%60,2) + '  ' +
-           pad(pick(SRC),11) + pad(pick(NODE),9) + pad(pick(EVT),19) +
-           pad('10.' + ((Math.random()*32)|0) + '.' + ((Math.random()*256)|0) +
-               '.' + ((Math.random()*256)|0), 16);
-  }
-
-  // Measure the real glyph advance rather than assuming it — Martian Mono may
-  // not have loaded yet, and the fallback is a different width.
-  function charWidth(){
-    var probe = document.createElement('span');
-    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;' +
-                          'font:inherit;letter-spacing:inherit';
-    probe.textContent = new Array(101).join('0');
-    host.appendChild(probe);
-    var w = probe.getBoundingClientRect().width / 100;
-    host.removeChild(probe);
-    return (w > 1) ? w : 7.04;
-  }
-
-  // Viewport dimensions come from three sources with generous floors: a single
-  // source returning 0 would otherwise collapse the grid to a couple of rows.
-  function vw(){
-    var d = document.documentElement;
-    return Math.max(d.clientWidth || 0, window.innerWidth || 0, 1440);
-  }
-  function vh(){
-    var d = document.documentElement;
-    return Math.max(d.clientHeight || 0, window.innerHeight || 0, 900);
-  }
-
-  function build(){
-    var cw   = charWidth(),
-        lh   = parseFloat(getComputedStyle(host).lineHeight) || 22,
-        rows = Math.ceil(vh() * 1.15 / lh) + 2,
-        COLW = 69,                                   // entry chars + gutter
-        cols = Math.ceil(vw() * 1.30 / (COLW * cw)) + 1,
-        clock = [], out = [], r, c;
-
-    for (c = 0; c < cols; c++) clock[c] = 8*3600 + 41*60 + ((Math.random()*900)|0);
-
-    for (r = 0; r < rows; r++){
-      var line = '';
-      for (c = 0; c < cols; c++){
-        clock[c] += 1 + ((Math.random()*6)|0);
-        var cell = entry(clock[c]) + '    ',
-            x    = Math.random(),
-            cls  = x < 0.030 ? 'alr' : (x < 0.095 ? 'sig' : '');
-        line += cls
-          ? '<span class="' + cls + '" style="animation-delay:' +
-            (Math.random()*14).toFixed(2) + 's">' + cell + '</span>'
-          : cell;
-      }
-      out.push(line);
-    }
-    host.innerHTML = out.join('\n');
-  }
-
-  build();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
-
-  var t;
-  addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(build, 200); });
-})();
-
 // Scroll reveals.
 (function(){
   var els = document.querySelectorAll('.rise');
