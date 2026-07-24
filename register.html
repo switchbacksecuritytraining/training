@@ -25,6 +25,13 @@
   }
   .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
   .btn[aria-disabled="true"] { opacity: 0.5; cursor: default; pointer-events: none; }
+  .track__price {
+    font-family: var(--mono); font-size: var(--step-1); font-weight: 500;
+    color: var(--ink); margin: 0;
+  }
+  .track__price span {
+    font-size: var(--step--1); color: var(--ink-3); letter-spacing: 0.04em;
+  }
   .track__link {
     font-family: var(--mono); font-size: var(--step--1);
     margin-top: auto; text-decoration: none;
@@ -69,7 +76,7 @@
            Swap the href below and append ?ref=switchbacksecuritytraining.com -->
       <div class="book">
         <p>One training, run twice. Pick your day at checkout.</p>
-        <a class="btn" aria-disabled="true">Registration opens soon</a>
+        <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
       </div>
 
       <div class="tracks">
@@ -77,6 +84,7 @@
           <p class="field">One day &middot; run twice</p>
           <h3>AI Engineering for Security Teams</h3>
           <p class="track__by">Michael Glass</p>
+          <p class="track__price">$1,900 <span>per seat</span></p>
           <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering.</p>
           <a class="track__link" href="ai_engineering.html">Full course details &rarr;</a>
         </div>
@@ -119,9 +127,9 @@
 
     <div class="section">
       <div class="section__head"><h2>Pricing</h2></div>
-      <p class="todo"><strong>To do:</strong> add the price tiers here before registration opens.
-      Publishing them on our own site (rather than only inside RegFox) lets people budget and
-      raise a PO without starting a checkout.</p>
+      <p class="todo"><strong>To do:</strong> add prices for Hacking Cryptography, SOC 101
+      and Cloud Incident Response, plus the early bird / standard / late tier dates.
+      AI Engineering is priced at $1,900 per seat.</p>
     </div>
 
     <div class="section">
