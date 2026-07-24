@@ -25,6 +25,13 @@
   }
   .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
   .btn[aria-disabled="true"] { opacity: 0.5; cursor: default; pointer-events: none; }
+  .track__link {
+    font-family: var(--mono); font-size: var(--step--1);
+    margin-top: auto; text-decoration: none;
+  }
+  .track__link:hover { text-decoration: underline; }
+  .book .btn { margin-left: auto; }
+  @media (max-width: 640px){ .book .btn { margin-left: 0; } }
   .track__note {
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.04em;
     color: var(--ink-3); margin: 0;
@@ -58,46 +65,63 @@
 
     <div class="section" id="nov14">
       <div class="section__head"><h2>November 14&ndash;15</h2><p class="field">Saturday &amp; Sunday</p></div>
+      <!-- RegFox: one hosted page per event, courses selected inside it.
+           Swap the href below and append ?ref=switchbacksecuritytraining.com -->
+      <div class="book">
+        <p>One training, run twice. Pick your day at checkout.</p>
+        <a class="btn" aria-disabled="true">Registration opens soon</a>
+      </div>
+
       <div class="tracks">
         <div class="track">
           <p class="field">One day &middot; run twice</p>
           <h3>AI Engineering for Security Teams</h3>
           <p class="track__by">Michael Glass</p>
           <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering.</p>
-          <p class="track__note">One day, run twice &mdash; the two sittings are identical. Registration opens soon.</p>
-          <div class="track__days">
-            <a class="btn" aria-disabled="true">Sat 14 Nov</a>
-            <a class="btn" aria-disabled="true">Sun 15 Nov</a>
-          </div>
+          <a class="track__link" href="ai_engineering.html">Full course details &rarr;</a>
         </div>
       </div>
     </div>
 
     <div class="section" id="nov21">
       <div class="section__head"><h2>November 21&ndash;22</h2><p class="field">Saturday &amp; Sunday</p></div>
+      <!-- RegFox: one hosted page per event, courses selected inside it.
+           Swap the href below and append ?ref=switchbacksecuritytraining.com -->
+      <div class="book">
+        <p>Three two-day trainings. Choose yours at checkout.</p>
+        <a class="btn" aria-disabled="true">Registration opens soon</a>
+      </div>
+
       <div class="tracks">
         <div class="track">
           <p class="field">Two days</p>
           <h3>Hacking Cryptography</h3>
           <p class="track__by">Ruben Gonzalez</p>
           <p class="track__desc">Find common crypto vulnerabilities in software and write crypto exploits for IoT devices, using case studies from real pentesting and red teaming engagements.</p>
-          <a class="btn" aria-disabled="true">Coming soon</a>
+          <a class="track__link" href="hacking_cryptography.html">Full course details &rarr;</a>
         </div>
         <div class="track">
           <p class="field">Two days</p>
           <h3>SOC 101 Bootcamp</h3>
           <p class="track__by">Rod Soto</p>
           <p class="track__desc">Hands-on labs emulating real security operations centre work, blending traditional SOC practice with AI-driven detection, alert triage and threat hunting.</p>
-          <a class="btn" aria-disabled="true">Coming soon</a>
+          <a class="track__link" href="soc_101.html">Full course details &rarr;</a>
         </div>
         <div class="track">
           <p class="field">Two days</p>
           <h3>Cloud Incident Response</h3>
           <p class="track__by">Korstiaan Stam</p>
           <p class="track__desc">Respond to security incidents in AWS, through lectures, hands-on labs and Capture The Flag challenges.</p>
-          <a class="btn" aria-disabled="true">Coming soon</a>
+          <a class="track__link" href="aws_incident_response.html">Full course details &rarr;</a>
         </div>
       </div>
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>Pricing</h2></div>
+      <p class="todo"><strong>To do:</strong> add the price tiers here before registration opens.
+      Publishing them on our own site (rather than only inside RegFox) lets people budget and
+      raise a PO without starting a checkout.</p>
     </div>
 
     <div class="section">

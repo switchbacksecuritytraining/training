@@ -219,6 +219,21 @@ main,footer{position:relative;z-index:1}
   background:rgba(58,37,31,.28);
 }
 
+/* ── Conversion rail — mirrors the .book component in site.css,
+   restyled for the dark ground. Ringzer0 repeats its CTA at every
+   scroll depth; these sit between sections to do the same. ──── */
+.sec-book .wrap{padding-top:30px;padding-bottom:30px}
+.book{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:18px 20px;
+  border:1px solid var(--hairline);
+  border-left:3px solid #1f4fd8;
+  background:rgba(58,37,31,.30);
+}
+.book p{margin:0;font-size:16px;color:var(--bone-dim)}
+.book .btn{margin-left:auto}
+@media (max-width:640px){ .book .btn{margin-left:0} }
+
 /* ── Trainer ───────────────────────────────────────── */
 .trainer{display:grid;grid-template-columns:200px 1fr;gap:var(--gap);align-items:start}
 .portrait{
@@ -418,6 +433,20 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
     </div>
   </section>
 
+    <!-- Conversion rail. When RegFox is live, point this href at that event's
+       hosted page and append ?ref=switchbacksecuritytraining.com -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col wide">
+        <div class="book">
+          <p>One all-labs day in Bellevue, Saturday 14 or Sunday 15 November. Free cancellation through August 31.</p>
+          <a class="btn" href="register.html">Reserve your seat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Outline ────────────────────────────────────── -->
   <section class="sec rise">
     <div class="wrap">
@@ -482,6 +511,20 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
           </div>
         </div>
         <p class="fineprint" style="margin-top:28px">Provided on the day: access to the AI labs and all training material. Audience skill level is intermediate.</p>
+      </div>
+    </div>
+  </section>
+
+    <!-- Conversion rail. When RegFox is live, point this href at that event's
+       hosted page and append ?ref=switchbacksecuritytraining.com -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col wide">
+        <div class="book">
+          <p>One all-labs day in Bellevue, Saturday 14 or Sunday 15 November. Free cancellation through August 31.</p>
+          <a class="btn" href="register.html">Reserve your seat</a>
+        </div>
       </div>
     </div>
   </section>

@@ -58,17 +58,20 @@ img{max-width:100%;display:block}
 p{margin:0 0 1.05em}
 p:last-child{margin-bottom:0}
 
-/* ── Buttons (in-page, dark theme) ─────────────────── */
+/* ── Buttons — site.css styling, so every CTA matches the rest
+   of the site rather than the page's own dark palette. ─────── */
 .btn{
-  display:inline-block;font-family:var(--display);font-size:11px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;padding:11px 20px;
-  border:1px solid var(--alert);color:var(--alert);
-  text-decoration:none;border-radius:2px;
-  transition:background .18s ease,color .18s ease;
+  display:inline-block;
+  font-family:var(--site-mono);font-size:.8125rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  background:#1f4fd8;color:#fff;
+  padding:10px 18px;border:1px solid #1f4fd8;
+  transition:background .18s ease,border-color .18s ease;
 }
-.btn:hover,.btn:focus-visible{background:var(--alert);color:var(--ink-deep)}
-.btn-solid{background:var(--alert);color:var(--ink-deep);border-color:var(--alert)}
-.btn-solid:hover,.btn-solid:focus-visible{background:transparent;color:var(--alert)}
+.btn:hover,.btn:focus-visible{background:#163aa0;border-color:#163aa0;color:#fff}
+.btn-solid{background:#1f4fd8;color:#fff;border-color:#1f4fd8}
+.btn-solid:hover,.btn-solid:focus-visible{background:#163aa0;border-color:#163aa0;color:#fff}
+/* focus ring stays violet: #1f4fd8 on espresso is only 2.6:1 */
 :focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 
 /* ── Site masthead — values taken from assets/site.css ──
@@ -214,6 +217,21 @@ main,footer{position:relative;z-index:1}
   font-size:17px;color:var(--bone-dim);
   background:rgba(58,37,31,.28);
 }
+
+/* ── Conversion rail — mirrors the .book component in site.css,
+   restyled for the dark ground. Ringzer0 repeats its CTA at every
+   scroll depth; these sit between sections to do the same. ──── */
+.sec-book .wrap{padding-top:30px;padding-bottom:30px}
+.book{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:18px 20px;
+  border:1px solid var(--hairline);
+  border-left:3px solid #1f4fd8;
+  background:rgba(58,37,31,.30);
+}
+.book p{margin:0;font-size:16px;color:var(--bone-dim)}
+.book .btn{margin-left:auto}
+@media (max-width:640px){ .book .btn{margin-left:0} }
 
 /* ── Trainer ───────────────────────────────────────── */
 .trainer{display:grid;grid-template-columns:200px 1fr;gap:var(--gap);align-items:start}
@@ -387,6 +405,20 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
     </div>
   </section>
 
+    <!-- Conversion rail. When RegFox is live, point this href at that event's
+       hosted page and append ?ref=switchbacksecuritytraining.com -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col wide">
+        <div class="book">
+          <p>Two days in Bellevue, 21&ndash;22 November. Free cancellation through August 31.</p>
+          <a class="btn" href="register.html">Reserve your seat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Outline ────────────────────────────────────────
        SOURCE NOTE: the course document lists no module
        breakdown; it says "coming soon". Replace the block
@@ -415,6 +447,20 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
             <h3>What to bring</h3>
             <p>A laptop with an up-to-date operating system and browser.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Conversion rail. When RegFox is live, point this href at that event's
+       hosted page and append ?ref=switchbacksecuritytraining.com -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col wide">
+        <div class="book">
+          <p>Two days in Bellevue, 21&ndash;22 November. Free cancellation through August 31.</p>
+          <a class="btn" href="register.html">Reserve your seat</a>
         </div>
       </div>
     </div>
