@@ -15,6 +15,8 @@
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--blue); margin: 0;
   }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+  .hero__cta .btn + .btn { margin-left: 0; }
   .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
 </style>
 </head>
@@ -38,12 +40,16 @@
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
-        <h1>Inaugural event at the AC Hotel Bellevue, WA</h1>
-        <p class="hero__date">November 21&ndash;22, 2026</p>
+        <h1>Two events at the AC Hotel Bellevue, WA</h1>
+        <p class="hero__date">November 14&ndash;15 &amp; 21&ndash;22, 2026</p>
         <p class="hero__lede">
-          Two-day in-person event. 3 trainings.
+          Two in-person weekends, four trainings. AI engineering on the first weekend,
+          three two-day courses on the second.
         </p>
-        <a class="btn" href="register.html">Reserve your seat</a>
+        <p class="hero__cta">
+          <a class="btn" href="register.html#nov14">Reserve your seat &middot; Nov 14&ndash;15</a>
+          <a class="btn" href="register.html#nov21">Reserve your seat &middot; Nov 21&ndash;22</a>
+        </p>
       </div>
 
       <img class="hero__img"
@@ -57,29 +63,29 @@
       <div class="section__head"><h2>Trainings</h2></div>
       <div class="tracks">
         <div class="track">
-          <p class="field">One day &middot; In-person &middot; Runs twice</p>
+          <p class="field">Nov 14 or 15 &middot; One day &middot; Runs twice</p>
           <h3>AI Engineering for Security Teams</h3>
           <p class="track__by">Michael Glass</p>
-          <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering. Run twice &mdash; take it Saturday 21 or Sunday 22.</p>
+          <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering. Run twice &mdash; take it Saturday 14 or Sunday 15.</p>
           <a class="btn" href="ai_engineering.html">View course</a>
         </div>
 
         <div class="track">
-          <p class="field">Two days &middot; In-person</p>
+          <p class="field">Nov 21&ndash;22 &middot; Two days</p>
           <h3>Hacking Cryptography</h3>
           <p class="track__by">Ruben Gonzalez</p>
           <p class="track__desc">How applied cryptography fails in practice, and how to find it before someone else does.</p>
           <a class="btn" href="hacking_cryptography.html">View course</a>
         </div>
         <div class="track">
-          <p class="field">Two days &middot; In-person</p>
+          <p class="field">Nov 21&ndash;22 &middot; Two days</p>
           <h3>SOC 101 Bootcamp with AI Integration</h3>
           <p class="track__by">Rod Soto</p>
           <p class="track__desc">Security operations skills built on hands-on labs, with AI-assisted detection and triage.</p>
           <a class="btn" href="soc_101.html">View course</a>
         </div>
         <div class="track">
-          <p class="field">Two days &middot; In-person</p>
+          <p class="field">Nov 21&ndash;22 &middot; Two days</p>
           <h3>Cloud Incident Response</h3>
           <p class="track__by">Korstiaan Stam</p>
           <p class="track__desc">Respond to security incidents in AWS, through lectures, hands-on labs and Capture The Flag challenges.</p>
