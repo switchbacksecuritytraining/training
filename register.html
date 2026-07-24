@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Register — Switchback</title>
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<meta name="description" content="Reserve your seat at Switchback Security Training, November 21–22 2026, AC Hotel Bellevue WA.">
+<meta name="description" content="Reserve your seat at Switchback Security Training — AI engineering November 14–15 and three two-day trainings November 21–22, 2026, AC Hotel Bellevue WA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
@@ -32,6 +32,11 @@
   .track__price span {
     font-size: var(--step--1); color: var(--ink-3); letter-spacing: 0.04em;
   }
+  .track__cta {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto;
+  }
+  .track__cta .btn { margin-top: 0; margin-left: 0; align-self: auto; }
+  .track__cta .track__link { margin-top: 0; }
   .track__link {
     font-family: var(--mono); font-size: var(--step--1);
     margin-top: auto; text-decoration: none;
@@ -86,7 +91,10 @@
           <p class="track__by">Michael Glass</p>
           <p class="track__price">$1,900 <span>per seat</span></p>
           <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering.</p>
-          <a class="track__link" href="ai_engineering.html">Full course details &rarr;</a>
+          <p class="track__cta">
+            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+            <a class="track__link" href="ai_engineering.html">Full course details &rarr;</a>
+          </p>
         </div>
       </div>
     </div>
@@ -105,6 +113,7 @@
           <p class="field">Two days</p>
           <h3>Hacking Cryptography</h3>
           <p class="track__by">Ruben Gonzalez</p>
+          <p class="track__price">$2,400 <span>per seat</span></p>
           <p class="track__desc">Find common crypto vulnerabilities in software and write crypto exploits for IoT devices, using case studies from real pentesting and red teaming engagements.</p>
           <a class="track__link" href="hacking_cryptography.html">Full course details &rarr;</a>
         </div>
@@ -112,6 +121,7 @@
           <p class="field">Two days</p>
           <h3>SOC 101 Bootcamp</h3>
           <p class="track__by">Rod Soto</p>
+          <p class="track__price">$2,700 <span>per seat</span></p>
           <p class="track__desc">Hands-on labs emulating real security operations centre work, blending traditional SOC practice with AI-driven detection, alert triage and threat hunting.</p>
           <a class="track__link" href="soc_101.html">Full course details &rarr;</a>
         </div>
@@ -119,17 +129,11 @@
           <p class="field">Two days</p>
           <h3>Cloud Incident Response</h3>
           <p class="track__by">Korstiaan Stam</p>
+          <p class="track__price">$4,000 <span>per seat</span></p>
           <p class="track__desc">Respond to security incidents in AWS, through lectures, hands-on labs and Capture The Flag challenges.</p>
           <a class="track__link" href="aws_incident_response.html">Full course details &rarr;</a>
         </div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="section__head"><h2>Pricing</h2></div>
-      <p class="todo"><strong>To do:</strong> add prices for Hacking Cryptography, SOC 101
-      and Cloud Incident Response, plus the early bird / standard / late tier dates.
-      AI Engineering is priced at $1,900 per seat.</p>
     </div>
 
     <div class="section">

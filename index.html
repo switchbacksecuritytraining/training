@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Switchback Security Training</title>
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<meta name="description" content="Switchback Security Training — a two-day, in-person security event at the AC Hotel Bellevue, WA, November 21–22 2026. Three trainings.">
+<meta name="description" content="Switchback Security Training — two in-person events at the AC Hotel Bellevue, WA. AI engineering November 14–15, three two-day trainings November 21–22, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
@@ -17,6 +17,18 @@
   }
   .hero__cta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
   .hero__cta .btn + .btn { margin-left: 0; }
+  .track__cta {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto;
+  }
+  .track__cta .btn { margin-top: 0; margin-left: 0; align-self: auto; }
+  .track__cta .track__link { margin-top: 0; }
+  .track__price {
+    font-family: var(--mono); font-size: var(--step-1); font-weight: 500;
+    color: var(--ink); margin: 0;
+  }
+  .track__price span {
+    font-size: var(--step--1); color: var(--ink-3); letter-spacing: 0.04em;
+  }
   .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
 </style>
 </head>
@@ -47,7 +59,7 @@
           three two-day courses on the second.
         </p>
         <p class="hero__cta">
-          <a class="btn" href="register.html#nov14">Reserve your seat &middot; Nov 14&ndash;15</a>
+          <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat &middot; Nov 14&ndash;15</a>
           <a class="btn" href="register.html#nov21">Reserve your seat &middot; Nov 21&ndash;22</a>
         </p>
       </div>
@@ -66,14 +78,19 @@
           <p class="field">Nov 14 or 15 &middot; One day &middot; Runs twice</p>
           <h3>AI Engineering for Security Teams</h3>
           <p class="track__by">Michael Glass</p>
+          <p class="track__price">$1,900 <span>per seat</span></p>
           <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering. Run twice &mdash; take it Saturday 14 or Sunday 15.</p>
-          <a class="btn" href="ai_engineering.html">View course</a>
+          <p class="track__cta">
+            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+            <a class="btn btn--ghost" href="ai_engineering.html">View course</a>
+          </p>
         </div>
 
         <div class="track">
           <p class="field">Nov 21&ndash;22 &middot; Two days</p>
           <h3>Hacking Cryptography</h3>
           <p class="track__by">Ruben Gonzalez</p>
+          <p class="track__price">$2,400 <span>per seat</span></p>
           <p class="track__desc">How applied cryptography fails in practice, and how to find it before someone else does.</p>
           <a class="btn" href="hacking_cryptography.html">View course</a>
         </div>
@@ -81,6 +98,7 @@
           <p class="field">Nov 21&ndash;22 &middot; Two days</p>
           <h3>SOC 101 Bootcamp with AI Integration</h3>
           <p class="track__by">Rod Soto</p>
+          <p class="track__price">$2,700 <span>per seat</span></p>
           <p class="track__desc">Security operations skills built on hands-on labs, with AI-assisted detection and triage.</p>
           <a class="btn" href="soc_101.html">View course</a>
         </div>
@@ -88,6 +106,7 @@
           <p class="field">Nov 21&ndash;22 &middot; Two days</p>
           <h3>Cloud Incident Response</h3>
           <p class="track__by">Korstiaan Stam</p>
+          <p class="track__price">$4,000 <span>per seat</span></p>
           <p class="track__desc">Respond to security incidents in AWS, through lectures, hands-on labs and Capture The Flag challenges.</p>
           <a class="btn" href="aws_incident_response.html">View course</a>
         </div>
