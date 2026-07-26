@@ -23,6 +23,15 @@
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--blue); margin: 0;
   }
+  /* Registration status. Swap the text and the colour token if a
+     course sells out or the window closes. */
+  .status {
+    display: inline-block;
+    font-family: var(--mono); font-size: 0.6875rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue); border: 1px solid var(--blue);
+    padding: 5px 10px; margin: 0 0 14px;
+  }
   .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
   .btn[aria-disabled="true"] { opacity: 0.5; cursor: default; pointer-events: none; }
   .track__price {
@@ -72,6 +81,7 @@
     <div class="detail__head">
       <p class="field">AC Hotel Bellevue, WA &middot; 2026</p>
       <h1>Reserve your seat</h1>
+      <p class="status">Registration is open</p>
       <p class="detail__by">Two events, four in-person trainings. Pick yours below.</p>
     </div>
 
@@ -121,7 +131,7 @@
           <p class="field">Two days</p>
           <h3>Cloud Incident Response</h3>
           <p class="track__by">Korstiaan Stam</p>
-          <p class="track__price">$4,800 <span>per seat</span></p>
+          <p class="track__price">$4,000 <span>per seat</span></p>
           <p class="track__desc">Respond to security incidents in AWS, through lectures, hands-on labs and Capture The Flag challenges.</p>
           <p class="track__cta">
             <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
