@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hacking Cryptography — Neodyme Training, Nov 21–22, Bellevue WA</title>
+<meta name="description" content="A two-day applied cryptography training with Ruben Gonzalez of Neodyme. November 21–22, AC Hotel Bellevue, Washington.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ─────────────────────────────────────────────
+   Palette is drawn from two places: the Neodyme mark itself
+   (#2B1915, sampled from the logo file), and neodymium glass,
+   which reads violet in daylight and amber under incandescent
+   light. Same material, different light — which is also the
+   course's thesis about cryptography.                        */
+:root{
+  --espresso:#2B1915;
+  --espresso-deep:#1A0F0C;
+  --espresso-soft:#3A251F;
+  --hairline:#4A322A;
+  --bone:#EFE9E1;
+  --bone-dim:#A6968C;
+  --violet:#B49BE8;
+  --amber:#E9A64F;
+
+  --display:"Martian Mono",ui-monospace,monospace;
+  --body:"Source Serif 4",Georgia,serif;
+
+  --rail:150px;
+  --gap:44px;
+  --measure:1080px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--espresso);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:18px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 28px}
+
+/* ── Shared type ───────────────────────────────────── */
+.label{
+  font-family:var(--display);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+  color:var(--bone-dim);
+  line-height:1.5;
+}
+.lede{font-size:21px;line-height:1.55}
+p{margin:0 0 1.05em}
+p:last-child{margin-bottom:0}
+
+/* ── Site masthead — values taken from assets/site.css ──
+   White ground, ash rule, IBM Plex Mono nav and the solid blue
+   CTA, so the bar reads identically to the home page. */
+.masthead{
+  position:sticky;top:0;z-index:50;
+  background:#ffffff;
+  border-bottom:1px solid #e2e3df;
+}
+.masthead__inner{
+  display:flex;align-items:center;gap:22px;
+  min-height:48px;flex-wrap:wrap;
+}
+.logo{display:block;margin-right:auto;text-decoration:none}
+.logo__img{height:26px;width:auto;display:block}
+.nav{display:flex;gap:20px;flex-wrap:wrap}
+.nav a{
+  font-family:var(--site-mono);font-size:.8125rem;
+  color:#5c6166;text-decoration:none;
+  padding:4px 0;border-bottom:2px solid transparent;
+}
+.nav a:hover,.nav a:focus-visible{color:#101215;border-bottom-color:#1f4fd8}
+.masthead .btn{
+  font-family:var(--site-mono);font-size:.8125rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:#1f4fd8;color:#fff;
+  border:1px solid #1f4fd8;border-radius:0;
+  padding:8px 16px;
+}
+.masthead .btn:hover,.masthead .btn:focus-visible{
+  background:#163aa0;border-color:#163aa0;color:#fff;
+}
+
+
+.btn{
+  display:inline-block;
+  font-family:var(--display);font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:11px 20px;
+  border:1px solid var(--amber);
+  color:var(--amber);
+  text-decoration:none;
+  border-radius:2px;
+  transition:background .18s ease,color .18s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--amber);color:var(--espresso-deep)}
+.btn-solid{background:var(--amber);color:var(--espresso-deep);border-color:var(--amber)}
+.btn-solid:hover,.btn-solid:focus-visible{background:transparent;color:var(--amber)}
+:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
+
+/* ── Hero ──────────────────────────────────────────── */
+.hero{
+  position:relative;overflow:hidden;
+  background:var(--espresso-deep);
+  border-bottom:1px solid var(--hairline);
+  padding:104px 0 0;
+}
+/* The signature: an ambient field of hex bytes. Most sit dim;
+   a scattered few drift toward violet or amber, so the field
+   never quite settles into noise. */
+#bytefield{
+  position:absolute;inset:0;
+  font-family:var(--display);
+  font-size:12px;line-height:1.85;
+  letter-spacing:.09em;
+  color:#3A251F;
+  word-break:break-all;
+  padding:14px 18px;
+  user-select:none;pointer-events:none;
+  overflow:hidden;
+  -webkit-mask-image:radial-gradient(120% 78% at 62% 32%,#000 8%,transparent 74%);
+  mask-image:radial-gradient(120% 78% at 62% 32%,#000 8%,transparent 74%);
+}
+#bytefield b{font-weight:400;color:var(--violet);opacity:.34;animation:shift 9s ease-in-out infinite}
+#bytefield i{font-style:normal;color:var(--amber);opacity:.30;animation:shift 13s ease-in-out infinite}
+@keyframes shift{0%,100%{opacity:.10}50%{opacity:.46}}
+
+.hero-inner{position:relative;z-index:2;padding-bottom:56px}
+.hero h1{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(34px,7.4vw,84px);
+  line-height:.98;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  margin:20px 0 26px;
+  max-width:14ch;
+}
+.hero h1 .lo{color:var(--violet)}
+.hero .lede{max-width:52ch;color:var(--bone);opacity:.9}
+.hero .cta-row{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero .note{font-family:var(--display);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
+
+/* facts strip */
+.facts{
+  position:relative;z-index:2;
+  border-top:1px solid var(--hairline);
+  display:grid;grid-template-columns:repeat(5,1fr);
+}
+.facts div{padding:22px 0 26px;border-left:1px solid var(--hairline);padding-left:22px}
+.facts div:first-child{border-left:0;padding-left:0}
+.facts .v{font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:-.01em;margin-top:7px;line-height:1.45}
+
+/* ── Section scaffold: label rail + content ────────── */
+.sec{border-bottom:1px solid var(--hairline)}
+.sec .wrap{
+  display:grid;
+  grid-template-columns:var(--rail) 1fr;
+  gap:var(--gap);
+  padding-top:76px;padding-bottom:76px;
+}
+.sec h2{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(24px,3.1vw,34px);
+  line-height:1.12;letter-spacing:-.025em;
+  text-transform:uppercase;
+  margin:0 0 22px;
+}
+.body-col{max-width:66ch}
+.body-col.wide{max-width:none}
+
+/* causes list */
+.causes{margin:34px 0 0;border-top:1px solid var(--hairline)}
+.cause{
+  display:grid;grid-template-columns:190px 1fr;gap:26px;
+  padding:22px 0;border-bottom:1px solid var(--hairline);
+}
+.cause h3{
+  font-family:var(--display);font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--violet);margin:4px 0 0;line-height:1.6;
+}
+.cause p{font-size:17px}
+.big{
+  font-family:var(--display);font-weight:800;
+  font-size:1.42em;letter-spacing:-.03em;color:var(--amber);
+}
+
+/* two-up */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.duo h3{
+  font-family:var(--display);font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);
+  margin:0 0 12px;
+}
+.duo p{font-size:17px}
+
+/* outline placeholder */
+.tbd{
+  border:1px solid var(--hairline);
+  border-left:2px solid var(--violet);
+  padding:20px 22px;
+  font-size:17px;color:var(--bone-dim);
+  background:rgba(58,37,31,.28);
+}
+
+/* ── Conversion rail — mirrors the .book component in site.css,
+   restyled for the dark ground. ────────────────────────────── */
+.sec-book .wrap{padding-top:30px;padding-bottom:30px}
+.book{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:18px 20px;
+  border:1px solid var(--hairline);
+  border-left:3px solid #1f4fd8;
+  background:rgba(58,37,31,.30);
+}
+.book p{margin:0;font-size:16px;color:var(--bone-dim)}
+.book .btn{margin-left:auto}
+@media (max-width:640px){ .book .btn{margin-left:0} }
+
+.seats{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--display);font-size:10px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--violet);
+  border:1px solid var(--violet);border-radius:2px;padding:7px 11px;
+}
+.seats b{font-size:14px;font-weight:800;letter-spacing:-.02em}
+
+/* ── Trainer ───────────────────────────────────────── */
+.trainer{display:grid;grid-template-columns:250px 1fr;gap:var(--gap);align-items:start}
+.portrait{
+  position:relative;
+  border:1px solid var(--hairline);
+  border-radius:3px;
+  overflow:hidden;
+  background:var(--espresso-soft);
+  aspect-ratio:4/5;
+}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait .mono{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:800;font-size:52px;
+  letter-spacing:-.04em;color:var(--hairline);
+}
+.trainer h3{
+  font-family:var(--display);font-weight:800;font-size:22px;
+  letter-spacing:-.02em;margin:0 0 4px;
+}
+.trainer .role{
+  font-family:var(--display);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);margin:0 0 20px;
+}
+.creds{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--hairline)}
+.creds li{
+  padding:12px 0;border-bottom:1px solid var(--hairline);
+  font-size:16px;display:flex;gap:16px;
+}
+.creds b{
+  font-family:var(--display);font-weight:600;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);
+  min-width:96px;flex:none;padding-top:4px;
+}
+
+/* ── Owner's note ──────────────────────────────────
+   William's own voice on why the course is on the site.
+   Deliberately styled apart from the surrounding body
+   copy so the change of speaker is visible at a glance. */
+.ownernote{
+  border:1px solid var(--hairline);
+  border-left:3px solid var(--violet);
+  background:rgba(180,155,232,.05);
+  padding:24px 26px;
+}
+.ownernote h3{
+  font-family:var(--display);font-weight:800;font-size:15px;
+  letter-spacing:.02em;text-transform:none;
+  color:var(--violet);
+  margin:0 0 14px;line-height:1.35;
+}
+.ownernote p{font-size:18px;margin:0}
+.ownernote .byline{
+  font-family:var(--display);font-size:10px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bone-dim);
+  margin-top:18px;
+}
+@media (max-width:520px){ .ownernote{padding:20px 18px} }
+
+/* ── Register ──────────────────────────────────────── */
+.register .wrap{padding-top:84px;padding-bottom:84px}
+.register h2{margin-bottom:16px}
+.fineprint{font-size:16px;color:var(--bone-dim);max-width:60ch}
+.register .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* ── Footer ────────────────────────────────────────── */
+footer{background:var(--espresso-deep);padding:34px 0}
+footer .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+footer img{height:24px;width:auto}
+footer .label{margin-left:auto}
+
+/* ── Motion ────────────────────────────────────────── */
+.rise{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rise{opacity:1;transform:none}
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width:860px){
+  body{font-size:17px}
+  .sec .wrap{grid-template-columns:1fr;gap:16px;padding-top:56px;padding-bottom:56px}
+  .sec .wrap > .label{margin-bottom:-4px}
+  .duo,.trainer{grid-template-columns:1fr;gap:30px}
+  .portrait{max-width:220px;aspect-ratio:1/1}
+  .facts{grid-template-columns:1fr}
+  .facts div{border-left:0;padding-left:0;border-top:1px solid var(--hairline);padding:16px 0}
+  .facts div:first-child{border-top:0}
+  .cause{grid-template-columns:1fr;gap:6px}
+  .hero{padding-top:64px}
+}
+@media (max-width:520px){
+  .wrap{padding:0 20px}
+  .creds li{flex-direction:column;gap:2px}
+  .creds b{padding-top:0}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="index.html"><img src="images/switchback_gradient_white_400.jpg" alt="Switchback Security Training" class="logo__img"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="events.html">Events</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="btn" href="register.html">Reserve your seat</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── Hero ───────────────────────────────────────── -->
+  <section class="hero">
+    <div id="bytefield" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="label">Neodyme training · Two days · Limited to 6 seats</p>
+        <h1>Hacking <span class="lo">Cryptography</span></h1>
+        <p class="lede">Cryptographic primitives rarely break. The code around them breaks constantly. Two days on how applied cryptography fails in the field — and how to find it before someone else does.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+          <span class="seats"><b>6</b> seats only</span>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div>
+          <p class="label">Dates</p>
+          <p class="v">November 21–22</p>
+        </div>
+        <div>
+          <p class="label">Venue</p>
+          <p class="v">AC Hotel Bellevue<br>Bellevue, Washington</p>
+        </div>
+        <div>
+          <p class="label">Instructor</p>
+          <p class="v">Ruben Gonzalez<br>Lead Trainer, Neodyme AG</p>
+        </div>
+        <div>
+          <p class="label">Seats</p>
+          <p class="v">6 only<br>intensive</p>
+        </div>
+        <div>
+          <p class="label">Price</p>
+          <p class="v">$2,400<br>per seat</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Abstract ───────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Abstract</p>
+      <div class="body-col">
+        <p class="lede">Crypto-related bugs remain common across the software industry, and they persist for reasons that have little to do with the mathematics.</p>
+
+        <div class="causes">
+          <div class="cause">
+            <h3>Developer misuse</h3>
+            <p>Roughly <span class="big">83%</span> of cryptographic software vulnerabilities come from application developers misusing secure libraries — not from flaws in the libraries themselves.</p>
+          </div>
+          <div class="cause">
+            <h3>Business logic errors</h3>
+            <p>In the smart contract space, business logic errors account for a disproportionately high share of bugs.</p>
+          </div>
+          <div class="cause">
+            <h3>Persistent value lost</h3>
+            <p>Despite years of industry advancement, bad actors keep exploiting these code vulnerabilities successfully.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outcomes ───────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">What you'll<br>be able to do</p>
+      <div class="body-col">
+        <h2>Find the flaw, then write the exploit</h2>
+        <p class="lede">You'll leave able to find common crypto vulnerabilities in software and write crypto exploits for IoT devices and software.</p>
+        <p>Using case studies from our own pentesting and red teaming engagements, we introduce the core concepts of applied cryptography and show how each one fails in practice.</p>
+      </div>
+    </div>
+  </section>
+
+    <!-- Conversion rail. When RegFox is live, point this href at that event's
+       hosted page and append ?ref=switchbacksecuritytraining.com -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col wide">
+        <div class="book">
+          <p>Two days in Bellevue, 21&ndash;22 November. $2,400 per seat &mdash; <strong>only 6 seats</strong>.</p>
+          <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outline ────────────────────────────────────────
+       SOURCE NOTE: the course document lists no module
+       breakdown. Replace the block below with the real
+       modules once they're set.                         -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Outline</p>
+      <div class="body-col">
+        <h2>Course outline</h2>
+        <p class="tbd">The full module breakdown for this session is being finalized and will be published here before registration closes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Prep ───────────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Before you<br>arrive</p>
+      <div class="body-col wide">
+        <div class="duo">
+          <div>
+            <h3>Prerequisites</h3>
+            <p>You should be familiar with at least one scripting language and have a basic understanding of computer networks.</p>
+          </div>
+          <div>
+            <h3>What to bring</h3>
+            <p>A laptop with an up-to-date operating system and browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Conversion rail. When RegFox is live, point this href at that event's
+       hosted page and append ?ref=switchbacksecuritytraining.com -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col wide">
+        <div class="book">
+          <p>Two days in Bellevue, 21&ndash;22 November. $2,400 per seat &mdash; <strong>only 6 seats</strong>.</p>
+          <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Trainer ────────────────────────────────────────
+       PHOTO: drop a headshot named ruben-gonzalez.jpg
+       next to this file and it will appear automatically.
+       Until then a monogram tile shows in its place.    -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Your trainer</p>
+      <div class="body-col wide">
+        <div class="trainer">
+          <figure class="portrait" style="margin:0">
+            <span class="mono" aria-hidden="true">RG</span>
+            <img src="ruben-gonzalez.jpg" alt="Ruben Gonzalez"
+                 onerror="this.remove()">
+          </figure>
+          <div>
+            <h3>Ruben Gonzalez</h3>
+            <p class="role">Security researcher · Lead trainer, Neodyme AG</p>
+            <p>For ten years Ruben has worked professionally to find security gaps and weak points in IT systems. He has hacked in the cloud, satellite and medical technology domains.</p>
+            <p>Alongside his work at Neodyme he holds a doctorate from Radboud University and is a visiting researcher for post-quantum cryptography at the Max Planck Institute for Security and Privacy.</p>
+            <ul class="creds">
+              <li><b>Role</b><span>Lead trainer and security researcher, Neodyme AG</span></li>
+              <li><b>Experience</b><span>Ten years of professional offensive security work</span></li>
+              <li><b>Domains</b><span>Cloud, satellite and medical technology</span></li>
+              <li><b>Research</b><span>Doctorate, Radboud University · Visiting researcher in post-quantum cryptography, Max Planck Institute for Security and Privacy</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Owner's note ───────────────────────────────
+       Sits between the trainer bio and the closing
+       register block: credentials first, then why the
+       course is here, then the call to action.      -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">From the<br>owner</p>
+      <div class="body-col">
+        <div class="ownernote">
+          <h3>Why I offer Ruben's training</h3>
+          <p>I've spent a fair amount of time decrypting ciphers and studying cryptography. I've sat in on Ruben's training twice. Both times I learned something new. He has a deep knowledge base and conveys it easily to others.</p>
+          <p class="byline">&mdash; William Leonard, Owner, Switchback Security Training</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Register ───────────────────────────────────── -->
+  <section class="sec register rise" id="register">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col">
+        <h2>November 21–22 · AC Hotel Bellevue</h2>
+        <p class="lede">Two days in Bellevue, Washington with Ruben Gonzalez. Six seats, so the room stays intensive and you get real time with the trainer rather than a seat in an audience.</p>
+        <p class="fineprint">Cancellations can be made without a fee before August 31. After August 31, $200 is subtracted from the refund to cover non-refundable fees.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+          <a class="btn" href="mailto:contact@switchbacksecuritytraining.com">Ask a question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">Hacking Cryptography · Bellevue, WA · November 21–22</span>
+  </div>
+</footer>
+
+<script>
+// Hex byte field behind the hero.
+(function(){
+  var host = document.getElementById('bytefield');
+  if (!host) return;
+  var hex = '0123456789abcdef', out = [], n = 2600;
+  for (var i = 0; i < n; i++){
+    var b = hex[(Math.random()*16)|0] + hex[(Math.random()*16)|0];
+    var r = Math.random();
+    if (r < 0.030)      out.push('<b style="animation-delay:' + (Math.random()*9).toFixed(2) + 's">' + b + '</b>');
+    else if (r < 0.055) out.push('<i style="animation-delay:' + (Math.random()*13).toFixed(2) + 's">' + b + '</i>');
+    else                out.push(b);
+  }
+  host.innerHTML = out.join(' ');
+})();
+
+// Scroll reveals.
+(function(){
+  var els = document.querySelectorAll('.rise');
+  if (!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
