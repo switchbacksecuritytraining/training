@@ -19,6 +19,10 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
+  /* Masthead lockup is two lines; below 36px the
+     descriptor stops reading. Overrides assets/site.css. */
+  .logo__img{height:36px;width:auto;display:block}
+
   .track__by {
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--blue); margin: 0;
@@ -67,7 +71,7 @@
 
 <header class="masthead">
   <div class="wrap masthead__inner">
-    <a class="logo" href="https://switchbacksecuritytraining.com"><img src="images/switchback_gradient_white_400.jpg" alt="Switchback Security Training" class="logo__img"></a>
+    <a class="logo" href="https://switchbacksecuritytraining.com"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
     <nav class="nav" aria-label="Main">
       <a href="events.html">Events</a>
       <a href="trainers.html">Trainers</a>

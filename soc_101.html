@@ -66,7 +66,7 @@ p:last-child{margin-bottom:0}
   min-height:48px;flex-wrap:wrap;
 }
 .logo{display:block;margin-right:auto;text-decoration:none}
-.logo__img{height:26px;width:auto;display:block}
+.logo__img{height:36px;width:auto;display:block}
 .nav{display:flex;gap:20px;flex-wrap:wrap}
 .nav a{
   font-family:var(--site-mono);font-size:.8125rem;
@@ -265,31 +265,6 @@ main,footer{position:relative;z-index:1}
   display:block;
 }
 
-/* ── Owner's note ──────────────────────────────────
-   William's own voice on why the course is on the site.
-   Deliberately styled apart from the surrounding body
-   copy so the change of speaker is visible at a glance. */
-.ownernote{
-  border:1px solid var(--hairline);
-  border-left:3px solid var(--signal);
-  background:rgba(99,207,222,.05);
-  padding:24px 26px;
-}
-.ownernote h3{
-  font-family:var(--display);font-weight:800;font-size:15px;
-  letter-spacing:.02em;text-transform:none;
-  color:var(--signal);
-  margin:0 0 14px;line-height:1.35;
-}
-.ownernote p{font-size:18px;margin:0}
-.ownernote .byline{
-  font-family:var(--display);font-size:10px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--bone-dim);
-  margin-top:18px;
-}
-@media (max-width:520px){ .ownernote{padding:20px 18px} }
-
 /* ── Register ──────────────────────────────────────── */
 .register .wrap{padding-top:84px;padding-bottom:84px}
 .register h2{margin-bottom:16px}
@@ -338,7 +313,7 @@ footer .label{margin-left:auto}
 
 <header class="masthead">
   <div class="wrap masthead__inner">
-    <a class="logo" href="index.html"><img src="images/switchback_gradient_white_400.jpg" alt="Switchback Security Training" class="logo__img"></a>
+    <a class="logo" href="index.html"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
     <nav class="nav" aria-label="Main">
       <a href="events.html">Events</a>
       <a href="trainers.html">Trainers</a>
@@ -535,23 +510,6 @@ footer .label{margin-left:auto}
               </li>
             </ul>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Owner's note ───────────────────────────────
-       Sits between the trainer bio and the closing
-       register block: credentials first, then why the
-       course is here, then the call to action.      -->
-  <section class="sec rise">
-    <div class="wrap">
-      <p class="label">From the<br>owner</p>
-      <div class="body-col">
-        <div class="ownernote">
-          <h3>Why I offer Rod's training</h3>
-          <p>I sat in on the first day of Rod's course. Skills I'd picked up in isolation connected, and the individual points of knowledge became a bigger picture. If you've been collecting SOC or red-team skills without a framework to hang them on, this is the training for you.</p>
-          <p class="byline">&mdash; William Leonard, Owner, Switchback Security Training</p>
         </div>
       </div>
     </div>
