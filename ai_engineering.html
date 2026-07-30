@@ -282,6 +282,25 @@ main,footer{position:relative;z-index:1}
   display:block;
 }
 
+/* ── Certificate note ──────────────────────────────
+   Sits in the register rail. Deliberately quiet: it's a
+   reassurance, not a headline, so it reads as a fact of
+   the booking rather than a selling point. */
+.cert{
+  display:flex;gap:14px;align-items:flex-start;
+  border:1px solid var(--hairline);border-left:3px solid var(--signal);
+  padding:16px 18px;margin-bottom:22px;
+}
+.cert .tag{
+  flex:0 0 auto;
+  font-family:var(--display);font-size:9px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  border:1px solid var(--signal);border-radius:2px;padding:5px 8px;
+  margin-top:2px;white-space:nowrap;
+}
+.cert p{font-size:16px;margin:0}
+@media (max-width:560px){ .cert{flex-direction:column;gap:11px} }
+
 /* ── Register ──────────────────────────────────────── */
 .register .wrap{padding-top:84px;padding-bottom:84px}
 .register h2{margin-bottom:16px}
@@ -540,6 +559,13 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
     <div class="wrap">
       <p class="label">Register</p>
       <div class="body-col wide">
+        <div class="cert">
+          <span class="tag">Certificate</span>
+          <p>Every student who completes the training receives a continuing
+             education certificate in both forms &mdash; a printed copy and a
+             digital version you can file for CPE records or add to your
+             LinkedIn profile.</p>
+        </div>
         <div class="book">
           <p>One all-labs day in Bellevue, Saturday 14 or Sunday 15 November. $1,900 per seat.</p>
           <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
