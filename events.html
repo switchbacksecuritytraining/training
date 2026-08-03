@@ -63,6 +63,14 @@
   }
   .eb b { font-weight: 500; letter-spacing: 0.1em; }
   .eb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  /* ── Lunch credit token ──────────────────────────── */
+  .lt {
+    display: inline-flex; align-items: center;
+    font-family: var(--mono); font-size: 0.5625rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #7A4E0B; background: transparent; border: 1px solid #E9A64F;
+    padding: 2px 7px; white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -92,8 +100,9 @@
     <article class="event">
       <div class="event__body">
         <div class="eb-row">
-          <span class="event__status">Registration is open</span>
           <span class="eb">Early bird <b>MGLASS</b> $200 off</span>
+          <span class="event__status">Registration is open</span>
+          <span class="lt">$25 lunch credit for the 1st 10 sign-ups</span>
         </div>
         <h3 class="event__title">One-Day AI Engineering Intensive</h3>
         <p class="event__meta">
@@ -123,6 +132,7 @@
           <span class="eb">Early bird <b>RGONZALEZ</b> $250 off</span>
           <span class="eb">Early bird <b>RSOTO</b> $250 off</span>
           <span class="eb">Early bird <b>KSTAM</b> $800 off</span>
+          <span class="lt">Up to $50 lunch credit for the 1st 10 sign-ups</span>
         </div>
         <h3 class="event__title">Three Two-Day Trainings</h3>
         <p class="event__meta">
@@ -151,11 +161,10 @@
       <div class="section__head"><h2>Future events</h2></div>
       <div class="prose">
         <p>
-          Switchback Security Training, LLC creates smaller, in-person events across
-          the Pacific Northwest. Our trainings are designed for learning in an immersive
-          environment. We bring globally recognized cybersecurity trainers to private and
-          corporate venues. To learn about the next one, or to host an event at your
-          organization, get in touch at
+          Switchback Security Training, LLC creates small by design in-person events
+          across the Pacific Northwest. We bring globally recognized cybersecurity
+          trainers to private and corporate venues. To learn about the next event or
+          to host an event at your organization, get in touch at
           <a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a>.
         </p>
       </div>
