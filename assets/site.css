@@ -437,7 +437,14 @@ a:hover { color: var(--blue-ink); }
 }
 .foot__grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
 @media (min-width: 720px) { .foot__grid { grid-template-columns: 2fr 1fr 1fr; } }
-.foot a { color: var(--ink-2); text-decoration: none; display: block; padding: 3px 0; }
+/* The contact email is one long unbreakable string. In a narrow grid
+   column (~320px phones) it sets the track's min-content wider than the
+   viewport, which pushed the whole page into a sideways scroll. Letting
+   it break — and zeroing the track's auto min-width — keeps the footer
+   inside the screen. `anywhere` rather than `break-word` because only
+   `anywhere` also shrinks intrinsic min-content sizing. */
+.foot__grid > div { min-width: 0; }
+.foot a { color: var(--ink-2); text-decoration: none; display: block; padding: 3px 0; overflow-wrap: anywhere; }
 .foot a:hover { color: var(--blue); }
 .foot h4 { margin: 0 0 10px; }
 .foot__logo { height: 34px; width: auto; display: block; margin: 0 0 12px; }
