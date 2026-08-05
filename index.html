@@ -15,6 +15,12 @@
      descriptor stops reading. Overrides assets/site.css. */
   .logo__img{height:36px;width:auto;display:block}
 
+  /* "Cybersecurity" adds a long word to the hero line, so the heading
+     drops one notch on the site scale — step-4 to step-3 — which is the
+     same size the course detail pages use for their h1. Line-height and
+     casing stay with site.css. */
+  .hero h1 { font-size: var(--step-3); }
+
   .track__by {
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--blue); margin: 0;
@@ -76,7 +82,7 @@
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
-        <h1>Two events at the AC Hotel Bellevue, WA</h1>
+        <h1>Two cybersecurity events at the AC Hotel Bellevue, WA</h1>
         <p class="hero__date">November 14&ndash;15 &amp; 21&ndash;22, 2026</p>
         <p class="hero__lede">
           Two in-person weekends, four trainings. AI engineering on the first weekend,
