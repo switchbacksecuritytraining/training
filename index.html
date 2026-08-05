@@ -42,24 +42,36 @@
   .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
 
   /* ── Early bird code badge ───────────────────────── */
+  /* No white-space:nowrap here. These badges sit inside a 1fr grid
+     item, whose auto min-width is set by its widest unbreakable child,
+     so an unwrappable badge widened the whole card past the viewport
+     and pushed the page into a sideways scroll on phones. Wrapping only
+     kicks in when the badge genuinely can't fit on one line. */
   .eb {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: var(--mono); font-size: 0.5625rem;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: #1A0F0C; background: #E9A64F;
-    padding: 3px 8px; white-space: nowrap;
+    padding: 3px 8px;
   }
   .eb b { font-weight: 500; letter-spacing: 0.1em; }
   .eb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
   .track__price { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
   /* ── Lunch credit token ──────────────────────────── */
+  /* Longest of the badges ("Up to $50 lunch credit for the 1st 10
+     sign-ups"), so this was the main driver of the mobile overflow.
+     Wraps rather than nowraps, for the reason noted above. */
   .lt {
     display: inline-flex; align-items: center;
     font-family: var(--mono); font-size: 0.5625rem;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: #7A4E0B; background: transparent; border: 1px solid #E9A64F;
-    padding: 2px 7px; white-space: nowrap;
+    padding: 2px 7px;
   }
+
+  /* Belt and braces: keeps any future long content inside the card
+     instead of stretching the grid track. */
+  .track { min-width: 0; }
 </style>
 </head>
 <body>
