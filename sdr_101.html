@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Software Defined Radios 101 — Richard Shmel, RNS Technology Solutions</title>
+<meta name="description" content="A hands-on software defined radio training for cyber security professionals, run as a two-day condensed course ($2,400) or a five-day deep dive ($4,000), with Richard Shmel of RNS Technology Solutions. Intercept, demodulate, decode and attack real RF systems. No prior RF experience required.">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Martian+Mono:wght@400;600;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet">
+<script>document.documentElement.className="js";</script>
+<style>
+/* ── Tokens ─────────────────────────────────────────────
+   Identical to the AI engineering page so the two course
+   pages read as one series. Violet is the signal, amber is
+   the alert; nothing else is allowed to interrupt the page. */
+:root{
+  --ink:#2B1915;
+  --ink-deep:#1A0F0C;
+  --ink-soft:#3A251F;
+  --hairline:#4A322A;
+  --bone:#EFE9E1;
+  --bone-dim:#A6968C;
+  --signal:#B49BE8;
+  --alert:#E9A64F;
+
+  --sb-bg:var(--ink-deep);
+  --sb-accent:var(--alert);
+
+  --display:"Martian Mono",ui-monospace,monospace;
+  --body:"Source Serif 4",Georgia,serif;
+
+  --rail:150px;
+  --gap:44px;
+  --measure:1080px;
+  --site-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--bone);
+  font-family:var(--body);font-size:18px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 28px}
+
+/* ── Shared type ───────────────────────────────────── */
+.label{
+  font-family:var(--display);font-size:10px;font-weight:600;
+  letter-spacing:.20em;text-transform:uppercase;
+  color:var(--bone-dim);line-height:1.5;
+}
+.lede{font-size:21px;line-height:1.55}
+p{margin:0 0 1.05em}
+p:last-child{margin-bottom:0}
+
+/* ── Buttons — site.css styling, so every CTA matches the rest
+   of the site rather than the page's own dark palette. ─────── */
+.btn{
+  display:inline-block;
+  font-family:var(--site-mono);font-size:.8125rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  background:#1f4fd8;color:#fff;
+  padding:10px 18px;border:1px solid #1f4fd8;
+  transition:background .18s ease,border-color .18s ease;
+}
+.btn:hover,.btn:focus-visible{background:#163aa0;border-color:#163aa0;color:#fff}
+.btn-solid{background:#1f4fd8;color:#fff;border-color:#1f4fd8}
+.btn-solid:hover,.btn-solid:focus-visible{background:#163aa0;border-color:#163aa0;color:#fff}
+/* focus ring stays violet: #1f4fd8 on espresso is only 2.6:1 */
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+
+/* ── Site masthead — values taken from assets/site.css ──
+   White ground, ash rule, IBM Plex Mono nav and the solid blue
+   CTA, so the bar reads identically to the home page. */
+.masthead{
+  position:sticky;top:0;z-index:50;
+  background:#ffffff;
+  border-bottom:1px solid #e2e3df;
+}
+.masthead__inner{
+  display:flex;align-items:center;gap:22px;
+  min-height:48px;flex-wrap:wrap;
+}
+.logo{display:block;margin-right:auto;text-decoration:none}
+.logo__img{height:36px;width:auto;display:block}
+.nav{display:flex;gap:20px;flex-wrap:wrap}
+.nav a{
+  font-family:var(--site-mono);font-size:.8125rem;
+  color:#5c6166;text-decoration:none;
+  padding:4px 0;border-bottom:2px solid transparent;
+}
+.nav a:hover,.nav a:focus-visible{color:#101215;border-bottom-color:#1f4fd8}
+.masthead .btn{
+  font-family:var(--site-mono);font-size:.8125rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:#1f4fd8;color:#fff;
+  border:1px solid #1f4fd8;border-radius:0;
+  padding:8px 16px;
+}
+.masthead .btn:hover,.masthead .btn:focus-visible{
+  background:#163aa0;border-color:#163aa0;color:#fff;
+}
+
+/* ── Hero ──────────────────────────────────────────── */
+.hero{
+  position:relative;
+  background:linear-gradient(180deg,rgba(26,15,12,.30) 0%,rgba(26,15,12,.62) 62%,rgba(43,25,21,.80) 100%);
+  border-bottom:1px solid var(--hairline);
+  padding:104px 0 0;
+}
+/* The signature: the course's own instrumentation, repeating behind the
+   whole page — a quarter-wave antenna radiating, an FFT with peaks above
+   the noise floor, a carrier, a QPSK constellation and an NRZ bit train.
+   A handful, on a wider repeat, pick up violet and amber and breathe, so
+   the spectrum never reads as dead air. Content scrolls; the field stays. */
+#secpattern{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;user-select:none;
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzQTI1MUYiIHN0cm9rZS1vcGFjaXR5PSIxIj48cGF0aCBkPSJNMTIgMjBWOE05IDIwaDYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjYuNSIgcj0iMS4zIi8+PHBhdGggZD0iTTkgNC41YTYuMiA2LjIgMCAwIDAgMCA3TTE1IDQuNWE2LjIgNi4yIDAgMCAxIDAgNyIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4NiwxNikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzNBMjUxRiIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0zIDIwaDE4TTYgMjB2LTVNOSAyMHYtOU0xMiAyMHYtNE0xNSAyMHYtMTJNMTggMjB2LTciLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsODYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzQTI1MUYiIHN0cm9rZS1vcGFjaXR5PSIxIj48cGF0aCBkPSJNMiAxMmMxLjUtNiA0LjUtNiA2IDBzNC41IDYgNiAwIDQuNS02IDYgMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4Niw4Nikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzNBMjUxRiIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0xMiA0djE2TTQgMTJoMTYiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMS4zIi8+PGNpcmNsZSBjeD0iMTYiIGN5PSI4IiByPSIxLjMiLz48Y2lyY2xlIGN4PSI4IiBjeT0iMTYiIHI9IjEuMyIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjEuMyIvPjwvZz48L2c+PC9zdmc+");
+  background-size:140px 140px;
+  background-position:center top;
+  -webkit-mask-image:radial-gradient(100% 80% at 74% 18%,#000 0%,rgba(0,0,0,.6) 44%,transparent 82%);
+  mask-image:radial-gradient(100% 80% at 74% 18%,#000 0%,rgba(0,0,0,.6) 44%,transparent 82%);
+}
+#secpattern::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MjAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNDIwIDQyMCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiNCNDlCRTgiIHN0cm9rZS1vcGFjaXR5PSIwLjU1Ij48cGF0aCBkPSJNMTIgMjBWOE05IDIwaDYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjYuNSIgcj0iMS4zIi8+PHBhdGggZD0iTTkgNC41YTYuMiA2LjIgMCAwIDAgMCA3TTE1IDQuNWE2LjIgNi4yIDAgMCAxIDAgNyIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjYsMTU2KSBzY2FsZSgxLjU4MzMzKSIgc3Ryb2tlPSIjRTlBNjRGIiBzdHJva2Utb3BhY2l0eT0iMC41Ij48cGF0aCBkPSJNMyAyMGgxOE02IDIwdi01TTkgMjB2LTlNMTIgMjB2LTRNMTUgMjB2LTEyTTE4IDIwdi03Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI5NiwyMjYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiNCNDlCRTgiIHN0cm9rZS1vcGFjaXR5PSIwLjQyIj48cGF0aCBkPSJNMTIgNHYxNk00IDEyaDE2Ii8+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjEuMyIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iOCIgcj0iMS4zIi8+PGNpcmNsZSBjeD0iOCIgY3k9IjE2IiByPSIxLjMiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxLjMiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTYsMjk2KSBzY2FsZSgxLjU4MzMzKSIgc3Ryb2tlPSIjRTlBNjRGIiBzdHJva2Utb3BhY2l0eT0iMC4zOCI+PHBhdGggZD0iTTMgMTdoM3YtOWg0djloM3YtOWg0djloMyIvPjwvZz48L2c+PC9zdmc+");
+  background-size:420px 420px;
+  background-position:center top;
+  animation:breathe 16s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{opacity:.30}50%{opacity:.85}}
+
+/* Content rides above the field. Each band carries its own scrim, so the
+   spectrum reads strongest in the hero and recedes behind body copy. */
+main,footer{position:relative;z-index:1}
+
+.hero-inner{position:relative;z-index:2;padding-bottom:56px}
+.hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(34px,7.4vw,84px);
+  line-height:.98;letter-spacing:-.035em;text-transform:uppercase;
+  margin:20px 0 18px;max-width:14ch;
+}
+.hero h1 .lo{color:var(--signal)}
+.hero .sub{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(13px,1.55vw,17px);line-height:1.4;
+  letter-spacing:-.01em;color:var(--bone);
+  max-width:34ch;margin:0 0 26px;
+}
+.hero .lede{max-width:52ch;color:var(--bone);opacity:.9}
+.hero .cta-row{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.first{
+  display:inline-flex;align-items:center;
+  font-family:var(--display);font-size:10px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  border:1px solid var(--signal);border-radius:2px;padding:7px 11px;
+  line-height:1.35;max-width:340px;
+}
+.hero .note{
+  font-family:var(--display);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--bone-dim);
+}
+
+.facts{
+  position:relative;z-index:2;border-top:1px solid var(--hairline);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.facts div{padding:22px 0 26px;border-left:1px solid var(--hairline);padding-left:22px}
+.facts div:first-child{border-left:0;padding-left:0}
+.facts .v em{font-style:normal;color:var(--bone-dim)}
+.facts .v{
+  font-family:var(--display);font-size:14px;font-weight:600;
+  letter-spacing:-.01em;margin-top:7px;line-height:1.45;
+}
+
+/* ── Section scaffold ──────────────────────────────── */
+.sec{border-bottom:1px solid var(--hairline);background:rgba(43,25,21,.84)}
+.sec .wrap{
+  display:grid;grid-template-columns:var(--rail) 1fr;gap:var(--gap);
+  padding-top:76px;padding-bottom:76px;
+}
+.sec h2{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(24px,3.1vw,34px);
+  line-height:1.12;letter-spacing:-.025em;text-transform:uppercase;
+  margin:0 0 22px;
+}
+.body-col{max-width:66ch}
+.body-col.wide{max-width:none}
+
+/* coverage list */
+.covers{margin:34px 0 0;border-top:1px solid var(--hairline)}
+.cover{
+  display:grid;grid-template-columns:190px 1fr;gap:26px;
+  padding:20px 0;border-bottom:1px solid var(--hairline);
+}
+.cover h3{
+  font-family:var(--display);font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--signal);
+  margin:4px 0 0;line-height:1.6;
+}
+.cover p{font-size:17px}
+
+/* Module manifest. The outline is the one place on the page where order
+   carries information — the days run in kill-chain sequence — so the
+   modules keep their numbers exactly as they appear in the courseware. */
+.mods{list-style:none;margin:13px 0 0;padding:0;display:grid;gap:7px}
+.mods li{
+  font-family:var(--display);font-size:10.5px;letter-spacing:.05em;
+  line-height:1.55;color:var(--bone-dim);
+  padding-left:17px;position:relative;
+}
+.mods li::before{
+  content:"";position:absolute;left:0;top:.66em;
+  width:9px;height:1px;background:var(--hairline);
+}
+.mods b{color:var(--bone);font-weight:600}
+
+/* two-up */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.duo h3{
+  font-family:var(--display);font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);
+  margin:0 0 12px;
+}
+.duo p{font-size:17px}
+
+/* outline placeholder */
+.tbd{
+  border:1px solid var(--hairline);
+  border-left:2px solid var(--signal);
+  padding:20px 22px;
+  font-size:17px;color:var(--bone-dim);
+  background:rgba(58,37,31,.28);
+}
+
+/* ── Conversion rail — mirrors the .book component in site.css,
+   restyled for the dark ground. Ringzer0 repeats its CTA at every
+   scroll depth; these sit between sections to do the same. ──── */
+.sec-book .wrap{padding-top:30px;padding-bottom:30px}
+.book{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:18px 20px;
+  border:1px solid var(--hairline);
+  border-left:3px solid #1f4fd8;
+  background:rgba(58,37,31,.30);
+}
+.book p{margin:0;font-size:16px;color:var(--bone-dim)}
+.book .btn{margin-left:auto}
+@media (max-width:640px){ .book .btn{margin-left:0} }
+
+/* ── Trainer ───────────────────────────────────────── */
+.trainer{display:grid;grid-template-columns:200px 1fr;gap:var(--gap);align-items:start}
+.portrait{
+  position:relative;border:1px solid var(--hairline);border-radius:3px;
+  overflow:hidden;background:var(--ink-soft);aspect-ratio:1/1;
+}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* Monogram behind the portrait. Shows only if the photo fails to
+   load, since the img sits above it and is removed on error. */
+.portrait .mono{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:800;font-size:52px;
+  letter-spacing:-.04em;color:var(--hairline);
+}
+.trainer h3{
+  font-family:var(--display);font-weight:800;font-size:22px;
+  letter-spacing:-.02em;margin:0 0 4px;
+}
+.trainer .role{
+  font-family:var(--display);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--alert);margin:0 0 20px;
+}
+.creds{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--hairline)}
+.creds li{
+  padding:14px 0;border-bottom:1px solid var(--hairline);
+  font-size:16px;display:flex;gap:16px;
+}
+.creds b{
+  font-family:var(--display);font-weight:600;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);
+  min-width:96px;flex:none;padding-top:4px;
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0;list-style:none;flex:1;min-width:0}
+.chips li{
+  font-family:var(--display);font-size:10px;letter-spacing:.08em;
+  border:1px solid var(--hairline);border-radius:2px;
+  padding:5px 9px;color:var(--bone);white-space:nowrap;
+  display:block;
+}
+
+/* ── Certificate note ──────────────────────────────
+   Sits in the register rail. Deliberately quiet: it's a
+   reassurance, not a headline, so it reads as a fact of
+   the booking rather than a selling point. */
+.cert{
+  display:flex;gap:14px;align-items:flex-start;
+  border:1px solid var(--hairline);border-left:3px solid var(--signal);
+  padding:16px 18px;margin-bottom:22px;
+}
+.cert .tag{
+  flex:0 0 auto;
+  font-family:var(--display);font-size:9px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  border:1px solid var(--signal);border-radius:2px;padding:5px 8px;
+  margin-top:2px;white-space:nowrap;
+}
+.cert p{font-size:16px;margin:0}
+@media (max-width:560px){ .cert{flex-direction:column;gap:11px} }
+
+/* ── Register ──────────────────────────────────────── */
+.register .wrap{padding-top:84px;padding-bottom:84px}
+.register h2{margin-bottom:16px}
+/* Price pair. Two editions, two numbers, nothing between them to
+   compare on except the days — so the amount is set at display
+   weight and the qualifier is kept to a single line. */
+.prices{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);
+  margin:28px 0 24px;padding-top:26px;border-top:1px solid var(--hairline);
+}
+.price h3{
+  font-family:var(--display);font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+  margin:0 0 10px;
+}
+.price .amt{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(28px,3.6vw,38px);letter-spacing:-.035em;
+  line-height:1;margin:0 0 9px;
+}
+.price p{font-size:16px;color:var(--bone-dim);margin:0}
+@media (max-width:860px){ .prices{grid-template-columns:1fr;gap:28px} }
+.fineprint{font-size:16px;color:var(--bone-dim);max-width:60ch}
+.register .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+/* Phone sits with the CTAs but stays a link, not a third button —
+   three solid blocks in a row would flatten the booking hierarchy. */
+.register .tel{
+  font-family:var(--display);font-size:11px;font-weight:600;
+  letter-spacing:.10em;color:var(--bone);text-decoration:none;
+  border-bottom:1px solid var(--hairline);padding-bottom:2px;
+  transition:border-color .18s ease;
+}
+.register .tel:hover,.register .tel:focus-visible{border-bottom-color:var(--signal)}
+
+/* ── Footer ────────────────────────────────────────── */
+footer{background:rgba(26,15,12,.92);padding:34px 0}
+footer .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+footer img{height:20px;width:auto}
+footer .label{margin-left:auto}
+
+/* ── Switchback site chrome ─────────────────────────
+   These course pages sit inside switchbacksecuritytraining.com,
+   so they carry a route back to the site at both ends. */
+
+footer .sbfoot{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--hairline);
+  font-family:var(--display);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--bone-dim);
+}
+footer .sbfoot a{color:var(--bone-dim);text-decoration:none;transition:color .18s ease}
+footer .sbfoot a:hover,footer .sbfoot a:focus-visible{color:var(--sb-accent)}
+footer .sbfoot nav{display:flex;flex-wrap:wrap;gap:10px 18px}
+footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
+footer .sbfoot .tel{letter-spacing:.10em}
+@media (max-width:760px){ footer .sbfoot .mail{margin-left:0} }
+
+/* ── Motion ────────────────────────────────────────── */
+.js .rise{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.js .rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .js .rise{opacity:1;transform:none}
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width:860px){
+  body{font-size:17px}
+  .sec .wrap{grid-template-columns:1fr;gap:16px;padding-top:56px;padding-bottom:56px}
+  .sec .wrap > .label{margin-bottom:-4px}
+  .duo,.trainer{grid-template-columns:1fr;gap:30px}
+  .portrait{max-width:200px}
+  .facts{grid-template-columns:1fr}
+  .facts div{border-left:0;padding-left:0;border-top:1px solid var(--hairline);padding:16px 0}
+  .facts div:first-child{border-top:0}
+  .cover{grid-template-columns:1fr;gap:6px}
+  .hero{padding-top:64px}
+}
+@media (max-width:520px){
+  .wrap{padding:0 20px}
+  .creds li{flex-direction:column;gap:2px}
+  .creds b{padding-top:0}
+}
+
+/* ── Format badge — marks the condensed edition ────── */
+.eb{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--display);font-size:8.5px;font-weight:800;
+  letter-spacing:.13em;text-transform:uppercase;
+  color:#1A0F0C;background:#E9A64F;
+  border-radius:2px;padding:6px 10px;line-height:1.35;white-space:nowrap;
+}
+.eb b{font-weight:800;letter-spacing:.16em}
+
+/* ── Hardware callout ──────────────────────────────── */
+.kit{
+  border:1px solid #E9A64F;border-left:3px solid #E9A64F;
+  background:rgba(233,166,79,.07);
+  padding:16px 20px;margin:0 0 22px;
+}
+.kit h3{
+  font-family:var(--display);font-size:11px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:#E9A64F;margin:0 0 8px;
+}
+.kit p{margin:0;font-size:16px;line-height:1.55;color:var(--bone-dim)}
+/* ── Outline token ─────────────────────────────────── */
+.lt{
+  display:inline-flex;align-items:center;
+  font-family:var(--display);font-size:8.5px;font-weight:800;
+  letter-spacing:.13em;text-transform:uppercase;
+  color:#E9A64F;background:transparent;border:1px solid #E9A64F;
+  border-radius:2px;padding:5px 9px;line-height:1.35;white-space:nowrap;
+}
+</style>
+</head>
+<body>
+
+<div id="secpattern" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="index.html"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="events.html">Events</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+    </nav>
+    <!-- Point this at the RegFox event page once it is live, and append
+         ?ref=switchbacksecuritytraining.com -->
+    <a class="btn" href="#register">Ask about dates</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── Hero ───────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="label">2-day condensed &middot; 5-day deep dive &middot; Live targets</p>
+        <h1>Software Defined <span class="lo">Radios 101</span></h1>
+        <p class="sub">Intercept. Demodulate. Decode. Attack.</p>
+        <p class="lede">Wireless is the one attack surface most security teams never touch, because the tooling looks like maths and the maths looks like a wall. This training takes it apart, in two days condensed or five days deep &mdash; from your first look at the spectrum to compromising a live device over the air.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="#register">Ask about dates</a>
+          <span class="eb"><b>2-day</b> condensed &middot; <b>5-day</b> deep dive</span>
+          <span class="first">No prior RF experience required</span>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div>
+          <p class="label">Format</p>
+          <p class="v">2-day condensed <em>or</em><br>5-day deep dive</p>
+        </div>
+        <div>
+          <p class="label">Level</p>
+          <p class="v">Beginner<br>Hands-on throughout</p>
+        </div>
+        <div>
+          <p class="label">Price</p>
+          <p class="v">$2,400 <em>2-day</em><br>$4,000 <em>5-day</em></p>
+        </div>
+        <div>
+          <p class="label">Dates &amp; venue</p>
+          <p class="v">To be announced<br><em>Ask for private trainings</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Abstract ───────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Abstract</p>
+      <div class="body-col">
+        <p class="lede">SDR 101 closes the gap between theoretical radio physics and practical RF exploitation, walking students through the complete RF kill chain: intercept, demodulate, decode, attack.</p>
+        <p>You work on real software defined radio hardware and real digital signal processing frameworks from the first afternoon. You'll learn to navigate the electromagnetic spectrum, capture raw baseband to disk, pull bits out of a waveform by hand, build your own receivers in GNU Radio, and then transmit &mdash; replay, jamming, and forged packets of your own construction. Either edition ends the same way: a custom-built wireless device on the bench and nothing but your own tooling to break it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Who it's for ───────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Who it's for</p>
+      <div class="body-col">
+        <p class="lede">RF beginners across the cyber security and engineering fields. No prior RF experience is required &mdash; the course starts at wave propagation and builds from there.</p>
+
+        <div class="covers">
+          <div class="cover">
+            <h3>Red team &amp; pentest</h3>
+            <p>Expand your physical-layer toolkit, compromise IoT systems, and breach airgaps.</p>
+          </div>
+          <div class="cover">
+            <h3>Blue team &amp; SOC</h3>
+            <p>Security analysts and IT professionals who need to understand how attackers exploit RF vulnerabilities and compromise wireless systems.</p>
+          </div>
+          <div class="cover">
+            <h3>Engineers &amp; developers</h3>
+            <p>Work at the intersection of hardware and software, build custom DSP tools, or secure your own RF-enabled products.</p>
+          </div>
+          <div class="cover">
+            <h3>EW &amp; SIGINT</h3>
+            <p>Move beyond proprietary vendor solutions and start working in flexible, open-source SDR frameworks.</p>
+          </div>
+          <div class="cover">
+            <h3>Directors &amp; PMs</h3>
+            <p>Technical leads who need a practical understanding of RF and SDRs to write requirements and guide procurement.</p>
+          </div>
+          <div class="cover">
+            <h3>Industry veterans</h3>
+            <p>Add RF exploitation to an established skill set.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outcomes ───────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">What you'll<br>be able to do</p>
+      <div class="body-col">
+        <div class="covers" style="margin-top:0;border-top:0">
+          <div class="cover">
+            <h3>Intercept</h3>
+            <p>Drive SDR hardware directly &mdash; gain staging, offset tuning, and the spectral artefacts the hardware itself creates. Scan wideband spectrum with sweeping and FFT stitching to find emitters, then record clean raw baseband without clipping or aliasing.</p>
+          </div>
+          <div class="cover">
+            <h3>Demodulate</h3>
+            <p>Build real-time DSP pipelines in GNU Radio that filter, mix, resample and demodulate, taking a signal from raw IQ down to baseband and out to audio, a file, or a network socket.</p>
+          </div>
+          <div class="cover">
+            <h3>Decode</h3>
+            <p>Read the anatomy of a transmission &mdash; preamble, sync word, payload &mdash; and extract bits by hand. Work through the line coding and modulation schemes that make real protocols awkward: Manchester, differential, PSK and M-ary FSK.</p>
+          </div>
+          <div class="cover">
+            <h3>Attack</h3>
+            <p>Transmit safely and deliberately: replay attacks, targeted spot jamming, and protocol injection using modulated baseband files you generate yourself from raw binary.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conversion rail. Point href at the RegFox event page once live. -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Book</p>
+      <div class="body-col wide">
+        <div class="book">
+          <p>Two days or five, one radio, and a device on the bench at the end of it. From $2,400.</p>
+          <a class="btn btn-solid" href="#register">Ask about dates</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outline ────────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Outline</p>
+      <div class="body-col wide">
+        <h2>Course outline</h2>
+        <p class="lede">Two editions, one kill chain. The condensed course runs on pre-course video lectures so that class time goes straight to the radio. The deep dive builds the theory from scratch and adds days for custom blocks, advanced DSP and a longer capstone.</p>
+
+        <h2 style="margin-top:40px;font-size:clamp(19px,2.2vw,24px)">Two-day condensed</h2>
+        <p>The same kill chain, compressed. Students complete pre-course video lectures and install the student VM before arriving, which buys back the theory day and puts them on hardware from the first session.</p>
+        <div class="covers">
+          <div class="cover">
+            <h3>Day 1<br>Theory to spectrum</h3>
+            <p>Students move from pre-course theory into hands-on spectrum engagement: hardware control and gain staging, hunting rogue transmissions across unknown bands, FFT resolution tradeoffs, capturing and inspecting raw baseband, manual packet reverse engineering, wideband sweeping, and a first GNU Radio flowgraph &mdash; a real-time spectrum analyser with interactive GUI controls. The day closes on filter design and mixing, isolating a signal at baseband.</p>
+          </div>
+          <div class="cover">
+            <h3>Day 2<br>Demodulation to capstone</h3>
+            <p>Demodulation and resampling maths, building live tunable receivers with real-time output. Out-of-tree modules and network sinks widen the toolkit against progressively harder signals. Then active operations: the legalities, safety and mechanics of transmitting, replay attacks, targeted spot jammers, protocol spoofing and forged binary packets. The course ends on the hardware capstone.</p>
+          </div>
+        </div>
+
+        <h2 style="margin-top:48px;font-size:clamp(19px,2.2vw,24px)">Five-day deep dive</h2>
+        <p>Nothing assumed and nothing pre-recorded. The week runs in kill-chain order, each day ending somewhere the previous day could not reach, with the full module set taught in class.</p>
+        <div class="covers">
+          <div class="cover">
+            <h3>Day 1<br>Intro RF theory</h3>
+            <p>The foundational physics: the electromagnetic spectrum, wave propagation, complex numbers and baseband IQ data. How radio waves travel, how SDR hardware turns analog voltages into digital samples, and what actually separates amplitude, frequency and phase modulation.</p>
+            <ul class="mods">
+              <li><b>1.1 Electromagnetic spectrum.</b> Radio waves, frequency bands, and wavelength mathematics.</li>
+              <li><b>1.2 Antennas.</b> How RF radiates &mdash; gain, polarisation, and reading radiation patterns.</li>
+              <li><b>1.3 Radio architecture.</b> Superheterodyne receivers, frequency translation, and the ADC.</li>
+              <li><b>1.4 Complex numbers and IQ data.</b> Quadrature sampling, and how I/Q coordinates carry phase and amplitude.</li>
+              <li><b>1.5 Modulating RF waves.</b> Encoding digital data onto analog waveforms: AM/ASK, FM/FSK, PM/PSK.</li>
+              <li><b>1.6 RF network topologies.</b> Point-to-point links, repeaters, star hubs and mesh networks.</li>
+              <li><b>1.7 RF propagation.</b> Ground waves, sky waves, line-of-sight, and link budget calculations.</li>
+            </ul>
+          </div>
+
+          <div class="cover">
+            <h3>Day 2<br>SDRs and signal analysis</h3>
+            <p>Theory gives way to the radio. Students interface with the SDR, navigate the spectrum, capture raw IQ files, and extract and decode binary payloads out of live transmissions.</p>
+            <ul class="mods">
+              <li><b>2.1 Basic SDR interfacing.</b> The hardware hierarchy and practical receiver operation.</li>
+              <li><b>2.2 Hardware hierarchy and FFTs.</b> The Fast Fourier Transform and the tradeoff between time and frequency resolution.</li>
+              <li><b>2.3 Capturing and inspecting raw signal files.</b> Recording baseband data without clipping or aliasing.</li>
+              <li><b>2.4 Signals analysis.</b> Preamble, sync word, payload &mdash; and manual bit-level extraction.</li>
+              <li><b>2.5 Spectrum scanning.</b> Sweeping, FFT stitching, and baseline anomaly detection across wide bandwidth.</li>
+              <li><b>2.6 Mini-capstone.</b> The day's intercept and analysis work, applied end to end.</li>
+            </ul>
+          </div>
+
+          <div class="cover">
+            <h3>Day 3<br>GNU Radio and DSP flowgraphs</h3>
+            <p>GNU Radio as the primary DSP framework. Students build custom flowgraphs that filter, mix, resample and demodulate in real time &mdash; the bridge between raw samples and usable audio or packets.</p>
+            <ul class="mods">
+              <li><b>3.1 Introduction to GNU Radio.</b> Core architecture, the thread scheduler, and complex data types.</li>
+              <li><b>3.2 Basic DSP building blocks.</b> The mathematical blocks needed to build a software receiver from scratch.</li>
+              <li><b>3.3 Extending GNU Radio.</b> Out-of-tree modules, and integrating external command-line decoders over named FIFOs and network sockets.</li>
+            </ul>
+          </div>
+
+          <div class="cover">
+            <h3>Day 4<br>Custom blocks and transmitting</h3>
+            <p>Writing custom embedded Python blocks, then going active. Students execute physical denial-of-service (jamming), signal replay attacks, and custom protocol generation.</p>
+            <ul class="mods">
+              <li><b>4.1 GNU Radio custom blocks.</b> Embedded Python performing DSP inside the data stream.</li>
+              <li><b>4.2 SDR transmission fundamentals.</b> The mechanics of transmitting, explored through jamming and replay.</li>
+              <li><b>4.3 Protocol attacks.</b> Beyond replay &mdash; generating modulated baseband files mathematically from raw data.</li>
+            </ul>
+          </div>
+
+          <div class="cover">
+            <h3>Day 5<br>Advanced DSP and capstone</h3>
+            <p>Advanced physical layer concepts, then the week's work against a live target: students reverse-engineer and exploit a custom hardware device using everything built during the course.</p>
+            <ul class="mods">
+              <li><b>5.1 Advanced DSP concepts.</b> Phase shift keying, M-ary modulation (4FSK), and line coding (Manchester, differential).</li>
+              <li><b>5.2 Course review.</b> A consolidated recap of the DSP, analysis and transmission mechanics.</li>
+              <li><b>5.3 Capstone.</b> Free-form practical application against a live target.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kit" style="margin-top:28px">
+          <h3>Capstone hardware</h3>
+          <p>Students are handed a custom-built wireless printed circuit board and must run the full RF kill chain against it &mdash; find it, characterise it, decode it, and compromise the system.</p>
+        </div>
+
+        <p>Custom-tailored editions are also available, cut to an organisation's own timeline and training objectives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Prep ───────────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Before you<br>arrive</p>
+      <div class="body-col wide">
+        <div class="duo">
+          <div>
+            <h3>Prerequisites</h3>
+            <p>Students booked on the two-day condensed course complete a set of pre-course video lectures and install the student VM before arriving; the instructor sends both out ahead of time. The five-day deep dive needs the VM only. No prior RF experience is required for either.</p>
+          </div>
+          <div>
+            <h3>What to bring</h3>
+            <p>A laptop able to run the student VM, with a free USB port for the radio. And your favourite caffeine.</p>
+          </div>
+        </div>
+        <p class="fineprint" style="margin-top:28px">Provided on the day: SDR hardware, all training material, and the capstone target. Audience skill level is beginner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificate rail — carried over from the series page. Confirm this
+       applies to SDR 101 before publishing. -->
+  <section class="sec sec-book rise">
+    <div class="wrap">
+      <p class="label">Certificate</p>
+      <div class="body-col wide">
+        <div class="cert">
+          <span class="tag">Certificate</span>
+          <p>Every student who completes the training receives a continuing
+             education certificate in both forms &mdash; a printed copy and a
+             digital version you can file for CPE records or add to your
+             LinkedIn profile.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Trainer ────────────────────────────────────── -->
+  <section class="sec rise">
+    <div class="wrap">
+      <p class="label">Your trainer</p>
+      <div class="body-col wide">
+        <div class="trainer">
+          <figure class="portrait" style="margin:0">
+            <span class="mono" aria-hidden="true">RS</span>
+            <img src="images/r_shmel.jpeg" alt="Richard Shmel"
+                 onerror="this.remove()">
+          </figure>
+          <div>
+            <h3>Richard Shmel</h3>
+            <p class="role">RNS Technology Solutions</p>
+            <!-- Bio copy to come from Richard. The paragraph below is drawn
+                 only from the course material and should be replaced. -->
+            <p>Richard designed and delivers SDR 101, the beginner-facing RF exploitation course built around real radios, open-source DSP frameworks, and a custom wireless target he builds himself.</p>
+            <p>The course reflects how he teaches: no proprietary black boxes, no slide-only sections, and every concept put straight onto hardware. Condensed and custom-tailored editions are built on request around an organisation's own timeline and objectives.</p>
+            <ul class="creds">
+              <li><b>Teaches</b>
+                <ul class="chips">
+                  <li>SDR</li><li>DSP</li><li>RF Exploitation</li><li>GNU Radio</li><li>SIGINT</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Register ───────────────────────────────────── -->
+  <section class="sec register rise" id="register">
+    <div class="wrap">
+      <p class="label">Register</p>
+      <div class="body-col">
+        <h2>Dates to be announced</h2>
+        <p class="lede">Both editions are scheduling now. The two-day condensed course, the five-day deep dive, and custom cuts of either can be run privately for your team.</p>
+
+        <div class="prices">
+          <div class="price">
+            <h3>2-day condensed</h3>
+            <p class="amt">$2,400</p>
+            <p>Per student. Pre-course video lectures and student VM included.</p>
+          </div>
+          <div class="price">
+            <h3>5-day deep dive</h3>
+            <p class="amt">$4,000</p>
+            <p>Per student. Full module set taught in class, nothing pre-recorded.</p>
+          </div>
+        </div>
+
+        <div class="kit">
+          <h3>Private and custom trainings</h3>
+          <p>Condensed versions and custom-tailored course editions are available on request, cut to fit your organisation's specific timeline and training objectives. Tell us the days you can spare and what you need your team to walk out able to do.</p>
+        </div>
+        <p class="fineprint">Both editions include SDR hardware, all training material and the capstone target. Venue is confirmed at booking; cancellation terms follow the standard Switchback training policy.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="mailto:contact@switchbacksecuritytraining.com?subject=SDR%20101%20%E2%80%94%20notify%20me%20when%20dates%20open">Get notified when dates open</a>
+          <span class="lt">2-day &middot; 5-day &middot; Custom</span>
+          <a class="tel" href="tel:+12066784995">206-678-4995</a>
+          <a class="btn" href="mailto:contact@switchbacksecuritytraining.com?subject=SDR%20101%20%E2%80%94%20private%20training%20enquiry">Ask about private training</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">Software Defined Radios 101 · 2-day condensed or 5-day deep dive · Dates to be announced</span>
+  </div>
+  <div class="wrap sbfoot">
+    <span>Presented by <a href="index.html">Switchback Security Training</a></span>
+    <nav>
+      <a href="events.html">Events</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="mail" href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a>
+    <a class="tel" href="tel:+12066784995">206-678-4995</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveals.
+(function(){
+  var els = document.querySelectorAll('.rise');
+  if (!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

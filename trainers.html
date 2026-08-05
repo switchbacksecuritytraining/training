@@ -46,6 +46,13 @@
   }
   .tcard__link:hover { text-decoration: underline; }
   img.tcard__photo { object-fit: cover; display: block; }
+
+  /* Visually hidden: removed from view, kept for assistive tech. */
+  .vh {
+    position: absolute; width: 1px; height: 1px;
+    margin: -1px; padding: 0; overflow: hidden;
+    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -67,8 +74,11 @@
   <div class="wrap">
 
     <div class="detail__head" style="border-bottom:0;">
-      <p class="field">Trainers</p>
-      <h1 style="font-size:var(--step-2);">Who's teaching</h1>
+      <!-- Display heading removed. The h1 is kept but hidden so the page
+           still has a top-level heading for screen readers and search,
+           and .field keeps its own styling untouched. -->
+      <h1 class="vh">Trainers</h1>
+      <p class="field" aria-hidden="true">Trainers</p>
     </div>
 
     <div class="prose" style="margin-bottom:32px;">
@@ -121,6 +131,16 @@
         <p class="tcard__spec">Cloud incident response</p>
         <p class="tcard__bio">Founder of Invictus Incident Response, helping organisations respond to cyber security incidents in the cloud. A trainer at Black Hat and DEF CON and an instructor for the SANS Institute, focused on knowledge sharing and mentoring people new to the field.</p>
         <a class="tcard__link" href="aws_incident_response.html">Advanced Cloud Incident Response in AWS &rarr;</a>
+      </article>
+
+      <article class="tcard">
+        <img class="tcard__photo" src="images/r_shmel.jpeg" alt="Richard Shmel">
+        <h3>Richard Shmel</h3>
+        <p class="tcard__spec">RF and SDR exploitation</p>
+        <!-- Bio drawn from the SDR 101 course material only. Replace with
+             Richard's own copy once he supplies it. -->
+        <p class="tcard__bio">Trainer at RNS Technology Solutions, teaching software defined radio to cyber security professionals with no prior RF background. Builds his courses around real radios and open-source DSP frameworks rather than proprietary tooling, including a custom wireless target students reverse-engineer and compromise in the capstone.</p>
+        <a class="tcard__link" href="sdr_101.html">Software Defined Radios 101 &rarr;</a>
       </article>
 
     </div>
