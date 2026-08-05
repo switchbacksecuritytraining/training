@@ -16,10 +16,18 @@
   .logo__img{height:36px;width:auto;display:block}
 
   /* "Cybersecurity" adds a long word to the hero line, so the heading
-     drops one notch on the site scale — step-4 to step-3 — which is the
-     same size the course detail pages use for their h1. Line-height and
-     casing stay with site.css. */
-  .hero h1 { font-size: var(--step-3); }
+     comes down from site.css's clamp(2.75rem, 6vw, 4.75rem) to keep the
+     venue on a single line. Size alone isn't enough — where the line
+     falls depends on the column width — so .venue is also held together
+     as one unbreakable unit. */
+  .hero h1 { font-size: clamp(2rem, 3.6vw, 2.75rem); }
+
+  /* Only from the two-column hero breakpoint up. Below that the column
+     is too narrow to hold the venue on one line, and forcing it would
+     push the page wider than the screen. */
+  @media (min-width: 900px) {
+    .hero h1 .venue { white-space: nowrap; }
+  }
 
   .track__by {
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
@@ -94,7 +102,7 @@
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
-        <h1>Two cybersecurity events at the AC Hotel Bellevue, WA</h1>
+        <h1>Two cybersecurity events at the <span class="venue">AC Hotel Bellevue, WA</span></h1>
         <p class="hero__date">November 14&ndash;15 &amp; 21&ndash;22, 2026</p>
         <p class="hero__lede">
           Two in-person weekends, four trainings. AI engineering on the first weekend,
