@@ -425,6 +425,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
 /* Capped rather than full-bleed: the source is 445px wide, so letting
    it stretch the body column would upscale it into mush. */
 .hw{margin:0 0 22px;max-width:445px}
+.hw--wide{max-width:none}
 .hw img{
   display:block;width:100%;height:auto;
   border:1px solid var(--hairline);border-radius:3px;
@@ -615,6 +616,13 @@ footer .sbfoot .tel{letter-spacing:.10em}
           <p>Students are handed a custom-built wireless printed circuit board and must run the full RF kill chain against it &mdash; find it, characterise it, decode it, and compromise the system.</p>
         </div>
 
+        <figure class="hw hw--wide">
+          <img src="images/sdr_capstone.jpg"
+               alt="The custom wireless target board used in the capstone, between a captured baseband waveform and the constellation plot of a modulated signal"
+               width="1280" height="438" loading="lazy">
+          <figcaption>Capstone target &middot; captured baseband and constellation</figcaption>
+        </figure>
+
       </div>
     </div>
   </section>
@@ -695,8 +703,8 @@ footer .sbfoot .tel{letter-spacing:.10em}
     <div class="wrap">
       <p class="label">Radio hardware</p>
       <div class="body-col">
-        <h2>Bring a radio, or add one at checkout</h2>
-        <p class="lede">Every student needs an SDR in front of them. You can arrive with your own, or add the unit the course is built around to your registration.</p>
+        <h2>Take a radio home &mdash; optional</h2>
+        <p class="lede">SDR hardware is provided for use in class, so nothing is required to take part. If you want your own unit to keep, you can buy the radio the course is built around.</p>
 
         <figure class="hw">
           <img src="images/hackrf_one.jpeg"
@@ -706,11 +714,11 @@ footer .sbfoot .tel{letter-spacing:.10em}
         </figure>
 
         <div class="kit">
-          <h3>HackRF One bundle &mdash; $600</h3>
-          <p>Added to your registration on RegFox when you book. Includes the HackRF One, antenna, metal case, and an upgraded crystal oscillator. Yours to keep.</p>
+          <h3>Optional &middot; HackRF One bundle &mdash; $600</h3>
+          <p>An optional add-on to your registration on RegFox, chosen when you book. Includes the HackRF One, antenna, metal case, and an upgraded crystal oscillator. Yours to keep.</p>
         </div>
 
-        <p>Bringing your own unit is fine. The bundle is offered so nobody has to source hardware on a deadline, and so the whole room is working on the same radio.</p>
+        <p>Students may bring their own HackRF One.</p>
       </div>
     </div>
   </section>
