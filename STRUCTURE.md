@@ -54,7 +54,8 @@ Move its `<article class="event">` into the Past section of `events.html` (the c
 ## Placeholders left in this bundle
 
 - **January 2027 dates.** `event-2027-01-bellevue.html` says "To be announced" in the facts row, the status badge and the `#register` heading. Three places, all marked.
-- **Which SDR edition January runs.** The page assumes the **2-day condensed at $2,400**. If it's the 5-day deep dive, that's $4,000 and the description needs changing.
+- **`sdr_101_5day.html` has no inbound links.** By request, the two-day page carries no reference to the five-day edition, and no other page links to it either — so nothing on the site or in search will lead anyone to it. It needs a link from somewhere (the trainer card, the events hub, or a line on the two-day page) before it can do any work.
+- **The five-day edition has no dates.** Its page says "to be announced" in the facts row, the register heading and the footer strap.
 - **February, May, November 2027** are `.plan` rows on `events.html` with no pages yet, by design.
 
 ## Missing files

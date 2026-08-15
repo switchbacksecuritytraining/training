@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Software Defined Radios 101 — Richard Shmel, January 2027, Bellevue WA</title>
-<meta name="description" content="A hands-on two-day software defined radio training for cyber security professionals with Richard Shmel of RNS Technology Solutions ($2,500). January 2027, AC Hotel Bellevue WA. Intercept, demodulate, decode and attack real RF systems. No prior RF experience required.">
+<title>Software Defined Radios 101: Five-Day Deep Dive — Richard Shmel, RNS Technology Solutions</title>
+<meta name="description" content="The five-day deep dive edition of Software Defined Radios 101 with Richard Shmel of RNS Technology Solutions ($4,000). The full module set taught in class, nothing pre-recorded — intercept, demodulate, decode and attack real RF systems. No prior RF experience required.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -459,7 +459,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
     </nav>
     <!-- Point this at the RegFox event page once it is live, and append
          ?ref=switchbacksecuritytraining.com -->
-    <a class="btn" href="#register">January 2027</a>
+    <a class="btn" href="#register">Ask about dates</a>
   </div>
 </header>
 
@@ -469,13 +469,13 @@ footer .sbfoot .tel{letter-spacing:.10em}
   <section class="hero">
     <div class="wrap">
       <div class="hero-inner">
-        <p class="label">Two days &middot; Live targets</p>
+        <p class="label">5-day deep dive &middot; Live targets</p>
         <h1>Software Defined <span class="lo">Radios 101</span></h1>
-        <p class="sub">Intercept. Demodulate. Decode. Attack.</p>
-        <p class="lede">Wireless is the one attack surface most security teams never touch, because the tooling looks like maths and the maths looks like a wall. This training takes it apart across two days &mdash; from your first look at the spectrum to compromising a live device over the air.</p>
+        <p class="sub">Five-day deep dive &middot; Intercept. Demodulate. Decode. Attack.</p>
+        <p class="lede">Wireless is the one attack surface most security teams never touch, because the tooling looks like maths and the maths looks like a wall. This training takes it apart across five days, nothing assumed and nothing pre-recorded &mdash; from your first look at the spectrum to compromising a live device over the air.</p>
         <div class="cta-row">
-          <a class="btn btn-solid" href="#register">January 2027</a>
-          <span class="eb"><b>Two days</b> &middot; January 2027</span>
+          <a class="btn btn-solid" href="#register">Ask about dates</a>
+          <span class="eb"><b>5-day</b> deep dive</span>
           <span class="first">No prior RF experience required</span>
         </div>
       </div>
@@ -483,7 +483,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
       <div class="facts">
         <div>
           <p class="label">Format</p>
-          <p class="v">Two days<br><em>Hands-on throughout</em></p>
+          <p class="v">Five days<br><em>Full module set in class</em></p>
         </div>
         <div>
           <p class="label">Level</p>
@@ -491,11 +491,11 @@ footer .sbfoot .tel{letter-spacing:.10em}
         </div>
         <div>
           <p class="label">Price</p>
-          <p class="v">$2,500<br><em>per student</em></p>
+          <p class="v">$4,000<br><em>per student</em></p>
         </div>
         <div>
           <p class="label">Dates &amp; venue</p>
-          <p class="v"><a href="event-2027-01-bellevue.html">January 2027</a><br><em>AC Hotel Bellevue, WA</em></p>
+          <p class="v">To be announced<br><em>Also available privately</em></p>
         </div>
       </div>
     </div>
@@ -582,8 +582,8 @@ footer .sbfoot .tel{letter-spacing:.10em}
       <p class="label">Book</p>
       <div class="body-col wide">
         <div class="book">
-          <p>Two days, one radio, and a device on the bench at the end of it. $2,500 per student.</p>
-          <a class="btn btn-solid" href="#register">January 2027</a>
+          <p>Five days, one radio, and a device on the bench at the end of it. $4,000 per student.</p>
+          <a class="btn btn-solid" href="#register">Ask about dates</a>
         </div>
       </div>
     </div>
@@ -595,18 +595,66 @@ footer .sbfoot .tel{letter-spacing:.10em}
       <p class="label">Outline</p>
       <div class="body-col wide">
         <h2>Course outline</h2>
-        <p class="lede">One kill chain across two days. Pre-course video lectures carry the theory, so class time goes straight to the radio.</p>
+        <p class="lede">One kill chain, taught in kill-chain order. Nothing assumed and nothing pre-recorded &mdash; each day ends somewhere the previous day could not reach.</p>
 
-        <h2 style="margin-top:40px;font-size:clamp(19px,2.2vw,24px)">The two days</h2>
-        <p>Students complete pre-course video lectures and install the student VM before arriving, which buys back the theory day and puts them on hardware from the first session.</p>
+        <h2 style="margin-top:40px;font-size:clamp(19px,2.2vw,24px)">The week</h2>
+        <p>Five days, the full module set taught live in class.</p>
         <div class="covers">
           <div class="cover">
-            <h3>Day 1<br>Theory to spectrum</h3>
-            <p>Students move from pre-course theory into hands-on spectrum engagement: hardware control and gain staging, hunting rogue transmissions across unknown bands, FFT resolution tradeoffs, capturing and inspecting raw baseband, manual packet reverse engineering, wideband sweeping, and a first GNU Radio flowgraph &mdash; a real-time spectrum analyser with interactive GUI controls. The day closes on filter design and mixing, isolating a signal at baseband.</p>
+            <h3>Day 1<br>Intro RF theory</h3>
+            <p>The foundational physics: the electromagnetic spectrum, wave propagation, complex numbers and baseband IQ data. How radio waves travel, how SDR hardware turns analog voltages into digital samples, and what actually separates amplitude, frequency and phase modulation.</p>
+            <ul class="mods">
+              <li><b>1.1 Electromagnetic spectrum.</b> Radio waves, frequency bands, and wavelength mathematics.</li>
+              <li><b>1.2 Antennas.</b> How RF radiates &mdash; gain, polarisation, and reading radiation patterns.</li>
+              <li><b>1.3 Radio architecture.</b> Superheterodyne receivers, frequency translation, and the ADC.</li>
+              <li><b>1.4 Complex numbers and IQ data.</b> Quadrature sampling, and how I/Q coordinates carry phase and amplitude.</li>
+              <li><b>1.5 Modulating RF waves.</b> Encoding digital data onto analog waveforms: AM/ASK, FM/FSK, PM/PSK.</li>
+              <li><b>1.6 RF network topologies.</b> Point-to-point links, repeaters, star hubs and mesh networks.</li>
+              <li><b>1.7 RF propagation.</b> Ground waves, sky waves, line-of-sight, and link budget calculations.</li>
+            </ul>
           </div>
+
           <div class="cover">
-            <h3>Day 2<br>Demodulation to capstone</h3>
-            <p>Demodulation and resampling maths, building live tunable receivers with real-time output. Out-of-tree modules and network sinks widen the toolkit against progressively harder signals. Then active operations: the legalities, safety and mechanics of transmitting, replay attacks, targeted spot jammers, protocol spoofing and forged binary packets. The course ends on the hardware capstone.</p>
+            <h3>Day 2<br>SDRs and signal analysis</h3>
+            <p>Theory gives way to the radio. Students interface with the SDR, navigate the spectrum, capture raw IQ files, and extract and decode binary payloads out of live transmissions.</p>
+            <ul class="mods">
+              <li><b>2.1 Basic SDR interfacing.</b> The hardware hierarchy and practical receiver operation.</li>
+              <li><b>2.2 Hardware hierarchy and FFTs.</b> The Fast Fourier Transform and the tradeoff between time and frequency resolution.</li>
+              <li><b>2.3 Capturing and inspecting raw signal files.</b> Recording baseband data without clipping or aliasing.</li>
+              <li><b>2.4 Signals analysis.</b> Preamble, sync word, payload &mdash; and manual bit-level extraction.</li>
+              <li><b>2.5 Spectrum scanning.</b> Sweeping, FFT stitching, and baseline anomaly detection across wide bandwidth.</li>
+              <li><b>2.6 Mini-capstone.</b> The day's intercept and analysis work, applied end to end.</li>
+            </ul>
+          </div>
+
+          <div class="cover">
+            <h3>Day 3<br>GNU Radio and DSP flowgraphs</h3>
+            <p>GNU Radio as the primary DSP framework. Students build custom flowgraphs that filter, mix, resample and demodulate in real time &mdash; the bridge between raw samples and usable audio or packets.</p>
+            <ul class="mods">
+              <li><b>3.1 Introduction to GNU Radio.</b> Core architecture, the thread scheduler, and complex data types.</li>
+              <li><b>3.2 Basic DSP building blocks.</b> The mathematical blocks needed to build a software receiver from scratch.</li>
+              <li><b>3.3 Extending GNU Radio.</b> Out-of-tree modules, and integrating external command-line decoders over named FIFOs and network sockets.</li>
+            </ul>
+          </div>
+
+          <div class="cover">
+            <h3>Day 4<br>Custom blocks and transmitting</h3>
+            <p>Writing custom embedded Python blocks, then going active. Students execute physical denial-of-service (jamming), signal replay attacks, and custom protocol generation.</p>
+            <ul class="mods">
+              <li><b>4.1 GNU Radio custom blocks.</b> Embedded Python performing DSP inside the data stream.</li>
+              <li><b>4.2 SDR transmission fundamentals.</b> The mechanics of transmitting, explored through jamming and replay.</li>
+              <li><b>4.3 Protocol attacks.</b> Beyond replay &mdash; generating modulated baseband files mathematically from raw data.</li>
+            </ul>
+          </div>
+
+          <div class="cover">
+            <h3>Day 5<br>Advanced DSP and capstone</h3>
+            <p>Advanced physical layer concepts, then the week's work against a live target: students reverse-engineer and exploit a custom hardware device using everything built during the course.</p>
+            <ul class="mods">
+              <li><b>5.1 Advanced DSP concepts.</b> Phase shift keying, M-ary modulation (4FSK), and line coding (Manchester, differential).</li>
+              <li><b>5.2 Course review.</b> A consolidated recap of the DSP, analysis and transmission mechanics.</li>
+              <li><b>5.3 Capstone.</b> Free-form practical application against a live target.</li>
+            </ul>
           </div>
         </div>
 
@@ -615,6 +663,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
           <p>Students are handed a custom-built wireless printed circuit board and must run the full RF kill chain against it &mdash; find it, characterise it, decode it, and compromise the system.</p>
         </div>
 
+        <p>Custom-tailored editions are also available, cut to an organisation's own timeline and training objectives.</p>
       </div>
     </div>
   </section>
@@ -627,7 +676,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
         <div class="duo">
           <div>
             <h3>Prerequisites</h3>
-            <p>Students complete a set of pre-course video lectures and install the student VM before arriving; the instructor sends both out ahead of time. No prior RF experience is required.</p>
+            <p>Install the student VM before arriving; the instructor sends it out ahead of time. Nothing else is pre-recorded &mdash; every module is taught in class. No prior RF experience is required.</p>
           </div>
           <div>
             <h3>What to bring</h3>
@@ -673,7 +722,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
             <!-- Bio copy to come from Richard. The paragraph below is drawn
                  only from the course material and should be replaced. -->
             <p>Richard designed and delivers SDR 101, the beginner-facing RF exploitation course built around real radios, open-source DSP frameworks, and a custom wireless target he builds himself.</p>
-            <p>The course reflects how he teaches: no proprietary black boxes, no slide-only sections, and every concept put straight onto hardware.</p>
+            <p>The course reflects how he teaches: no proprietary black boxes, no slide-only sections, and every concept put straight onto hardware. Condensed and custom-tailored editions are built on request around an organisation's own timeline and objectives.</p>
             <ul class="creds">
               <li><b>Teaches</b>
                 <ul class="chips">
@@ -695,8 +744,8 @@ footer .sbfoot .tel{letter-spacing:.10em}
     <div class="wrap">
       <p class="label">Radio hardware</p>
       <div class="body-col">
-        <h2>Bring a radio, or add one at checkout</h2>
-        <p class="lede">Every student needs an SDR in front of them. You can arrive with your own, or add the unit the course is built around to your registration.</p>
+        <h2>Bring a radio, or buy one with your seat</h2>
+        <p class="lede">Every student needs an SDR in front of them. You can arrive with your own, or buy the unit the course is built around when you book.</p>
 
         <figure class="hw">
           <img src="images/hackrf_one.jpeg"
@@ -707,7 +756,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
 
         <div class="kit">
           <h3>HackRF One bundle &mdash; $600</h3>
-          <p>Added to your registration on RegFox when you book. Includes the HackRF One, antenna, metal case, and an upgraded crystal oscillator. Yours to keep.</p>
+          <p>Purchased with your seat. Includes the HackRF One, antenna, metal case, and an upgraded crystal oscillator. Yours to keep.</p>
         </div>
 
         <p>Bringing your own unit is fine. The bundle is offered so nobody has to source hardware on a deadline, and so the whole room is working on the same radio.</p>
@@ -720,21 +769,25 @@ footer .sbfoot .tel{letter-spacing:.10em}
     <div class="wrap">
       <p class="label">Register</p>
       <div class="body-col">
-        <h2>Upcoming dates</h2>
-        <p class="lede"><b><a href="event-2027-01-bellevue.html">January 2027 &middot; AC Hotel Bellevue, WA</a></b> &mdash; two-day condensed. Exact dates announced shortly.</p>
+        <h2>Dates to be announced</h2>
+        <p class="lede">The five-day deep dive is scheduling now, as a public course and as a private one run for a single organisation.</p>
 
         <div class="prices">
           <div class="price">
-            <h3>Two days</h3>
-            <p class="amt">$2,500</p>
-            <p>Per student. Pre-course video lectures and student VM included.</p>
+            <h3>5-day deep dive</h3>
+            <p class="amt">$4,000</p>
+            <p>Per student. Full module set taught in class, nothing pre-recorded.</p>
           </div>
         </div>
 
-        <p class="fineprint">Includes SDR hardware, all training material and the capstone target. Cancellation terms follow the standard Switchback training policy.</p>
+        <div class="kit">
+          <h3>Private and custom trainings</h3>
+          <p>Custom-tailored editions are available on request, cut to fit your organisation's specific timeline and training objectives. Tell us the days you can spare and what you need your team to walk out able to do.</p>
+        </div>
+        <p class="fineprint">Includes SDR hardware, all training material and the capstone target. Venue is confirmed at booking; cancellation terms follow the standard Switchback training policy.</p>
         <div class="cta-row">
-          <a class="btn btn-solid" href="mailto:contact@switchbacksecuritytraining.com?subject=SDR%20101%20%E2%80%94%20notify%20me%20when%20dates%20open">Get notified when dates open</a>
-          <a class="btn" href="event-2027-01-bellevue.html">January 2027 event &rarr;</a>
+          <a class="btn btn-solid" href="mailto:contact@switchbacksecuritytraining.com?subject=SDR%20101%20five-day%20%E2%80%94%20notify%20me%20when%20dates%20open">Get notified when dates open</a>
+          <a class="btn" href="mailto:contact@switchbacksecuritytraining.com?subject=SDR%20101%20five-day%20%E2%80%94%20private%20training%20enquiry">Ask about private training</a>
         </div>
       </div>
     </div>
@@ -744,7 +797,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
 
 <footer>
   <div class="wrap">
-    <span class="label">Software Defined Radios 101 · Two days · January 2027 · AC Hotel Bellevue, WA</span>
+    <span class="label">Software Defined Radios 101 · Five-day deep dive · Dates to be announced</span>
   </div>
   <div class="wrap sbfoot">
     <span>Presented by <a href="index.html">Switchback Security Training</a></span>
