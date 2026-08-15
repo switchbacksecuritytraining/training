@@ -1,11 +1,21 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  EVENTS HUB.
+  This is the evergreen URL — never retire it, never rename it.
+  Every event gets a card here and its own page:
+  event-YYYY-MM-DD-bellevue.html
+  Dates being held with no trainer signed stay as .plan rows
+  until they're real. See STRUCTURE.md.
+  ============================================================
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Events — Switchback</title>
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<meta name="description" content="Switchback Security Training events — smaller, in-person cybersecurity training in the Pacific Northwest.">
+<meta name="description" content="Every Switchback Security Training event — small by design, in-person cybersecurity training at the AC Hotel Bellevue, WA. Two events in November 2026, four planned for 2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
@@ -26,13 +36,16 @@
     object-fit: cover; border-top: 1px solid var(--ash-2);
   }
   @media (min-width: 760px){ .event__img { border-top: 0; border-left: 1px solid var(--ash-2); } }
-  .event__body { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  /* min-width:0 so a long badge can't stretch the grid track and push
+     the page into a sideways scroll on phones. */
+  .event__body { padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
   .event__status {
     align-self: flex-start;
     font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: #fff; background: var(--blue);
     padding: 3px 8px;
   }
+  .event__status--past { background: var(--ink-3); }
   .event__title {
     font-family: var(--display); font-weight: 700; font-size: var(--step-2);
     text-transform: uppercase; letter-spacing: -0.01em; margin: 0;
@@ -44,6 +57,8 @@
   .event__meta b { color: var(--ink); font-weight: 500; }
   .event__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
   .event__body .btn { align-self: flex-start; margin-top: 4px; }
+  .event__cta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 0; }
+  .event__cta .btn { margin: 0; align-self: auto; }
   .event__courses {
     display: flex; flex-direction: column; gap: 6px; margin: 0;
     font-family: var(--mono); font-size: var(--step--1);
@@ -53,24 +68,50 @@
     color: var(--ink-3);
   }
 
-  /* ── Early bird code badge ───────────────────────── */
+  /* ── Badges ──────────────────────────────────────── */
+  /* Same tokens as index.html and register.html so a label reads
+     identically wherever it appears. No white-space:nowrap — an
+     unbreakable badge sets the grid track's min-content width. */
+  .eb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
   .eb {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: var(--mono); font-size: 0.5625rem;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: #1A0F0C; background: #E9A64F;
-    padding: 3px 8px; white-space: nowrap;
+    padding: 3px 8px;
   }
   .eb b { font-weight: 500; letter-spacing: 0.1em; }
-  .eb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  /* ── Lunch credit token ──────────────────────────── */
   .lt {
     display: inline-flex; align-items: center;
     font-family: var(--mono); font-size: 0.5625rem;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: #7A4E0B; background: transparent; border: 1px solid #E9A64F;
-    padding: 2px 7px; white-space: nowrap;
+    padding: 2px 7px;
   }
+
+  /* ── Planned dates (no page yet) ─────────────────── */
+  /* Deliberately lighter than .event: these are dates being held, not
+     things anyone can book. Promote one to a full .event card — and give
+     it its own event page — once a trainer signs. */
+  .plan {
+    border: 1px solid var(--ash-2); border-left: 3px solid var(--ash-2);
+    background: transparent; padding: 16px 20px; margin-bottom: 12px;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
+    min-width: 0;
+  }
+  .plan__when {
+    font-family: var(--display); font-weight: 700; font-size: var(--step-1);
+    text-transform: uppercase; margin: 0; color: var(--ink);
+  }
+  .plan__what { font-family: var(--mono); font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+  .plan__note {
+    font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 0 auto;
+  }
+  @media (max-width: 640px){ .plan__note { margin-left: 0; } }
+
+  .year { margin-top: 40px; }
+  .year:first-of-type { margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -93,9 +134,13 @@
 
     <div class="detail__head" style="border-bottom:0; padding-bottom:0;">
       <p class="field">Events</p>
+      <h1 style="font-size:var(--step-2);">Every Switchback event</h1>
     </div>
 
-    <div class="section__head" style="margin-top:8px;"><h2>Upcoming</h2></div>
+    <!-- ============================================================
+         2026. Registration is live.
+         ============================================================ -->
+    <div class="section__head year"><h2>2026</h2><p class="field">Registration open</p></div>
 
     <article class="event">
       <div class="event__body">
@@ -118,7 +163,10 @@
           <span>Training</span>
           <a href="ai_engineering.html">AI Engineering for Security Teams &middot; Michael Glass</a>
         </p>
-        <a class="btn" href="register.html#nov14">Reserve your seat</a>
+        <p class="event__cta">
+          <a class="btn" href="register.html#nov14">Reserve your seat</a>
+          <a class="btn btn--ghost" href="event-2026-11-14-bellevue.html">Event details</a>
+        </p>
       </div>
       <img class="event__img"
            src="images/bellevue_city_view.jpg"
@@ -131,7 +179,7 @@
           <span class="event__status">Registration is open</span>
           <span class="eb">Early bird <b>RGONZALEZ</b> $250 off</span>
           <span class="eb">Early bird <b>RSOTO</b> $250 off</span>
-          <span class="eb">Early bird <b>KSTAM</b> $800 off</span>
+          <span class="eb">Early bird <b>KSTAM</b> $500 off</span>
         </div>
         <h3 class="event__title">Three Two-Day Trainings</h3>
         <p class="event__meta">
@@ -149,12 +197,82 @@
           <a href="soc_101.html">SOC 101 Bootcamp &middot; Rod Soto</a>
           <a href="aws_incident_response.html">Cloud Incident Response &middot; Korstiaan Stam</a>
         </p>
-        <a class="btn" href="register.html#nov21">Reserve your seat</a>
+        <p class="event__cta">
+          <a class="btn" href="register.html#nov21">Reserve your seat</a>
+          <a class="btn btn--ghost" href="event-2026-11-21-bellevue.html">Event details</a>
+        </p>
       </div>
       <img class="event__img"
            src="images/bellevue_city_view.jpg"
            alt="Bellevue, WA city view">
     </article>
+
+    <!-- ============================================================
+         2027. Four events, same venue. Only January has a trainer
+         signed, so it's the only one with a page.
+         ============================================================ -->
+    <div class="section__head year"><h2>2027</h2><p class="field">Four events, AC Hotel Bellevue</p></div>
+
+    <article class="event">
+      <div class="event__body">
+        <div class="eb-row">
+          <span class="event__status">Dates to be announced</span>
+        </div>
+        <h3 class="event__title">Software Defined Radios 101</h3>
+        <p class="event__meta">
+          <b>January 2027</b>
+          <span>&middot;</span>
+          <span><a href="https://www.marriott.com/en-us/hotels/seaar-ac-hotel-seattle-bellevue-downtown/overview/" target="_blank" rel="noopener">AC Hotel Bellevue, WA</a></span>
+        </p>
+        <p class="event__desc">
+          The RF kill chain end to end &mdash; intercept, demodulate, decode, attack &mdash;
+          on real radios, finishing against a custom wireless target students
+          reverse-engineer and compromise. No prior RF experience required.
+        </p>
+        <p class="event__courses">
+          <span>Training</span>
+          <a href="sdr_101.html">Software Defined Radios 101 &middot; Richard Shmel</a>
+        </p>
+        <p class="event__cta">
+          <a class="btn" href="event-2027-01-bellevue.html">Event details</a>
+        </p>
+      </div>
+      <img class="event__img"
+           src="images/bellevue_city_view.jpg"
+           alt="Bellevue, WA city view">
+    </article>
+
+    <div class="plan">
+      <p class="plan__when">February 2027</p>
+      <p class="plan__what">AC Hotel Bellevue, WA</p>
+      <p class="plan__note">Trainers being confirmed</p>
+    </div>
+
+    <div class="plan">
+      <p class="plan__when">May 2027</p>
+      <p class="plan__what">AC Hotel Bellevue, WA</p>
+      <p class="plan__note">Trainers being confirmed</p>
+    </div>
+
+    <div class="plan">
+      <p class="plan__when">November 2027</p>
+      <p class="plan__what">AC Hotel Bellevue, WA</p>
+      <p class="plan__note">Trainers being confirmed</p>
+    </div>
+
+    <!-- ============================================================
+         PAST. When an event finishes, move its <article> down here,
+         change .event__status to .event__status--past with the text
+         "This event has finished", and swap the CTA row for the
+         course links alone. Never delete the event page — the URL
+         keeps its inbound links and search history, and it's the
+         evidence the event happened. Split into events-YYYY.html
+         once this list runs past eight or ten.
+         ============================================================
+
+    <div class="section__head year"><h2>Past</h2></div>
+
+    -->
 
     <div class="section">
       <div class="section__head"><h2>Future events</h2></div>
@@ -165,6 +283,11 @@
           trainers to private and corporate venues. To learn about the next event or
           to host an event at your organization, get in touch at
           <a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a>.
+        </p>
+        <p>
+          Teaching, rather than attending? The
+          <a href="trainers.html">trainer directory</a> is open, and 2027 has dates
+          still to fill.
         </p>
       </div>
     </div>

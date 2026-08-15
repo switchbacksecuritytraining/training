@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  EVENT PAGE. One per event. To add the next one: copy this
+  file, rename to event-YYYY-MM-DD-bellevue.html, and change
+  <title>, the meta description, the .detail__head block, the
+  .facts row, the .track cards and the #register section.
+  Trainings live on their own course pages, which is what lets
+  a trainer teach at more than one event without duplicating a
+  course page. See STRUCTURE.md.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>January 2027 &mdash; Switchback Security Training, AC Hotel Bellevue WA</title>
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<meta name="description" content="Switchback Security Training, January 2027 at the AC Hotel Bellevue, WA — Software Defined Radios 101 with Richard Shmel. Dates to be announced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* Masthead lockup is two lines; below 36px the
+     descriptor stops reading. Overrides assets/site.css. */
+  .logo__img{height:36px;width:auto;display:block}
+
+  .track__by {
+    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue); margin: 0;
+  }
+  .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+  .track__price {
+    font-family: var(--mono); font-size: var(--step-1); font-weight: 500;
+    color: var(--ink); margin: 0;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  }
+  .track__price span {
+    font-size: var(--step--1); color: var(--ink-3); letter-spacing: 0.04em;
+  }
+  .track__cta {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto;
+  }
+  .track__cta .btn { margin-top: 0; margin-left: 0; align-self: auto; }
+  .track__link {
+    font-family: var(--mono); font-size: var(--step--1);
+    margin-top: auto; text-decoration: none;
+  }
+  .track__link:hover { text-decoration: underline; }
+  /* Keeps a long badge inside the card instead of stretching the
+     grid track and scrolling the page sideways on phones. */
+  .track { min-width: 0; }
+
+  /* Status token — same values as events.html and register.html so the
+     label reads identically wherever it appears. */
+  .status {
+    display: inline-block;
+    font-family: var(--mono); font-size: 0.625rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #fff; background: var(--blue);
+    padding: 3px 8px; margin: 0 0 14px;
+  }
+  .eb {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--mono); font-size: 0.5625rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #1A0F0C; background: #E9A64F;
+    padding: 3px 8px;
+  }
+  .eb b { font-weight: 500; letter-spacing: 0.1em; }
+  .lt {
+    display: inline-flex; align-items: center;
+    font-family: var(--mono); font-size: 0.5625rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #7A4E0B; background: transparent; border: 1px solid #E9A64F;
+    padding: 2px 7px;
+  }
+
+  /* ── Venue and date facts ────────────────────────── */
+  .facts {
+    display: grid; gap: 0; margin: 0;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--ash-2);
+  }
+  @media (min-width: 720px){ .facts { grid-template-columns: 1fr 1fr 1fr; } }
+  .facts > div { padding: 16px 0; border-bottom: 1px solid var(--ash-2); min-width: 0; }
+  @media (min-width: 720px){
+    .facts > div { padding: 16px 20px; border-bottom: 0; border-left: 1px solid var(--ash-2); }
+    .facts > div:first-child { padding-left: 0; border-left: 0; }
+  }
+  .facts dt {
+    font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px;
+  }
+  .facts dd {
+    font-family: var(--mono); font-size: var(--step--1);
+    color: var(--ink); margin: 0; line-height: 1.5;
+  }
+  .facts dd em { color: var(--ink-3); font-style: normal; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="https://switchbacksecuritytraining.com"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="events.html" aria-current="page">Events</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="btn" href="#register">Ask about dates</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <div class="detail__head">
+      <p class="field">Event &middot; AC Hotel Bellevue, WA</p>
+      <h1>January 2027</h1>
+      <p class="status">Dates to be announced</p>
+      <p class="detail__by">One training, two days on real radios, at the same Bellevue venue as the 2026 events.</p>
+    </div>
+
+    <div class="section">
+      <dl class="facts">
+        <div>
+          <dt>Dates</dt>
+          <dd>To be announced<br><em>January 2027</em></dd>
+        </div>
+        <div>
+          <dt>Venue</dt>
+          <dd><a href="https://www.marriott.com/en-us/hotels/seaar-ac-hotel-seattle-bellevue-downtown/overview/" target="_blank" rel="noopener">AC Hotel Bellevue, WA</a><br><em>Downtown Bellevue</em></dd>
+        </div>
+        <div>
+          <dt>Format</dt>
+          <dd>In-person, hands-on<br><em>Small by design</em></dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="section" id="trainings">
+      <div class="section__head"><h2>Training</h2></div>
+      <div class="tracks">
+        <div class="track">
+          <p class="field">Two days &middot; Beginner &middot; Hands-on throughout</p>
+          <h3>Software Defined Radios 101</h3>
+          <p class="track__by">Richard Shmel</p>
+          <p class="track__price">$2,400 <span>per seat &middot; 2-day condensed</span></p>
+          <p class="track__desc">Intercept, demodulate, decode, attack. Students drive real SDR hardware from the first session, build receivers in GNU Radio, transmit, and finish against a custom wireless target they reverse-engineer and compromise. Pre-course video lectures and the student VM are included; no prior RF experience needed.</p>
+          <p class="track__cta">
+            <a class="btn" href="#register">Ask about dates</a>
+            <a class="track__link" href="sdr_101.html">Full course details &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="register">
+      <div class="section__head"><h2>Dates to be announced</h2></div>
+      <div class="prose">
+        <p>
+          This event is scheduling now. Ask to hear first when the January dates
+          open, or ask about running the training privately for your team &mdash;
+          <a href="mailto:contact@switchbacksecuritytraining.com?subject=January%202027%20Bellevue%20-%20notify%20me">contact@switchbacksecuritytraining.com</a>
+          or <a href="tel:+12066784995">206-678-4995</a>.
+        </p>
+        <p>
+          SDR 101 also runs as a five-day deep dive at $4,000 per seat, and in
+          custom-tailored editions cut to an organization's own timeline. Both
+          include SDR hardware, all training material and the capstone target.
+        </p>
+        <p>
+          Most seats are expensed. Purchase orders, itemized invoices with net-30
+          terms, W-9s and payment by bank transfer are all available &mdash; email
+          <a href="mailto:customerservice@switchbacksecuritytraining.com">customerservice@switchbacksecuritytraining.com</a>.
+          There is a group rate for three or more seats from one organization, and
+          every training qualifies for Continuing Professional Education (CPE) credit.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>Other events</h2></div>
+      <div class="prose">
+        <p>Registration is open now for both <a href="events.html">November 2026 events</a>. Three more 2027 dates &mdash; February, May and November &mdash; are held at the same venue with trainers being confirmed.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <img src="images/switchback_gradient_white_400.jpg" alt="Switchback Security Training" class="foot__logo">
+      <p>Trainer driven cybersecurity events in the PNW</p>
+      <p><a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a></p>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <a href="events.html">Events</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+      <a href="register.html">Reserve your seat</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="https://www.linkedin.com/company/switchbacksecuritytraining" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.facebook.com/people/Switchback-Security-Training/61592183061759/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

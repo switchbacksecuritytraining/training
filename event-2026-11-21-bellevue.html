@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <!--
   ============================================================
-  REGISTRATION — deliberately dumb.
-  This page must never handle money. Every button leaves for a
-  hosted registration platform (Stripe / RegFox / Ti.to).
-  Swap the href on each .btn and you're done.
+  EVENT PAGE. One per event. To add the next one: copy this
+  file, rename to event-YYYY-MM-DD-bellevue.html, and change
+  <title>, the meta description, the .detail__head block, the
+  .facts row, the .track cards and the #register section.
+  Trainings live on their own course pages, which is what lets
+  a trainer teach at more than one event without duplicating a
+  course page. See STRUCTURE.md.
   ============================================================
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Register — Switchback</title>
+<title>November 21&ndash;22, 2026 &mdash; Switchback Security Training, AC Hotel Bellevue WA</title>
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<meta name="description" content="Reserve your seat at Switchback Security Training — AI engineering November 14–15 and three two-day trainings November 21–22, 2026, AC Hotel Bellevue WA.">
+<meta name="description" content="Switchback Security Training, November 21-22 2026 at the AC Hotel Bellevue, WA — three two-day trainings: Hacking Cryptography, SOC 101 Bootcamp, and Cloud Incident Response in AWS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
@@ -27,21 +30,11 @@
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--blue); margin: 0;
   }
-  /* Registration status. Matches .event__status on events.html so the
-     same label reads identically wherever it appears. Swap the text
-     and the background token if a course sells out or the window closes. */
-  .status {
-    display: inline-block;
-    font-family: var(--mono); font-size: 0.625rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: #fff; background: var(--blue);
-    padding: 3px 8px; margin: 0 0 14px;
-  }
   .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
-  .btn[aria-disabled="true"] { opacity: 0.5; cursor: default; pointer-events: none; }
   .track__price {
     font-family: var(--mono); font-size: var(--step-1); font-weight: 500;
     color: var(--ink); margin: 0;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
   }
   .track__price span {
     font-size: var(--step--1); color: var(--ink-3); letter-spacing: 0.04em;
@@ -50,40 +43,61 @@
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto;
   }
   .track__cta .btn { margin-top: 0; margin-left: 0; align-self: auto; }
-  .track__cta .track__link { margin-top: 0; }
   .track__link {
     font-family: var(--mono); font-size: var(--step--1);
     margin-top: auto; text-decoration: none;
   }
   .track__link:hover { text-decoration: underline; }
-  .book .btn { margin-left: auto; }
-  @media (max-width: 640px){ .book .btn { margin-left: 0; } }
-  .track__note {
-    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.04em;
-    color: var(--ink-3); margin: 0;
-  }
-  .track__days { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-  .track__days .btn { margin-top: 0; margin-left: 0; }
+  /* Keeps a long badge inside the card instead of stretching the
+     grid track and scrolling the page sideways on phones. */
+  .track { min-width: 0; }
 
-  /* ── Early bird code badge ───────────────────────── */
+  /* Status token — same values as events.html and register.html so the
+     label reads identically wherever it appears. */
+  .status {
+    display: inline-block;
+    font-family: var(--mono); font-size: 0.625rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #fff; background: var(--blue);
+    padding: 3px 8px; margin: 0 0 14px;
+  }
   .eb {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: var(--mono); font-size: 0.5625rem;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: #1A0F0C; background: #E9A64F;
-    padding: 3px 8px; white-space: nowrap;
+    padding: 3px 8px;
   }
   .eb b { font-weight: 500; letter-spacing: 0.1em; }
-  .eb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  .track__price { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  /* ── Lunch credit token ──────────────────────────── */
   .lt {
     display: inline-flex; align-items: center;
     font-family: var(--mono); font-size: 0.5625rem;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: #7A4E0B; background: transparent; border: 1px solid #E9A64F;
-    padding: 2px 7px; white-space: nowrap;
+    padding: 2px 7px;
   }
+
+  /* ── Venue and date facts ────────────────────────── */
+  .facts {
+    display: grid; gap: 0; margin: 0;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--ash-2);
+  }
+  @media (min-width: 720px){ .facts { grid-template-columns: 1fr 1fr 1fr; } }
+  .facts > div { padding: 16px 0; border-bottom: 1px solid var(--ash-2); min-width: 0; }
+  @media (min-width: 720px){
+    .facts > div { padding: 16px 20px; border-bottom: 0; border-left: 1px solid var(--ash-2); }
+    .facts > div:first-child { padding-left: 0; border-left: 0; }
+  }
+  .facts dt {
+    font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px;
+  }
+  .facts dd {
+    font-family: var(--mono); font-size: var(--step--1);
+    color: var(--ink); margin: 0; line-height: 1.5;
+  }
+  .facts dd em { color: var(--ink-3); font-style: normal; }
 </style>
 </head>
 <body>
@@ -93,42 +107,43 @@
   <div class="wrap masthead__inner">
     <a class="logo" href="https://switchbacksecuritytraining.com"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
     <nav class="nav" aria-label="Main">
-      <a href="events.html">Events</a>
+      <a href="events.html" aria-current="page">Events</a>
       <a href="trainers.html">Trainers</a>
       <a href="about.html">About</a>
     </nav>
-    <a class="btn" href="#nov14">Reserve your seat</a>
+    <a class="btn" href="#register">Reserve your seat</a>
   </div>
 </header>
 
 <main id="main">
   <div class="wrap">
+
     <div class="detail__head">
-      <p class="field">AC Hotel Bellevue, WA &middot; 2026</p>
-      <h1>Reserve your seat</h1>
+      <p class="field">Event &middot; AC Hotel Bellevue, WA</p>
+      <h1>November 21&ndash;22, 2026</h1>
       <p class="status">Registration is open</p>
-      <p class="detail__by">Two events, four in-person trainings. Pick yours below. Four more events follow in 2027 &mdash; <a href="events.html">see the schedule</a>.</p>
+      <p class="detail__by">Three two-day trainings running side by side. Each one spans both days, so you take one.</p>
     </div>
 
-    <div class="section" id="nov14">
-      <div class="section__head"><h2>November 14&ndash;15</h2><p class="field"><a href="event-2026-11-14-bellevue.html">Event details &rarr;</a></p></div>
-      <div class="tracks">
-        <div class="track">
-          <p class="field">One day &middot; run twice</p>
-          <h3>AI Engineering for Security Teams</h3>
-          <p class="track__by">Michael Glass</p>
-          <p class="track__price">$1,900 <span>per seat</span> <span class="eb">Early bird <b>MGLASS</b> $200 off</span> <span class="lt">$25 lunch credit for the 1st 10 sign-ups</span></p>
-          <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering.</p>
-          <p class="track__cta">
-            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
-            <a class="track__link" href="ai_engineering.html">Full course details &rarr;</a>
-          </p>
+    <div class="section">
+      <dl class="facts">
+        <div>
+          <dt>Dates</dt>
+          <dd>November 21&ndash;22, 2026<br><em>Saturday &amp; Sunday</em></dd>
         </div>
-      </div>
+        <div>
+          <dt>Venue</dt>
+          <dd><a href="https://www.marriott.com/en-us/hotels/seaar-ac-hotel-seattle-bellevue-downtown/overview/" target="_blank" rel="noopener">AC Hotel Bellevue, WA</a><br><em>Downtown Bellevue</em></dd>
+        </div>
+        <div>
+          <dt>Format</dt>
+          <dd>Three parallel tracks<br><em>Two days each</em></dd>
+        </div>
+      </dl>
     </div>
 
-    <div class="section" id="nov21">
-      <div class="section__head"><h2>November 21&ndash;22</h2><p class="field"><a href="event-2026-11-21-bellevue.html">Event details &rarr;</a></p></div>
+    <div class="section" id="trainings">
+      <div class="section__head"><h2>Trainings</h2></div>
       <div class="tracks">
         <div class="track">
           <p class="field">Two days</p>
@@ -166,38 +181,41 @@
       </div>
     </div>
 
-    <div class="section" id="next-year">
-      <div class="section__head"><h2>2027</h2><p class="field">Not yet open</p></div>
+    <div class="section" id="register">
+      <div class="section__head"><h2>Reserve your seat</h2></div>
       <div class="prose">
         <p>
-          January, February, May and November, all at the AC Hotel Bellevue. January's
-          <a href="event-2027-01-bellevue.html">Software Defined Radios 101 with Richard Shmel</a>
-          is scheduling now &mdash; ask to hear first when dates open at
-          <a href="mailto:contact@switchbacksecuritytraining.com?subject=2027%20dates%20-%20notify%20me">contact@switchbacksecuritytraining.com</a>.
+          All three trainings are booked through the same RegFox page &mdash;
+          <a href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">book the November 21&ndash;22 event</a>
+          and pick your track there. Early bird codes: <b>RGONZALEZ</b>, <b>RSOTO</b>
+          and <b>KSTAM</b>.
+        </p>
+        <p>
+          The first 10 students to register for Korstiaan's training receive a $25
+          lunch reimbursement for each day of class &mdash; up to $50 total. Keep your
+          receipts and bring them to me for a cash reimbursement.
+        </p>
+        <p>
+          Cancellations can be made without a fee before August 31. After August 31,
+          $200 is subtracted from the refund to cover non-refundable fees.
+        </p>
+        <p>
+          Most seats are expensed. Purchase orders, itemized invoices with net-30
+          terms, W-9s and payment by bank transfer are all available &mdash; email
+          <a href="mailto:customerservice@switchbacksecuritytraining.com">customerservice@switchbacksecuritytraining.com</a>.
+          There is a group rate for three or more seats from one organization, and
+          every training qualifies for Continuing Professional Education (CPE) credit.
         </p>
       </div>
     </div>
 
     <div class="section">
-      <div class="section__head"><h2>Buying for a team</h2></div>
+      <div class="section__head"><h2>Other events</h2></div>
       <div class="prose">
-        <!-- This section exists because your buyer usually isn't your student.
-             Corporate L&D can rarely put a four-figure seat on a personal card. -->
-        <p>
-          Most seats are expensed. If your finance team needs a purchase order,
-          invoice, or payment by bank transfer rather than card, email
-          <a href="mailto:customerservice@switchbacksecuritytraining.com">customerservice@switchbacksecuritytraining.com</a> and it will be provided.
-        </p>
-        <p>I can supply, on request:</p>
-        <ul>
-          <li>An itemized invoice with net-30 terms</li>
-          <li>A W-9 or equivalent tax registration</li>
-          <li>A digital certificate of completion for your employees.</li>
-          <li>All trainings qualify for Continuing Professional Education (CPE) credits for security professionals.</li>
-        </ul>
-        <p>I offer a group rate for three or more seats from one organization.</p>
+        <p>The weekend before brings the <a href="event-2026-11-14-bellevue.html">one-day AI engineering intensive</a> to the same venue. Four more events are planned for 2027 &mdash; see <a href="events.html">all events</a>.</p>
       </div>
     </div>
+
   </div>
 </main>
 
