@@ -7,7 +7,7 @@ index.html                        Next events + a thin pointer at next year
 events.html                       HUB. Every event, upcoming and past. Never retire this URL.
 event-2026-11-14-bellevue.html    ← new layer
 event-2026-11-21-bellevue.html
-event-2027-01-bellevue.html
+event-2027-01-23-bellevue.html
 register.html                     Where you pay. Grouped by event, links out to RegFox.
 trainers.html                     One card per trainer → links to their course pages.
 about.html
@@ -53,10 +53,15 @@ Move its `<article class="event">` into the Past section of `events.html` (the c
 
 ## Placeholders left in this bundle
 
-- **January 2027 dates.** `event-2027-01-bellevue.html` says "To be announced" in the facts row, the status badge and the `#register` heading. Three places, all marked.
-- **`sdr_101_5day.html` has no inbound links.** By request, the two-day page carries no reference to the five-day edition, and no other page links to it either — so nothing on the site or in search will lead anyone to it. It needs a link from somewhere (the trainer card, the events hub, or a line on the two-day page) before it can do any work.
+- ~~January 2027 dates.~~ Set to **23–24 January 2027**, file renamed to `event-2027-01-23-bellevue.html`, RegFox live at `/switchback-security-training-january-2027`.
 - **The five-day edition has no dates.** Its page says "to be announced" in the facts row, the register heading and the footer strap.
-- **February, May, November 2027** are `.plan` rows on `events.html` with no pages yet, by design.
+- **March, June, October 2027** are `.plan` rows on `events.html` with no pages yet, by design.
+
+## A trainer with more than one course
+
+Richard's card on `trainers.html` uses a `.tcard__links` wrapper to list both SDR editions. Reuse it whenever a trainer teaches more than one thing — the wrapper carries the `margin-top:auto` that pins links to the bottom of the card, so they stay a tight group rather than being spread by the card's 12px gap.
+
+The two-day page deliberately carries no reference to the five-day edition, so the trainer card is currently the only route to `sdr_101_5day.html`.
 
 ## Missing files
 
