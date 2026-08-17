@@ -101,6 +101,9 @@
 
   /* Venue photo. Sits between the facts row and the trainings so the
      page shows the room before it asks for money. */
+  .venue-pair { display: grid; gap: 14px; margin: 0 0 var(--space-l); }
+  @media (min-width: 720px) { .venue-pair { grid-template-columns: 1fr 1fr; } }
+  .venue-pair .venue-shot { margin: 0; }
   .venue-shot { margin: 0 0 var(--space-l); }
   .venue-shot img {
     display: block; width: 100%; height: auto;
@@ -173,12 +176,20 @@
       </p>
     </div>
 
-    <figure class="venue-shot">
-      <img src="images/ac_bellevue_meeting_room.jpg"
-           alt="Classroom-style meeting room at the AC Hotel Bellevue, set with rows of tables, water carafes and notepads"
-           width="1600" height="1155" loading="lazy">
-      <figcaption>The training room, AC Hotel Bellevue &mdash; classroom layout</figcaption>
-    </figure>
+    <div class="venue-pair">
+      <figure class="venue-shot">
+        <img src="images/ac_bellevue_meeting_room.jpg"
+             alt="Classroom-style meeting room at the AC Hotel Bellevue, set with rows of tables and a lectern"
+             width="1600" height="1155" loading="lazy">
+        <figcaption>Main meeting room &mdash; Cloud Incident Response</figcaption>
+      </figure>
+      <figure class="venue-shot">
+        <img src="images/ac_bellevue_media_salon.jpg"
+             alt="The Media Salon at the AC Hotel Bellevue, a small private room with one table, a wall display and seating for six"
+             width="1600" height="1152" loading="lazy">
+        <figcaption>Media Salon &mdash; the two six-seat trainings</figcaption>
+      </figure>
+    </div>
 
     <div class="section" id="trainings">
       <div class="section__head"><h2>Trainings</h2></div>
