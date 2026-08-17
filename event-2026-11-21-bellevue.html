@@ -98,6 +98,18 @@
     color: var(--ink); margin: 0; line-height: 1.5;
   }
   .facts dd em { color: var(--ink-3); font-style: normal; }
+
+  /* Venue photo. Sits between the facts row and the trainings so the
+     page shows the room before it asks for money. */
+  .venue-shot { margin: 0 0 var(--space-l); }
+  .venue-shot img {
+    display: block; width: 100%; height: auto;
+    border-radius: 4px; background: var(--paper-2);
+  }
+  .venue-shot figcaption {
+    font-family: var(--mono); font-size: var(--step--2);
+    color: var(--ink-3); margin-top: 8px; letter-spacing: 0.03em;
+  }
 </style>
 </head>
 <body>
@@ -141,6 +153,14 @@
         </div>
       </dl>
     </div>
+
+
+    <figure class="venue-shot">
+      <img src="images/ac_bellevue_meeting_room.jpg"
+           alt="Classroom-style meeting room at the AC Hotel Bellevue, set with rows of tables, water carafes and notepads"
+           width="1600" height="1155" loading="lazy">
+      <figcaption>The training room, AC Hotel Bellevue &mdash; classroom layout</figcaption>
+    </figure>
 
     <div class="section" id="trainings">
       <div class="section__head"><h2>Trainings</h2></div>
