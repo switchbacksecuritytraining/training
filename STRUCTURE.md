@@ -53,6 +53,7 @@ Move its `<article class="event">` into the Past section of `events.html` (the c
 
 ## Placeholders left in this bundle
 
+- **Hotel group rate expires 24 November 2026.** The Marriott block link (`app.marriott.com/resview2?id=1785792785160`) appears in a `.lodging` block on `event-2026-11-14-bellevue.html`, `event-2026-11-21-bellevue.html` and `register.html`. It covers **both November events only** — January 2027 has no block. Remove all three blocks after the cutoff; an expired group link is worse than none.
 - ~~January 2027 dates.~~ Set to **23–24 January 2027**, file renamed to `event-2027-01-23-bellevue.html`, RegFox live at `/switchback-security-training-january-2027`.
 - **The five-day edition has no dates.** Its page says "to be announced" in the facts row, the register heading and the footer strap.
 - **March, June, October 2027** are `.plan` rows on `events.html` with no pages yet, by design.

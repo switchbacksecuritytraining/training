@@ -110,6 +110,14 @@
     font-family: var(--mono); font-size: var(--step--2);
     color: var(--ink-3); margin-top: 8px; letter-spacing: 0.03em;
   }
+
+  /* Group rate. The Marriott block link expires 24 Nov 2026 —
+     remove this row (and the one on register.html) after that date. */
+  .lodging { margin: 0 0 var(--space-l); }
+  .lodging p { margin: 0; font-size: var(--step--1); color: var(--ink-2); }
+  .lodging .rate { font-family: var(--mono); font-size: var(--step--2);
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3);
+    display: block; margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -154,6 +162,16 @@
       </dl>
     </div>
 
+
+
+    <div class="section lodging">
+      <p class="rate">Staying over</p>
+      <p>
+        <a href="https://app.marriott.com/resview2?id=1785792785160&amp;key=GRP&amp;app=resvlink" target="_blank" rel="noopener">Book the group rate at the AC Hotel Bellevue</a>
+        &mdash; Switchback reimburses $10 per night, up to $30. Keep your receipt and
+        bring it to class. Group rate closes 24 November 2026.
+      </p>
+    </div>
 
     <figure class="venue-shot">
       <img src="images/ac_bellevue_meeting_room.jpg"

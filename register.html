@@ -84,6 +84,14 @@
     color: #7A4E0B; background: transparent; border: 1px solid #E9A64F;
     padding: 2px 7px; white-space: nowrap;
   }
+
+  /* Group rate — Marriott block link expires 24 Nov 2026. Covers both
+     November events only; January has no block. Remove after that date. */
+  .lodging { margin: 0 0 var(--space-l); }
+  .lodging p { margin: 0; font-size: var(--step--1); color: var(--ink-2); }
+  .lodging .rate { font-family: var(--mono); font-size: var(--step--2);
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3);
+    display: block; margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -164,6 +172,16 @@
           </p>
         </div>
       </div>
+    </div>
+
+
+    <div class="section lodging">
+      <p class="rate">Staying over &middot; both November events</p>
+      <p>
+        <a href="https://app.marriott.com/resview2?id=1785792785160&amp;key=GRP&amp;app=resvlink" target="_blank" rel="noopener">Book the group rate at the AC Hotel Bellevue</a>
+        &mdash; Switchback reimburses $10 per night, up to $30. Keep your receipt and
+        bring it to class. Group rate closes 24 November 2026.
+      </p>
     </div>
 
     <div class="section" id="jan23">
