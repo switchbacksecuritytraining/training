@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  COURSE PAGE. Belongs to the trainer, not to an event — this
+  is what lets Chris teach the same course at a later event
+  without a second page. Link to it from the event page, the
+  trainer directory and register.html.
+
+  NOTE — pricing. The per-seat figure is a placeholder. The
+  $1,500 / $2,000 in Packet Pioneer's SOW is the delivery fee
+  quoted to Switchback, not a seat price.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCP/IP Deep Dive with Wireshark &mdash; Chris Greer &mdash; Switchback</title>
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<meta name="description" content="TCP/IP Deep Dive with Wireshark — a one-day hands-on packet analysis course with Chris Greer, June 26, 2027 at the AC Hotel Bellevue, WA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* Masthead lockup is two lines; below 36px the
+     descriptor stops reading. Overrides assets/site.css. */
+  .logo__img{height:36px;width:auto;display:block}
+
+  .status {
+    display: inline-block;
+    font-family: var(--mono); font-size: 0.625rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #fff; background: var(--blue);
+    padding: 3px 8px; margin: 0 0 14px;
+  }
+
+  /* ── Course facts ────────────────────────────────── */
+  /* Same markup and tokens as the .facts row on the event pages. */
+  .facts {
+    display: grid; gap: 0; margin: 0;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--ash-2);
+  }
+  @media (min-width: 720px){ .facts { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+  .facts > div { padding: 16px 0; border-bottom: 1px solid var(--ash-2); min-width: 0; }
+  @media (min-width: 720px){
+    .facts > div { padding: 16px 20px; border-bottom: 0; border-left: 1px solid var(--ash-2); }
+    .facts > div:first-child { padding-left: 0; border-left: 0; }
+  }
+  .facts dt {
+    font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px;
+  }
+  .facts dd {
+    font-family: var(--mono); font-size: var(--step--1);
+    color: var(--ink); margin: 0; line-height: 1.5;
+  }
+  .facts dd em { color: var(--ink-3); font-style: normal; }
+
+  /* ── Curriculum ──────────────────────────────────── */
+  /* Each topic carries the Wireshark filter or menu path it's taught
+     with, so the syllabus reads as work rather than as bullet points. */
+  .mod { border-top: 1px solid var(--ash-2); }
+  .mod__item {
+    display: grid; grid-template-columns: 1fr; gap: 4px;
+    padding: 16px 0; border-bottom: 1px solid var(--ash-2); min-width: 0;
+  }
+  @media (min-width: 780px){
+    .mod__item { grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 24px; }
+  }
+  .mod__filter {
+    font-family: var(--mono); font-size: var(--step--2); color: var(--blue);
+    margin: 0; overflow-wrap: anywhere;
+  }
+  .mod__what { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
+
+  /* ── Trainer strip ───────────────────────────────── */
+  .who { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .who__photo {
+    width: 108px; height: 108px; object-fit: cover; display: block;
+    border: 1px solid var(--ink-3); flex: none;
+  }
+  .who__body { flex: 1 1 260px; min-width: 0; }
+  .who__body h3 { margin: 0 0 4px; }
+  .who__spec {
+    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue); margin: 0 0 10px;
+  }
+  .who__body p { font-size: var(--step--1); color: var(--ink-2); margin: 0 0 10px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="logo" href="https://switchbacksecuritytraining.com"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="events.html">Events</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="btn" href="event-2027-06-26-bellevue.html#register">Reserve your seat</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <div class="detail__head">
+      <p class="field">Course &middot; <a href="event-2027-06-26-bellevue.html">June 26&ndash;27, 2027 &middot; AC Hotel Bellevue</a></p>
+      <h1>TCP/IP Deep Dive with Wireshark</h1>
+      <p class="status">Registration opening soon</p>
+      <p class="detail__by">Chris Greer &middot; Packet Pioneer</p>
+    </div>
+
+    <div class="section">
+      <dl class="facts">
+        <div>
+          <dt>When</dt>
+          <dd>Saturday 26 June 2027<br><em>8am&ndash;5pm</em></dd>
+        </div>
+        <div>
+          <dt>Length</dt>
+          <dd>One day &middot; 8 hours<br><em>Hands-on throughout</em></dd>
+        </div>
+        <div>
+          <dt>Level</dt>
+          <dd>Core skills<br><em>No Wireshark experience needed</em></dd>
+        </div>
+        <div>
+          <dt>Seat</dt>
+          <!-- Placeholder price. Replace before launch. -->
+          <dd>Price TBC<br><em>CPE eligible</em></dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>The course</h2></div>
+      <div class="prose">
+        <p>
+          Most networks are blamed for problems they didn't cause. This day is about
+          getting the evidence: capturing in the right place, filtering down to the
+          conversation that matters, and reading TCP closely enough to say whether the
+          delay came from the network, the server or the application.
+        </p>
+        <p>
+          It runs as a lab from the first session. You'll build a working Wireshark
+          profile, follow handshakes, watch a receive window close, and turn a capture
+          into a graph that a manager can read. Bring a pcap from your own network if
+          you have one &mdash; there's time for it.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>What it covers</h2><p class="field">Eight modules</p></div>
+      <div class="mod">
+        <div class="mod__item">
+          <p class="mod__filter">Capture setup &middot; TAP / SPAN / on-device</p>
+          <p class="mod__what">Installing and configuring Wireshark, and choosing where to capture in a switched environment so the packets you get are the packets you need.</p>
+        </div>
+        <div class="mod__item">
+          <p class="mod__filter">!(arp || dns || icmp)</p>
+          <p class="mod__what">Capture filters against display filters, plus the custom columns and profiles that turn Wireshark into a tool you can move fast in.</p>
+        </div>
+        <div class="mod__item">
+          <p class="mod__filter">arp || stp || dns || dhcp</p>
+          <p class="mod__what">Reading the core protocols that keep a network standing up, and what each looks like when it misbehaves.</p>
+        </div>
+        <div class="mod__item">
+          <p class="mod__filter">Statistics &rsaquo; Conversations, Endpoints</p>
+          <p class="mod__what">Working top down: the noisiest talker, the slowest conversation, and the host that shouldn't be there.</p>
+        </div>
+        <div class="mod__item">
+          <p class="mod__filter">tcp.flags.syn == 1 &amp;&amp; tcp.flags.ack == 0</p>
+          <p class="mod__what">TCP fundamentals &mdash; the handshake, initial round-trip time, flags, options, and what sequence and acknowledgment numbers really tell you.</p>
+        </div>
+        <div class="mod__item">
+          <p class="mod__filter">tcp.analysis.zero_window</p>
+          <p class="mod__what">The receive window, window troubleshooting and the congestion window: separating a slow application from a slow network, with evidence.</p>
+        </div>
+        <div class="mod__item">
+          <p class="mod__filter">tls.handshake.type == 1</p>
+          <p class="mod__what">An introduction to TLS encryption and decryption, and troubleshooting encrypted flows and failed handshakes without seeing the payload.</p>
+        </div>
+        <div class="mod__item">
+          <p class="mod__filter">Statistics &rsaquo; TCP Stream Graphs, I/O Graph</p>
+          <p class="mod__what">Turning a capture into a picture: the graphs that make a performance problem obvious to people who don't read packets.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>Who it's for</h2></div>
+      <div class="prose">
+        <p>
+          Network and systems engineers, NOC and support staff, and security analysts
+          who need packet-level proof rather than a dashboard's opinion. No prior
+          Wireshark experience is required; if you already live in the packet list,
+          the afternoon will still stretch you. You should be generally familiar with:
+        </p>
+        <ul>
+          <li>Routing and switching</li>
+          <li>IP addressing and TCP port assignments</li>
+          <li>SPAN and mirror functions</li>
+          <li>Firewalls and load balancers</li>
+          <li>Basic cybersecurity principles</li>
+        </ul>
+        <p>
+          Bring a laptop with a current build of Wireshark and local admin rights so
+          you can capture. Lab captures are handed out in class. Sessions are not
+          recorded, and materials go only to people who attend in person.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>Your trainer</h2></div>
+      <div class="who">
+        <img class="who__photo" src="images/chris_greer.jpg" alt="Chris Greer">
+        <div class="who__body">
+          <h3>Chris Greer</h3>
+          <p class="who__spec">Packet analysis &middot; network forensics</p>
+          <p>
+            Network analyst and Wireshark instructor at Packet Pioneer, a Wireshark
+            University Certified Training Partner. He spends his working life in other
+            people's captures, chasing latency, retransmissions and the traffic nobody
+            meant to send, and teaches the way he troubleshoots: open the file, ask a
+            question, filter, prove it.
+          </p>
+          <a class="btn btn--ghost" href="trainers.html">All trainers</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section__head"><h2>The next day</h2></div>
+      <div class="prose">
+        <p>
+          Chris teaches <a href="threat_hunting.html">Threat Hunting with Wireshark</a>
+          on Sunday 27 June, in the same room. The packet fluency built here is what
+          makes the hunt fast. Either course can be taken on its own &mdash; see the
+          <a href="event-2027-06-26-bellevue.html">June 2027 event page</a> for both.
+        </p>
+        <p><a class="btn" href="event-2027-06-26-bellevue.html#register">Reserve your seat</a></p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <img src="images/switchback_gradient_white_400.jpg" alt="Switchback Security Training" class="foot__logo">
+      <p>Trainer driven cybersecurity events in the PNW</p>
+      <p><a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a></p>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <a href="events.html">Events</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="about.html">About</a>
+      <a href="register.html">Reserve your seat</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="https://www.linkedin.com/company/switchbacksecuritytraining" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.facebook.com/people/Switchback-Security-Training/61592183061759/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/prefs.js" defer></script>
+
+</body>
+</html>
