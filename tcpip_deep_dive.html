@@ -6,9 +6,10 @@
   without a second page. Link to it from the event page, the
   trainer directory and register.html.
 
-  NOTE — pricing. The per-seat figure is a placeholder. The
-  $1,500 / $2,000 in Packet Pioneer's SOW is the delivery fee
-  quoted to Switchback, not a seat price.
+  Built from assets/site.css components only: .spec for the
+  course facts, .catalog/.course for the syllabus, .instructor
+  for the trainer, .book for the conversion rails. The local
+  <style> below adds nothing the stylesheet already provides.
   ============================================================
 -->
 <html lang="en">
@@ -17,7 +18,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCP/IP Deep Dive with Wireshark &mdash; Chris Greer &mdash; Switchback</title>
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<meta name="description" content="TCP/IP Deep Dive with Wireshark — a one-day hands-on packet analysis course with Chris Greer, June 26, 2027 at the AC Hotel Bellevue, WA.">
+<meta name="description" content="TCP/IP Deep Dive with Wireshark — a one-day hands-on packet analysis course with Chris Greer, June 26, 2027 at the AC Hotel Bellevue, WA. $1,500 per seat.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
@@ -27,6 +28,36 @@
      descriptor stops reading. Overrides assets/site.css. */
   .logo__img{height:36px;width:auto;display:block}
 
+  /* Intro sits beside the spec block, which is the signature element.
+     Single column until there's room for both. */
+  .brief { display: grid; gap: 32px; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 900px){
+    .brief { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; }
+  }
+  .brief .prose { margin: 0; }
+
+  /* Syllabus. Follows the .catalog/.course pattern — a continuous spec
+     table rather than a card grid — with the filter or menu path in the
+     left column and what it teaches on the right. */
+  .mod__item {
+    display: grid; grid-template-columns: 1fr; gap: 6px 24px;
+    padding: 18px 0; border-bottom: var(--rule); min-width: 0;
+  }
+  @media (min-width: 760px){
+    .mod__item { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); align-items: baseline; }
+  }
+  .mod__item:hover { background: var(--paper); }
+  .mod__filter {
+    font-family: var(--mono); font-size: var(--step--1); color: var(--blue);
+    margin: 0; overflow-wrap: anywhere;
+  }
+  .mod__what { font-size: var(--step--1); color: var(--ink-2); line-height: 1.55; margin: 0; }
+
+  /* Real photo in place of the .instructor__photo placeholder box. */
+  img.instructor__photo { object-fit: cover; display: block; }
+
+  /* Status token — same values as events.html and register.html so the
+     label reads identically wherever it appears. */
   .status {
     display: inline-block;
     font-family: var(--mono); font-size: 0.625rem;
@@ -34,60 +65,14 @@
     color: #fff; background: var(--blue);
     padding: 3px 8px; margin: 0 0 14px;
   }
-
-  /* ── Course facts ────────────────────────────────── */
-  /* Same markup and tokens as the .facts row on the event pages. */
-  .facts {
-    display: grid; gap: 0; margin: 0;
-    grid-template-columns: 1fr;
-    border-top: 1px solid var(--ash-2);
+  .eb {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--mono); font-size: 0.5625rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #1A0F0C; background: #E9A64F;
+    padding: 3px 8px;
   }
-  @media (min-width: 720px){ .facts { grid-template-columns: 1fr 1fr 1fr 1fr; } }
-  .facts > div { padding: 16px 0; border-bottom: 1px solid var(--ash-2); min-width: 0; }
-  @media (min-width: 720px){
-    .facts > div { padding: 16px 20px; border-bottom: 0; border-left: 1px solid var(--ash-2); }
-    .facts > div:first-child { padding-left: 0; border-left: 0; }
-  }
-  .facts dt {
-    font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px;
-  }
-  .facts dd {
-    font-family: var(--mono); font-size: var(--step--1);
-    color: var(--ink); margin: 0; line-height: 1.5;
-  }
-  .facts dd em { color: var(--ink-3); font-style: normal; }
-
-  /* ── Curriculum ──────────────────────────────────── */
-  /* Each topic carries the Wireshark filter or menu path it's taught
-     with, so the syllabus reads as work rather than as bullet points. */
-  .mod { border-top: 1px solid var(--ash-2); }
-  .mod__item {
-    display: grid; grid-template-columns: 1fr; gap: 4px;
-    padding: 16px 0; border-bottom: 1px solid var(--ash-2); min-width: 0;
-  }
-  @media (min-width: 780px){
-    .mod__item { grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 24px; }
-  }
-  .mod__filter {
-    font-family: var(--mono); font-size: var(--step--2); color: var(--blue);
-    margin: 0; overflow-wrap: anywhere;
-  }
-  .mod__what { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
-
-  /* ── Trainer strip ───────────────────────────────── */
-  .who { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
-  .who__photo {
-    width: 108px; height: 108px; object-fit: cover; display: block;
-    border: 1px solid var(--ink-3); flex: none;
-  }
-  .who__body { flex: 1 1 260px; min-width: 0; }
-  .who__body h3 { margin: 0 0 4px; }
-  .who__spec {
-    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--blue); margin: 0 0 10px;
-  }
-  .who__body p { font-size: var(--step--1); color: var(--ink-2); margin: 0 0 10px; }
+  .eb b { font-weight: 500; letter-spacing: 0.1em; }
 </style>
 </head>
 <body>
@@ -101,7 +86,7 @@
       <a href="trainers.html">Trainers</a>
       <a href="about.html">About</a>
     </nav>
-    <a class="btn" href="event-2027-06-26-bellevue.html#register">Reserve your seat</a>
+    <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-june-2027?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
   </div>
 </header>
 
@@ -111,53 +96,54 @@
     <div class="detail__head">
       <p class="field">Course &middot; <a href="event-2027-06-26-bellevue.html">June 26&ndash;27, 2027 &middot; AC Hotel Bellevue</a></p>
       <h1>TCP/IP Deep Dive with Wireshark</h1>
-      <p class="status">Registration opening soon</p>
+      <p class="status">Registration is open</p>
       <p class="detail__by">Chris Greer &middot; Packet Pioneer</p>
+      <p class="detail__logistics">
+        <span>Saturday 26 June 2027</span>
+        <span>&middot;</span>
+        <span>8am&ndash;5pm, doors 7:30am</span>
+        <span>&middot;</span>
+        <span>One day &middot; 8 hours</span>
+        <span>&middot;</span>
+        <span class="eb">Early bird <b>CGREER</b> $100 off</span>
+      </p>
     </div>
 
     <div class="section">
-      <dl class="facts">
-        <div>
-          <dt>When</dt>
-          <dd>Saturday 26 June 2027<br><em>8am&ndash;5pm</em></dd>
+      <div class="brief">
+        <div class="prose">
+          <p>
+            Most networks are blamed for problems they didn't cause. This day is about
+            getting the evidence: capturing in the right place, filtering down to the
+            conversation that matters, and reading TCP closely enough to say whether the
+            delay came from the network, the server or the application.
+          </p>
+          <p>
+            It runs as a lab from the first session. You'll build a working Wireshark
+            profile, follow handshakes, watch a receive window close, and turn a capture
+            into a graph that a manager can read. Bring a pcap from your own network if
+            you have one &mdash; there's time for it.
+          </p>
         </div>
-        <div>
-          <dt>Length</dt>
-          <dd>One day &middot; 8 hours<br><em>Hands-on throughout</em></dd>
+        <div class="spec">
+          <p class="spec__title">Course spec</p>
+          <dl>
+            <dt>Date</dt><dd>Sat 26 Jun 2027</dd>
+            <dt>Hours</dt><dd>8am&ndash;5pm</dd>
+            <dt>Length</dt><dd>One day &middot; 8 hours</dd>
+            <dt>Level</dt><dd>Core skills</dd>
+            <dt>Venue</dt><dd>AC Hotel Bellevue</dd>
+            <dt>Seat</dt><dd>$1,500</dd>
+            <dt>Both days</dt><dd>$2,000</dd>
+            <dt>Credit</dt><dd>CPE eligible</dd>
+          </dl>
         </div>
-        <div>
-          <dt>Level</dt>
-          <dd>Core skills<br><em>No Wireshark experience needed</em></dd>
-        </div>
-        <div>
-          <dt>Seat</dt>
-          <!-- Placeholder price. Replace before launch. -->
-          <dd>Price TBC<br><em>CPE eligible</em></dd>
-        </div>
-      </dl>
-    </div>
-
-    <div class="section">
-      <div class="section__head"><h2>The course</h2></div>
-      <div class="prose">
-        <p>
-          Most networks are blamed for problems they didn't cause. This day is about
-          getting the evidence: capturing in the right place, filtering down to the
-          conversation that matters, and reading TCP closely enough to say whether the
-          delay came from the network, the server or the application.
-        </p>
-        <p>
-          It runs as a lab from the first session. You'll build a working Wireshark
-          profile, follow handshakes, watch a receive window close, and turn a capture
-          into a graph that a manager can read. Bring a pcap from your own network if
-          you have one &mdash; there's time for it.
-        </p>
       </div>
     </div>
 
     <div class="section">
       <div class="section__head"><h2>What it covers</h2><p class="field">Eight modules</p></div>
-      <div class="mod">
+      <div class="catalog">
         <div class="mod__item">
           <p class="mod__filter">Capture setup &middot; TAP / SPAN / on-device</p>
           <p class="mod__what">Installing and configuring Wireshark, and choosing where to capture in a switched environment so the packets you get are the packets you need.</p>
@@ -191,6 +177,11 @@
           <p class="mod__what">Turning a capture into a picture: the graphs that make a performance problem obvious to people who don't read packets.</p>
         </div>
       </div>
+
+      <div class="book">
+        <p>Saturday 26 June, 8am&ndash;5pm at the AC Hotel Bellevue. $1,500 per seat.</p>
+        <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-june-2027?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+      </div>
     </div>
 
     <div class="section">
@@ -219,11 +210,10 @@
 
     <div class="section">
       <div class="section__head"><h2>Your trainer</h2></div>
-      <div class="who">
-        <img class="who__photo" src="images/chris_greer.jpg" alt="Chris Greer">
-        <div class="who__body">
-          <h3>Chris Greer</h3>
-          <p class="who__spec">Packet analysis &middot; network forensics</p>
+      <div class="instructor">
+        <img class="instructor__photo" src="images/chris_greer.jpg" alt="Chris Greer" width="120" height="120">
+        <div>
+          <p class="field">Packet analysis &middot; network forensics</p>
           <p>
             Network analyst and Wireshark instructor at Packet Pioneer, a Wireshark
             University Certified Training Partner. He spends his working life in other
@@ -245,7 +235,10 @@
           makes the hunt fast. Either course can be taken on its own &mdash; see the
           <a href="event-2027-06-26-bellevue.html">June 2027 event page</a> for both.
         </p>
-        <p><a class="btn" href="event-2027-06-26-bellevue.html#register">Reserve your seat</a></p>
+      </div>
+      <div class="book">
+        <p>Either day is $1,500 per seat. Both days together are $2,000.</p>
+        <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-june-2027?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
       </div>
     </div>
 
