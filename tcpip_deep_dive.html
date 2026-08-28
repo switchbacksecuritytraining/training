@@ -6,10 +6,10 @@
   without a second page. Link to it from the event page, the
   trainer directory and register.html.
 
-  Built from assets/site.css components only: .spec for the
-  course facts, .catalog/.course for the syllabus, .instructor
-  for the trainer, .book for the conversion rails. The local
-  <style> below adds nothing the stylesheet already provides.
+  Follows index.html's flow: .hero with the trainer's photo,
+  then .spec, the .catalog syllabus, .instructor and .book
+  rails from assets/site.css. The only additions are the
+  floating background symbols and the .status / .eb tokens.
   ============================================================
 -->
 <html lang="en">
@@ -28,8 +28,48 @@
      descriptor stops reading. Overrides assets/site.css. */
   .logo__img{height:36px;width:auto;display:block}
 
-  /* Intro sits beside the spec block, which is the signature element.
-     Single column until there's room for both. */
+  /* Course titles are longer than the homepage headline, so the hero h1
+     comes down from site.css's clamp(2.75rem, 6vw, 4.75rem). */
+  .hero h1 { font-size: clamp(1.875rem, 3.4vw, 2.75rem); margin-bottom: 18px; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+  .hero__cta .btn + .btn { margin-left: 0; }
+  /* Portrait rather than a landscape venue shot, so it needs less height
+     than .hero__img's 460px default and a top-weighted crop. */
+  .hero__img { max-height: 420px; object-position: 50% 12%; }
+
+  /* ── Floating background symbols ─────────────────────────────────
+     Chris's subject matter as a page texture: waveform, fin, packet
+     frames, hex bytes, a filter funnel, handshake arrows. Fixed, so
+     they drift under the content as you scroll. Kept at a whisper —
+     the paper surfaces (.spec, .instructor, .book) sit over them and
+     stay legible. site.css already neutralises the drift under
+     prefers-reduced-motion. */
+  .bgfx {
+    position: fixed; inset: 0; z-index: -1;
+    pointer-events: none; overflow: hidden;
+    color: var(--blue);
+  }
+  .bgfx__i { position: absolute; opacity: 0.07; will-change: transform; }
+  .bgfx__i--1 { width: 300px; top:  9%; left: -3%;  animation: drift 19s ease-in-out infinite alternate; }
+  .bgfx__i--2 { width: 118px; top: 24%; right: 5%;  opacity: .06; animation: drift 23s ease-in-out infinite alternate-reverse; }
+  .bgfx__i--3 { width: 190px; top: 44%; left:  4%;  opacity: .05; animation: drift 26s ease-in-out infinite alternate; }
+  .bgfx__i--4 { width: 220px; top: 63%; right: 3%;  opacity: .06; animation: drift 21s ease-in-out infinite alternate-reverse; }
+  .bgfx__i--5 { width: 104px; top: 78%; left:  9%;  opacity: .06; animation: drift 24s ease-in-out infinite alternate; }
+  .bgfx__i--6 { width: 170px; top: 15%; right: 16%; opacity: .05; animation: drift 28s ease-in-out infinite alternate-reverse; }
+  .bgfx__i--7 { width: 100px; top: 55%; right: 12%; opacity: .05; animation: drift 20s ease-in-out infinite alternate; }
+  .bgfx__i--8 { width: 260px; top: 88%; right: 6%;  opacity: .06; animation: drift 25s ease-in-out infinite alternate-reverse; }
+  .bgfx__i--9 { width: 200px; top: 35%; left:  2%;  opacity: .05; animation: drift 22s ease-in-out infinite alternate; }
+  @keyframes drift {
+    from { transform: translate3d(0, -12px, 0) rotate(-1.2deg); }
+    to   { transform: translate3d(0,  14px, 0) rotate(1.2deg); }
+  }
+  /* Below the two-column hero the symbols crowd the text, so thin them out. */
+  @media (max-width: 900px) {
+    .bgfx__i--3, .bgfx__i--6, .bgfx__i--7, .bgfx__i--9 { display: none; }
+    .bgfx__i { opacity: .045; }
+  }
+
+  /* Intro sits beside the spec block, which is the signature element. */
   .brief { display: grid; gap: 32px; grid-template-columns: 1fr; align-items: start; }
   @media (min-width: 900px){
     .brief { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; }
@@ -63,7 +103,7 @@
     font-family: var(--mono); font-size: 0.625rem;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: #fff; background: var(--blue);
-    padding: 3px 8px; margin: 0 0 14px;
+    padding: 3px 8px; margin: 0 0 16px;
   }
   .eb {
     display: inline-flex; align-items: center; gap: 7px;
@@ -78,6 +118,22 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+  <!-- Decorative only: symbols from Chris's material — pulse waveform, a fin,
+       packet frames, hex bytes, a display filter, the three-way handshake —
+       drifting behind the page at low opacity. aria-hidden, pointer-events
+       none, and sits under everything at z-index -1. -->
+  <div class="bgfx" aria-hidden="true">
+    <svg class="bgfx__i bgfx__i--1" viewBox="0 0 240 60"><polyline points="0,30 70,30 82,6 96,54 108,14 118,42 126,30 240,30" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    <svg class="bgfx__i bgfx__i--2" viewBox="0 0 100 100"><path d="M8 78c26-4 40-16 50-34 8-14 12-26 12-38 14 16 22 38 22 58 0 6-1 10-2 14z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M4 86h92" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="bgfx__i bgfx__i--3" viewBox="0 0 160 90"><rect x="2" y="4" width="156" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/><rect x="2" y="34" width="156" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/><rect x="2" y="64" width="156" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="3"/><rect x="10" y="40" width="46" height="8" fill="currentColor"/></svg>
+    <svg class="bgfx__i bgfx__i--4" viewBox="0 0 200 40"><text x="0" y="30" font-family="monospace" font-size="30" fill="currentColor">45 00 3C 1A</text></svg>
+    <svg class="bgfx__i bgfx__i--5" viewBox="0 0 120 120"><path d="M12 18h96L70 62v40l-20 12V62z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/></svg>
+    <svg class="bgfx__i bgfx__i--6" viewBox="0 0 180 120"><path d="M6 20h150l-16-12M6 60h150l-16-12M6 100h150l-16-12" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    <svg class="bgfx__i bgfx__i--7" viewBox="0 0 120 120"><circle cx="50" cy="50" r="36" fill="none" stroke="currentColor" stroke-width="6"/><path d="M76 76l34 34" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
+    <svg class="bgfx__i bgfx__i--8" viewBox="0 0 240 60"><polyline points="0,44 40,44 52,20 64,52 74,28 84,40 92,34 240,34" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    <svg class="bgfx__i bgfx__i--9" viewBox="0 0 200 40"><text x="0" y="30" font-family="monospace" font-size="26" fill="currentColor">[SYN, ACK]</text></svg>
+  </div>
+
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="logo" href="https://switchbacksecuritytraining.com"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
@@ -91,23 +147,34 @@
 </header>
 
 <main id="main">
-  <div class="wrap">
 
-    <div class="detail__head">
-      <p class="field">Course &middot; <a href="event-2027-06-26-bellevue.html">June 26&ndash;27, 2027 &middot; AC Hotel Bellevue</a></p>
-      <h1>TCP/IP Deep Dive with Wireshark</h1>
-      <p class="status">Registration is open</p>
-      <p class="detail__by">Chris Greer &middot; Packet Pioneer</p>
-      <p class="detail__logistics">
-        <span>Saturday 26 June 2027</span>
-        <span>&middot;</span>
-        <span>8am&ndash;5pm, doors 7:30am</span>
-        <span>&middot;</span>
-        <span>One day &middot; 8 hours</span>
-        <span>&middot;</span>
-        <span class="eb">Early bird <b>CGREER</b> $100 off</span>
-      </p>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="field">Course &middot; <a href="event-2027-06-26-bellevue.html" style="color:inherit;">June 26&ndash;27, 2027 &middot; AC Hotel Bellevue</a></p>
+        <h1>TCP/IP Deep Dive with Wireshark</h1>
+        <p class="hero__date">Saturday, June 26, 2027</p>
+        <p class="status">Registration is open</p>
+        <p class="hero__lede">Capture in the right place, filter down to the conversation that matters, and read TCP closely enough to prove where the delay actually lives.</p>
+        <p class="detail__logistics">
+          <span>Chris Greer &middot; Packet Pioneer</span>
+          <span>&middot;</span>
+          <span>One day &middot; 8 hours</span>
+          <span>&middot;</span>
+          <span>$1,500 per seat</span>
+          <span class="eb">Early bird <b>CGREER</b> $100 off</span>
+        </p>
+        <p class="hero__cta">
+          <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-june-2027?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
+          <a class="btn btn--ghost" href="event-2027-06-26-bellevue.html">Event details</a>
+        </p>
+      </div>
+
+      <img class="hero__img" src="images/chris_greer.jpg" alt="Chris Greer, who teaches this course">
     </div>
+  </section>
+
+  <div class="wrap">
 
     <div class="section">
       <div class="brief">
@@ -130,6 +197,7 @@
           <dl>
             <dt>Date</dt><dd>Sat 26 Jun 2027</dd>
             <dt>Hours</dt><dd>8am&ndash;5pm</dd>
+            <dt>Doors</dt><dd>7:30am</dd>
             <dt>Length</dt><dd>One day &middot; 8 hours</dd>
             <dt>Level</dt><dd>Core skills</dd>
             <dt>Venue</dt><dd>AC Hotel Bellevue</dd>
