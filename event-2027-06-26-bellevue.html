@@ -77,6 +77,20 @@
     padding: 2px 7px;
   }
 
+  /* ── Venue photo ─────────────────────────────────────
+     Same treatment as .hero__img and .event__img: full-width, cover
+     crop, hairline border. Caption in the site's mono field voice. */
+  .room { margin: 0; }
+  .room img {
+    width: 100%; height: auto; max-height: 520px;
+    object-fit: cover; object-position: 50% 62%;
+    border: 1px solid var(--ash-2);
+  }
+  .room figcaption {
+    font-family: var(--mono); font-size: var(--step--1); color: var(--ink-3);
+    margin-top: 10px;
+  }
+
   /* ── Daily schedule ──────────────────────────────── */
   /* Times mirror the RegFox registration page. Keep the two in step. */
   .sked { margin: 0; border-top: 1px solid var(--ash-2); }
@@ -154,6 +168,15 @@
           <dd>In-person, hands-on<br><em>Small by design</em></dd>
         </div>
       </dl>
+    </div>
+
+    <div class="section">
+      <figure class="room">
+        <img src="images/ac_bellevue_meeting_room.jpg"
+             alt="The training room at the AC Hotel Bellevue, set classroom-style with tables, chairs and a coffee service along the back wall"
+             width="1600" height="1155" loading="lazy">
+        <figcaption>The room is set for laptops, with power at every seat. Lunch and both breaks are served on site.</figcaption>
+      </figure>
     </div>
 
     <div class="section" id="trainings">
