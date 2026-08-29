@@ -17,12 +17,12 @@
    analyst's screen sorts the world into signal and alert, so
    those are the only two colors allowed to interrupt the page. */
 :root{
-  --ink:#2B1915;
-  --ink-deep:#1A0F0C;
-  --ink-soft:#3A251F;
-  --hairline:#4A322A;
+  --ink:#191A1C;
+  --ink-deep:#0E0F10;
+  --ink-soft:#26282B;
+  --hairline:#33363A;
   --bone:#EFE9E1;
-  --bone-dim:#A6968C;
+  --bone-dim:#9AA0A6;
   --signal:#B49BE8;
   --alert:#E9A64F;
 
@@ -40,7 +40,14 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--ink);color:var(--bone);
+  margin:0;
+  /* The hero gradient, flattened against --ink and run behind the whole
+     page. Fixed, so it reads as one continuous wash rather than
+     repeating per screenful. */
+  background:linear-gradient(180deg,#0E0F10 0%,#17181A 62%,#1F2124 100%);
+  background-attachment:fixed;
+  background-color:var(--ink);
+  color:var(--bone);
   font-family:var(--body);font-size:18px;line-height:1.62;
   -webkit-font-smoothing:antialiased;
 }
@@ -109,7 +116,7 @@ p:last-child{margin-bottom:0}
 /* ── Hero ──────────────────────────────────────────── */
 .hero{
   position:relative;
-  background:linear-gradient(180deg,rgba(26,15,12,.30) 0%,rgba(26,15,12,.62) 62%,rgba(43,25,21,.80) 100%);
+  background:transparent;
   border-bottom:1px solid var(--hairline);
   padding:104px 0 0;
 }
@@ -120,7 +127,7 @@ p:last-child{margin-bottom:0}
 #secpattern{
   position:fixed;inset:0;z-index:0;
   pointer-events:none;user-select:none;
-  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzQTI1MUYiIHN0cm9rZS1vcGFjaXR5PSIxIj48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIxLjYiLz48cGF0aCBkPSJNMTAgNHYzTTE0IDR2M00xMCAxN3YzTTE0IDE3djNNNCAxMGgzTTQgMTRoM00xNyAxMGgzTTE3IDE0aDMiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzQTI1MUYiIHN0cm9rZS1vcGFjaXR5PSIxIj48Y2lyY2xlIGN4PSI2IiBjeT0iNyIgcj0iMi4zIi8+PGNpcmNsZSBjeD0iMTgiIGN5PSI3IiByPSIyLjMiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIyLjMiLz48cGF0aCBkPSJNOC4zIDdoNy40TTcuMyA5LjEgMTAuNyAxNS45TTE2LjcgOS4xIDEzLjMgMTUuOSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNiw4Nikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzNBMjUxRiIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxjaXJjbGUgY3g9IjYiIGN5PSI3IiByPSIyLjMiLz48Y2lyY2xlIGN4PSIxOCIgY3k9IjciIHI9IjIuMyIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTgiIHI9IjIuMyIvPjxwYXRoIGQ9Ik04LjMgN2g3LjRNNy4zIDkuMSAxMC43IDE1LjlNMTYuNyA5LjEgMTMuMyAxNS45Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg2LDg2KSBzY2FsZSgxLjU4MzMzKSIgc3Ryb2tlPSIjM0EyNTFGIiBzdHJva2Utb3BhY2l0eT0iMSI+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMS42Ii8+PHBhdGggZD0iTTEwIDR2M00xNCA0djNNMTAgMTd2M00xNCAxN3YzTTQgMTBoM000IDE0aDNNMTcgMTBoM00xNyAxNGgzIi8+PC9nPjwvZz48L3N2Zz4=");
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzMzM2M0EiIHN0cm9rZS1vcGFjaXR5PSIxIj48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIxLjYiLz48cGF0aCBkPSJNMTAgNHYzTTE0IDR2M00xMCAxN3YzTTE0IDE3djNNNCAxMGgzTTQgMTRoM00xNyAxMGgzTTE3IDE0aDMiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzMzM2M0EiIHN0cm9rZS1vcGFjaXR5PSIxIj48Y2lyY2xlIGN4PSI2IiBjeT0iNyIgcj0iMi4zIi8+PGNpcmNsZSBjeD0iMTgiIGN5PSI3IiByPSIyLjMiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIyLjMiLz48cGF0aCBkPSJNOC4zIDdoNy40TTcuMyA5LjEgMTAuNyAxNS45TTE2LjcgOS4xIDEzLjMgMTUuOSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNiw4Nikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzMzMzYzQSIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxjaXJjbGUgY3g9IjYiIGN5PSI3IiByPSIyLjMiLz48Y2lyY2xlIGN4PSIxOCIgY3k9IjciIHI9IjIuMyIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTgiIHI9IjIuMyIvPjxwYXRoIGQ9Ik04LjMgN2g3LjRNNy4zIDkuMSAxMC43IDE1LjlNMTYuNyA5LjEgMTMuMyAxNS45Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg2LDg2KSBzY2FsZSgxLjU4MzMzKSIgc3Ryb2tlPSIjMzMzNjNBIiBzdHJva2Utb3BhY2l0eT0iMSI+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iMS42Ii8+PHBhdGggZD0iTTEwIDR2M00xNCA0djNNMTAgMTd2M00xNCAxN3YzTTQgMTBoM000IDE0aDNNMTcgMTBoM00xNyAxNGgzIi8+PC9nPjwvZz48L3N2Zz4=");
   background-size:140px 140px;
   background-position:center top;
   -webkit-mask-image:radial-gradient(100% 80% at 74% 18%,#000 0%,rgba(0,0,0,.6) 44%,transparent 82%);
@@ -180,7 +187,7 @@ main,footer{position:relative;z-index:1}
 }
 
 /* ── Section scaffold ──────────────────────────────── */
-.sec{border-bottom:1px solid var(--hairline);background:rgba(43,25,21,.84)}
+.sec{border-bottom:1px solid var(--hairline);background:rgba(25,26,28,.62)}
 .sec .wrap{
   display:grid;grid-template-columns:var(--rail) 1fr;gap:var(--gap);
   padding-top:76px;padding-bottom:76px;
@@ -223,7 +230,7 @@ main,footer{position:relative;z-index:1}
   border-left:2px solid var(--signal);
   padding:20px 22px;
   font-size:17px;color:var(--bone-dim);
-  background:rgba(58,37,31,.28);
+  background:rgba(38,40,43,.34);
 }
 
 /* ── Conversion rail — mirrors the .book component in site.css,
@@ -235,7 +242,7 @@ main,footer{position:relative;z-index:1}
   padding:18px 20px;
   border:1px solid var(--hairline);
   border-left:3px solid #1f4fd8;
-  background:rgba(58,37,31,.30);
+  background:rgba(38,40,43,.36);
 }
 .book p{margin:0;font-size:16px;color:var(--bone-dim)}
 .book .btn{margin-left:auto}
@@ -308,7 +315,7 @@ main,footer{position:relative;z-index:1}
 .register .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 
 /* ── Footer ────────────────────────────────────────── */
-footer{background:rgba(26,15,12,.92);padding:34px 0}
+footer{background:rgba(14,15,16,.78);padding:34px 0}
 footer .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 footer img{height:20px;width:auto}
 footer .label{margin-left:auto}
@@ -361,7 +368,7 @@ footer .sbfoot .mail{margin-left:auto;text-transform:none;letter-spacing:.06em}
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--display);font-size:8.5px;font-weight:800;
   letter-spacing:.13em;text-transform:uppercase;
-  color:#1A0F0C;background:#E9A64F;
+  color:#0E0F10;background:#E9A64F;
   border-radius:2px;padding:6px 10px;line-height:1.35;white-space:nowrap;
 }
 .eb b{font-weight:800;letter-spacing:.16em}
