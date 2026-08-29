@@ -16,12 +16,12 @@
    pages read as one series. Violet is the signal, amber is
    the alert; nothing else is allowed to interrupt the page. */
 :root{
-  --ink:#2B1915;
-  --ink-deep:#1A0F0C;
-  --ink-soft:#3A251F;
-  --hairline:#4A322A;
-  --bone:#EFE9E1;
-  --bone-dim:#A6968C;
+  --ink:#363D43;
+  --ink-deep:#22282D;
+  --ink-soft:#434C53;
+  --hairline:#525C64;
+  --bone:#ECEFF1;
+  --bone-dim:#A2ABB2;
   --signal:#B49BE8;
   --alert:#E9A64F;
 
@@ -105,10 +105,47 @@ p:last-child{margin-bottom:0}
   background:#163aa0;border-color:#163aa0;color:#fff;
 }
 
+/* ── Faceted ground ─────────────────────────────────────
+   The RNS banner treatment, rebuilt in CSS: broad angular
+   planes of slate cut by hard diagonal edges, plus the fine
+   paper grain that keeps the flats from looking like vinyl.
+   Fixed to the viewport, so the planes hold still and the
+   content slides over them. Layer order is top-down. */
+#facets{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;user-select:none;
+  background-color:var(--ink);
+  background-image:
+    linear-gradient(118deg,
+      transparent 0 34%,
+      rgba(255,255,255,.028) 34% 50%,
+      transparent 50% 76%,
+      rgba(8,12,15,.055) 76% 90%,
+      transparent 90%),
+    conic-gradient(from 0deg at 104% 18%,
+      transparent 0 192deg,
+      rgba(255,255,255,.055) 192deg 222deg,
+      rgba(8,12,15,.05) 222deg 244deg,
+      rgba(8,12,15,.10) 244deg 286deg,
+      transparent 286deg),
+    conic-gradient(from 0deg at 6% -10%,
+      rgba(8,12,15,.16) 0 52deg,
+      rgba(255,255,255,.035) 52deg 82deg,
+      rgba(8,12,15,.055) 82deg 112deg,
+      rgba(255,255,255,.055) 112deg 150deg,
+      transparent 150deg);
+}
+#facets::after{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJnIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSI0IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWx0ZXI9InVybCgjZykiLz48L3N2Zz4=");
+  background-size:200px 200px;
+  opacity:.055;mix-blend-mode:overlay;
+}
+
 /* ── Hero ──────────────────────────────────────────── */
 .hero{
   position:relative;
-  background:linear-gradient(180deg,rgba(26,15,12,.30) 0%,rgba(26,15,12,.62) 62%,rgba(43,25,21,.80) 100%);
+  background:linear-gradient(180deg,rgba(34,40,45,.30) 0%,rgba(34,40,45,.62) 62%,rgba(54,61,67,.80) 100%);
   border-bottom:1px solid var(--hairline);
   padding:104px 0 0;
 }
@@ -120,7 +157,7 @@ p:last-child{margin-bottom:0}
 #secpattern{
   position:fixed;inset:0;z-index:0;
   pointer-events:none;user-select:none;
-  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzQTI1MUYiIHN0cm9rZS1vcGFjaXR5PSIxIj48cGF0aCBkPSJNMTIgMjBWOE05IDIwaDYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjYuNSIgcj0iMS4zIi8+PHBhdGggZD0iTTkgNC41YTYuMiA2LjIgMCAwIDAgMCA3TTE1IDQuNWE2LjIgNi4yIDAgMCAxIDAgNyIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4NiwxNikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzNBMjUxRiIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0zIDIwaDE4TTYgMjB2LTVNOSAyMHYtOU0xMiAyMHYtNE0xNSAyMHYtMTJNMTggMjB2LTciLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsODYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiMzQTI1MUYiIHN0cm9rZS1vcGFjaXR5PSIxIj48cGF0aCBkPSJNMiAxMmMxLjUtNiA0LjUtNiA2IDBzNC41IDYgNiAwIDQuNS02IDYgMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4Niw4Nikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzNBMjUxRiIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0xMiA0djE2TTQgMTJoMTYiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMS4zIi8+PGNpcmNsZSBjeD0iMTYiIGN5PSI4IiByPSIxLjMiLz48Y2lyY2xlIGN4PSI4IiBjeT0iMTYiIHI9IjEuMyIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjEuMyIvPjwvZz48L2c+PC9zdmc+");
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgMTQwIDE0MCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsMTYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiM0QTU1NUQiIHN0cm9rZS1vcGFjaXR5PSIxIj48cGF0aCBkPSJNMTIgMjBWOE05IDIwaDYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjYuNSIgcj0iMS4zIi8+PHBhdGggZD0iTTkgNC41YTYuMiA2LjIgMCAwIDAgMCA3TTE1IDQuNWE2LjIgNi4yIDAgMCAxIDAgNyIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4NiwxNikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzRBNTU1RCIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0zIDIwaDE4TTYgMjB2LTVNOSAyMHYtOU0xMiAyMHYtNE0xNSAyMHYtMTJNMTggMjB2LTciLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYsODYpIHNjYWxlKDEuNTgzMzMpIiBzdHJva2U9IiM0QTU1NUQiIHN0cm9rZS1vcGFjaXR5PSIxIj48cGF0aCBkPSJNMiAxMmMxLjUtNiA0LjUtNiA2IDBzNC41IDYgNiAwIDQuNS02IDYgMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4Niw4Nikgc2NhbGUoMS41ODMzMykiIHN0cm9rZT0iIzRBNTU1RCIgc3Ryb2tlLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0xMiA0djE2TTQgMTJoMTYiLz48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMS4zIi8+PGNpcmNsZSBjeD0iMTYiIGN5PSI4IiByPSIxLjMiLz48Y2lyY2xlIGN4PSI4IiBjeT0iMTYiIHI9IjEuMyIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjEuMyIvPjwvZz48L2c+PC9zdmc+");
   background-size:140px 140px;
   background-position:center top;
   -webkit-mask-image:radial-gradient(100% 80% at 74% 18%,#000 0%,rgba(0,0,0,.6) 44%,transparent 82%);
@@ -180,7 +217,7 @@ main,footer{position:relative;z-index:1}
 }
 
 /* ── Section scaffold ──────────────────────────────── */
-.sec{border-bottom:1px solid var(--hairline);background:rgba(43,25,21,.84)}
+.sec{border-bottom:1px solid var(--hairline);background:rgba(54,61,67,.84)}
 .sec .wrap{
   display:grid;grid-template-columns:var(--rail) 1fr;gap:var(--gap);
   padding-top:76px;padding-bottom:76px;
@@ -237,7 +274,7 @@ main,footer{position:relative;z-index:1}
   border-left:2px solid var(--signal);
   padding:20px 22px;
   font-size:17px;color:var(--bone-dim);
-  background:rgba(58,37,31,.28);
+  background:rgba(67,76,83,.28);
 }
 
 /* ── Conversion rail — mirrors the .book component in site.css,
@@ -249,7 +286,7 @@ main,footer{position:relative;z-index:1}
   padding:18px 20px;
   border:1px solid var(--hairline);
   border-left:3px solid #1f4fd8;
-  background:rgba(58,37,31,.30);
+  background:rgba(67,76,83,.30);
 }
 .book p{margin:0;font-size:16px;color:var(--bone-dim)}
 .book .btn{margin-left:auto}
@@ -350,7 +387,7 @@ main,footer{position:relative;z-index:1}
 .register .tel:hover,.register .tel:focus-visible{border-bottom-color:var(--signal)}
 
 /* ── Footer ────────────────────────────────────────── */
-footer{background:rgba(26,15,12,.92);padding:34px 0}
+footer{background:rgba(34,40,45,.92);padding:34px 0}
 footer .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 footer img{height:20px;width:auto}
 footer .label{margin-left:auto}
@@ -404,7 +441,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
   display:inline-flex;align-items:center;gap:8px;
   font-family:var(--display);font-size:8.5px;font-weight:800;
   letter-spacing:.13em;text-transform:uppercase;
-  color:#1A0F0C;background:#E9A64F;
+  color:#22282D;background:#E9A64F;
   border-radius:2px;padding:6px 10px;line-height:1.35;white-space:nowrap;
 }
 .eb b{font-weight:800;letter-spacing:.16em}
@@ -448,6 +485,7 @@ footer .sbfoot .tel{letter-spacing:.10em}
 </head>
 <body>
 
+<div id="facets" aria-hidden="true"></div>
 <div id="secpattern" aria-hidden="true"></div>
 
 <header class="masthead">
