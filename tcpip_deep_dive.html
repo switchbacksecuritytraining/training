@@ -33,9 +33,12 @@
   .hero h1 { font-size: clamp(1.875rem, 3.4vw, 2.75rem); margin-bottom: 18px; }
   .hero__cta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
   .hero__cta .btn + .btn { margin-left: 0; }
-  /* Portrait rather than a landscape venue shot, so it needs less height
-     than .hero__img's 460px default and a top-weighted crop. */
-  .hero__img { max-height: 420px; object-position: 50% 12%; }
+  /* No portrait in the hero, so the grid stays a single column and the
+     text is held to a measure rather than running the full 1176px. */
+  @media (min-width: 900px){
+    .hero__grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  .hero__grid > div { max-width: 62ch; }
 
   /* ── Floating background symbols ─────────────────────────────────
      Chris's subject matter as a page texture: waveform, fin, packet
@@ -169,8 +172,6 @@
           <a class="btn btn--ghost" href="event-2027-06-26-bellevue.html">Event details</a>
         </p>
       </div>
-
-      <img class="hero__img" src="images/chris_greer.jpg" alt="Chris Greer, who teaches this course">
     </div>
   </section>
 
