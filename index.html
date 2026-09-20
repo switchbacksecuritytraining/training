@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Switchback Security Training</title>
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<meta name="description" content="Switchback Security Training — two in-person events at the AC Hotel Bellevue, WA. AI engineering November 14–15, three two-day trainings November 21–22, 2026.">
+<meta name="description" content="Switchback Security Training — an announcement is coming tomorrow.">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Condensed:wght@600;700&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
@@ -15,71 +16,10 @@
      descriptor stops reading. Overrides assets/site.css. */
   .logo__img{height:36px;width:auto;display:block}
 
-  /* "Cybersecurity" adds a long word to the hero line, so the heading
-     comes down from site.css's clamp(2.75rem, 6vw, 4.75rem) to keep the
-     venue on a single line. Size alone isn't enough — where the line
-     falls depends on the column width — so .venue is also held together
-     as one unbreakable unit. */
-  .hero h1 { font-size: clamp(2rem, 3.6vw, 2.75rem); }
-
-  /* Only from the two-column hero breakpoint up. Below that the column
-     is too narrow to hold the venue on one line, and forcing it would
-     push the page wider than the screen. */
-  @media (min-width: 900px) {
-    .hero h1 .venue { white-space: nowrap; }
-  }
-
-  .track__by {
-    font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--blue); margin: 0;
-  }
-  .hero__cta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
-  .hero__cta .btn + .btn { margin-left: 0; }
-  .track__cta {
-    display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto;
-  }
-  .track__cta .btn { margin-top: 0; margin-left: 0; align-self: auto; }
-  .track__cta .track__link { margin-top: 0; }
-  .track__price {
-    font-family: var(--mono); font-size: var(--step-1); font-weight: 500;
-    color: var(--ink); margin: 0;
-  }
-  .track__price span {
-    font-size: var(--step--1); color: var(--ink-3); letter-spacing: 0.04em;
-  }
-  .track__desc { font-size: var(--step--1); color: var(--ink-2); margin: 0; }
-
-  /* ── Early bird code badge ───────────────────────── */
-  /* No white-space:nowrap here. These badges sit inside a 1fr grid
-     item, whose auto min-width is set by its widest unbreakable child,
-     so an unwrappable badge widened the whole card past the viewport
-     and pushed the page into a sideways scroll on phones. Wrapping only
-     kicks in when the badge genuinely can't fit on one line. */
-  .eb {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-family: var(--mono); font-size: 0.5625rem;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: #1A0F0C; background: #E9A64F;
-    padding: 3px 8px;
-  }
-  .eb b { font-weight: 500; letter-spacing: 0.1em; }
-  .eb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  .track__price { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  /* ── Lunch credit token ──────────────────────────── */
-  /* Longest of the badges ("Up to $50 lunch credit for the 1st 10
-     sign-ups"), so this was the main driver of the mobile overflow.
-     Wraps rather than nowraps, for the reason noted above. */
-  .lt {
-    display: inline-flex; align-items: center;
-    font-family: var(--mono); font-size: 0.5625rem;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: #7A4E0B; background: transparent; border: 1px solid #E9A64F;
-    padding: 2px 7px;
-  }
-
-  /* Belt and braces: keeps any future long content inside the card
-     instead of stretching the grid track. */
-  .track { min-width: 0; }
+  /* Single-column hero now that there is no image beside it. */
+  .hero__grid { display: block; }
+  .hero h1 { font-size: clamp(2rem, 3.6vw, 2.75rem); max-width: 22ch; }
+  .notice { max-width: 46ch; }
 </style>
 </head>
 <body>
@@ -88,12 +28,6 @@
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="logo" href="https://switchbacksecuritytraining.com"><img src="images/switchback-masthead.svg" alt="Switchback Security Training" class="logo__img"></a>
-    <nav class="nav" aria-label="Main">
-      <a href="events.html">Events</a>
-      <a href="trainers.html">Trainers</a>
-      <a href="about.html">About</a>
-    </nav>
-    <a class="btn" href="register.html">Reserve your seat</a>
   </div>
 </header>
 
@@ -102,117 +36,14 @@
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
-        <h1>Two cybersecurity events at the <span class="venue">AC Hotel Bellevue, WA</span></h1>
-        <p class="hero__date">November 14&ndash;15 &amp; 21&ndash;22, 2026</p>
-        <p class="hero__lede">
-          Two in-person weekends, four trainings. AI engineering on the first weekend,
-          three two-day courses on the second.
-        </p>
-        <p class="hero__cta">
-          <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat &middot; Nov 14&ndash;15</a>
-          <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat &middot; Nov 21&ndash;22</a>
-          <a class="btn btn--ghost" href="events.html">All events</a>
+        <h1>An announcement is coming tomorrow.</h1>
+        <p class="hero__lede notice">
+          Questions in the meantime:
+          <a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a>
         </p>
       </div>
-
-      <img class="hero__img"
-           src="images/ac_bellevue_exterior_evening.jpg"
-           alt="AC Hotel Bellevue at dusk, the venue for the inaugural event">
     </div>
   </section>
-
-  <div class="wrap">
-    <div class="section" id="trainings">
-      <div class="section__head"><h2>Trainings</h2></div>
-      <div class="tracks">
-        <div class="track">
-          <p class="field"><a href="event-2026-11-14-bellevue.html" style="color:inherit;text-decoration:none;">Nov 14 or 15 &middot; One day &middot; Runs twice</a></p>
-          <h3>AI Engineering for Security Teams</h3>
-          <p class="track__by">Michael Glass</p>
-          <p class="track__price">$1,900 <span>per seat</span> <span class="eb">Early bird <b>MGLASS</b> $200 off</span> <span class="lt">$25 lunch credit for the 1st 10 sign-ups</span></p>
-          <p class="track__desc">An all-labs day building, securing and applying AI across detection, incident response, SOC operations and security engineering. Run twice &mdash; take it Saturday 14 or Sunday 15.</p>
-          <p class="track__cta">
-            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/ai-engineering-nov1415?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
-            <a class="btn btn--ghost" href="ai_engineering.html">View course</a>
-          </p>
-        </div>
-
-        <div class="track">
-          <p class="field"><a href="event-2026-11-21-bellevue.html" style="color:inherit;text-decoration:none;">Nov 21&ndash;22 &middot; Two days</a></p>
-          <h3>Hacking Cryptography</h3>
-          <p class="track__by">Ruben Gonzalez</p>
-          <p class="track__price">$2,400 <span>per seat</span> <span class="eb">Early bird <b>RGONZALEZ</b> $250 off</span></p>
-          <p class="track__desc">How applied cryptography fails in practice, and how to find it before someone else does.</p>
-          <p class="track__cta">
-            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
-            <a class="btn btn--ghost" href="hacking_cryptography.html">View course</a>
-          </p>
-        </div>
-        <div class="track">
-          <p class="field"><a href="event-2026-11-21-bellevue.html" style="color:inherit;text-decoration:none;">Nov 21&ndash;22 &middot; Two days</a></p>
-          <h3>SOC 101 Bootcamp with AI Integration</h3>
-          <p class="track__by">Rod Soto</p>
-          <p class="track__price">$2,700 <span>per seat</span> <span class="eb">Early bird <b>RSOTO</b> $250 off</span></p>
-          <p class="track__desc">Security operations skills built on hands-on labs, with AI-assisted detection and triage.</p>
-          <p class="track__cta">
-            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
-            <a class="btn btn--ghost" href="soc_101.html">View course</a>
-          </p>
-        </div>
-        <div class="track">
-          <p class="field"><a href="event-2026-11-21-bellevue.html" style="color:inherit;text-decoration:none;">Nov 21&ndash;22 &middot; Two days</a></p>
-          <h3>Cloud Incident Response</h3>
-          <p class="track__by">Korstiaan Stam</p>
-          <p class="track__price">$3,400 <span>per seat</span> <span class="eb">Early bird <b>KSTAM</b> $500 off</span> <span class="lt">Up to $50 lunch credit for the 1st 10 sign-ups</span></p>
-          <p class="track__desc">Respond to security incidents in AWS, through lectures, hands-on labs and Capture The Flag challenges.</p>
-          <p class="track__cta">
-            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-november-21-22-bellevue-wa?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
-            <a class="btn btn--ghost" href="aws_incident_response.html">View course</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================================
-         2027. One card for January because it is bookable; the other
-         three months stay a single line until they have a trainer.
-         Add a card only when a date opens for registration.
-         ============================================================ -->
-    <div class="section" id="next-year">
-      <div class="section__head"><h2>2027</h2><p class="field">AC Hotel Bellevue, WA</p></div>
-      <div class="tracks">
-        <div class="track">
-          <p class="field"><a href="event-2027-01-23-bellevue.html" style="color:inherit;text-decoration:none;">Jan 23&ndash;24 &middot; Two days</a></p>
-          <h3>Software Defined Radios 101</h3>
-          <p class="track__by">Richard Shmel</p>
-          <p class="track__price">$2,500 <span>per seat</span> <span class="eb">Early bird <b>RSHMEL</b> $250 off</span></p>
-          <p class="track__desc">Intercept, demodulate, decode, attack. Real SDR hardware from the first session, finishing against a custom wireless target students reverse-engineer and compromise. No prior RF experience required.</p>
-          <p class="track__cta">
-            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-january-2027?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
-            <a class="btn btn--ghost" href="sdr_101.html">View course</a>
-          </p>
-        </div>
-        <div class="track">
-          <p class="field"><a href="event-2027-06-26-bellevue.html" style="color:inherit;text-decoration:none;">Jun 26 or 27 &middot; One day each</a></p>
-          <h3>Wireshark: TCP/IP Deep Dive &amp; Threat Hunting</h3>
-          <p class="track__by">Chris Greer</p>
-          <p class="track__price">$1,500 <span>per seat &middot; per day &middot; $2,000 both</span> <span class="eb">Early bird <b>CGREER</b> $100 off</span></p>
-          <p class="track__desc">Two standalone one-day courses, back to back. Saturday is capture, filters and TCP under pressure; Sunday is scans, beacons, ATT&amp;CK mapping and Tshark. Take either day at $1,500, or both for $2,000.</p>
-          <p class="track__cta">
-            <a class="btn" href="https://switchbacksecuritytraining.regfox.com/switchback-security-training-june-2027?ref=switchbacksecuritytraining.com" target="_blank" rel="noopener">Reserve your seat</a>
-            <a class="btn btn--ghost" href="tcpip_deep_dive.html">View course</a>
-          </p>
-        </div>
-      </div>
-      <div class="prose">
-        <p>
-          Two more dates follow at the same venue &mdash; March and October.
-          Trainers are being confirmed.
-        </p>
-        <p><a class="btn btn--ghost" href="events.html">See all events</a></p>
-      </div>
-    </div>
-  </div>
 
 </main>
 
@@ -220,29 +51,10 @@
   <div class="wrap foot__grid">
     <div>
       <img src="images/switchback_gradient_white_400.jpg" alt="Switchback Security Training" class="foot__logo">
-      <p>Trainer driven cybersecurity events in the PNW</p>
       <p><a href="mailto:contact@switchbacksecuritytraining.com">contact@switchbacksecuritytraining.com</a></p>
-    </div>
-    <div>
-      <h4>Site</h4>
-      <a href="events.html">Events</a>
-      <a href="trainers.html">Trainers</a>
-      <a href="about.html">About</a>
-      <a href="register.html">Reserve your seat</a>
-    </div>
-    <div>
-      <h4>Elsewhere</h4>
-      <a href="https://www.linkedin.com/company/switchbacksecuritytraining" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.facebook.com/people/Switchback-Security-Training/61592183061759/" target="_blank" rel="noopener">Facebook</a>
     </div>
   </div>
 </footer>
-
-<!-- ── Analytics & cookie consent ───────────────────────────────────
-     LinkedIn Insight Tag (partner 9871172) loads ONLY after the visitor
-     accepts in the banner. All of it lives in assets/prefs.js —
-     remove this one line to disable tracking site-wide. -->
-<script src="assets/prefs.js" defer></script>
 
 </body>
 </html>
